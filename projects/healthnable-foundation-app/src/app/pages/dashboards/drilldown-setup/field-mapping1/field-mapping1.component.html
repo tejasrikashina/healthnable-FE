@@ -1,0 +1,88 @@
+<mat-dialog-content class="mat-typography" style="overflow-y: auto; max-height:80vh; background-color: white;">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: 500; font-size: 1.4rem; margin: 0;">
+                <span class="m-2">{{ 'drilldown.fieldMapping' | translate }}</span>
+            </h2>
+            <button mat-icon-button (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+      </button>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <form [formGroup]="fieldMapForm">
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <healthnable-select [label]="'drilldown.dashboardKpi'" [formControlName]="'dashboardKpi'" [multiSelect]="true" [formGroupValue]="fieldMapForm" [required]="true" [options]="dashboardKpi" [name]="'dashboardKpi'" [placeholder]="'Select Dashboard KPI Field'">
+                    </healthnable-select>
+                </div>
+
+                <div class="col-md-8 mb-3">
+                    <healthnable-select [label]="'drilldown.screenField'" [formControlName]="'screenField'" [multiSelect]="true" [formGroupValue]="fieldMapForm" [required]="true" [options]="screenField" [name]="'screenField'" [placeholder]="'Select Screen Field'">
+                    </healthnable-select>
+                </div>
+
+                <!-- <div class="col-md-8">
+                    <div formArrayName="default">
+                        <div *ngFor="let control of defaultFields.controls; let i = index" [formGroupName]="i" class="d-flex align-items-center gap-2 mb-2">
+
+                            <div class="col-md-4">
+                                <mat-label class="mat-subtitle-2 f-w-400">
+                                    {{'drilldown.default' | translate}}
+                                </mat-label>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="w-100 h-75" pInputText formControlName="value" placeholder="Enter Default Value" />
+
+                            </div>
+
+
+
+                            <button (click)="addDefaultField()" class="add-btn">
+          <mat-icon>add</mat-icon>
+         
+        </button>
+
+                            <button mat-icon-button color="warn" (click)="removeDefaultField(i)" *ngIf="defaultFields.length > 1">
+              <mat-icon>remove</mat-icon>
+            </button>
+                        </div>
+                    </div>
+
+
+                </div> -->
+                <div class="col-md-8">
+
+
+                    <healthnable-input [label]="'drilldown.default'" [formControlName]="'default'" [formGroupValue]="fieldMapForm" [required]="false" [buttonDis]="true" [name]="'default'" [placeholder]="'Enter Default Value'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                </div>
+                <div class="col-md-1">
+                    <button mat-flat-button class="add-btn" (click)="addItem()">
+                                    <i class="fa fa-plus p-2"></i> 
+                                  
+                                </button>
+
+                </div>
+                <div>
+
+                    <div formArrayName="items" class="row">
+                        @for(item of items.controls;track item; let index=$index){
+                        <div [formGroupName]="index" class="col-md-8">
+                            <healthnable-input [label]="'drilldown.default'" [formControlName]="'default'" [required]="false" [buttonDis]="true" [name]="'default'" [placeholder]="'Enter Default Value'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-1">
+                            <button mat-flat-button class="remove-btn" (click)="removeItem(index)">
+                                            <i class="fa fa-minus"></i> 
+                                          
+                                        </button>
+
+                        </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>

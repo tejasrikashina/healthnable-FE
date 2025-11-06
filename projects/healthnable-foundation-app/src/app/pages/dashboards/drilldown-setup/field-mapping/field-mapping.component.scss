@@ -1,0 +1,8 @@
+.full-width-table {
+    width: 100%;
+}
+
+::ng-deep .mat-header-cell,
+::ng-deep .mat-cell {
+    padding: 12px 20px;
+}

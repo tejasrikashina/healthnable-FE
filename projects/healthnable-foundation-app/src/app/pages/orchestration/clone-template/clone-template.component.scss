@@ -1,0 +1,25 @@
+.search-img-position {
+    position: absolute;
+    left: 10px;
+}
+
+.chipList {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #F1F1F1;
+    height: 170px;
+}
+
+.example-boundary {
+    width: 100%;
+    height: 250px;
+    max-width: 100%;
+    border: dotted #ccc 2px;
+}
+
+.heading {
+    background-color: #E1F4FF !important;
+    border: 2px solid #d7e4ec !important;
+    box-shadow: 0px 1px 3px rgba(163, 163, 163, 0.945) !important;
+    width: 60%;
+}

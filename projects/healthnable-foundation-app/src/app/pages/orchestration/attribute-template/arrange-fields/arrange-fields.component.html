@@ -1,0 +1,100 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'arrange.arrangeFields' | translate}}</span>
+        </mat-card-title>
+    </mat-card-content>
+    <div class="my-4 mx-5">
+        <div class="container-fluid">
+            <p class="my-4 mx-2 f-s-15 f-w-500">
+                Employee Details
+            </p>
+            <div class="example-boundary">
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+
+                    <input [value]="'First Name'" readonly="readonly" type="text" pInputText/>
+
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Date Of Birth'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Title'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Gender'" readonly="readonly" type="text" pInputText/>
+                </div>
+            </div>
+            <p class="my-4 mx-2 f-s-15 f-w-500">
+                Education Details
+            </p>
+            <div class="example-boundary">
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+
+                    <input [value]="'Field Name 1'" readonly="readonly" type="text" pInputText/>
+
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 2'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 3'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 4'" readonly="readonly" type="text" pInputText/>
+                </div>
+            </div>
+            <p class="my-4 mx-2 f-s-15 f-w-500">
+                Section 3
+            </p>
+            <div class="example-boundary">
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+
+                    <input [value]="'Field Name 1'" readonly="readonly" type="text" pInputText/>
+
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 2'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 3'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 4'" readonly="readonly" type="text" pInputText/>
+                </div>
+            </div>
+            <p class="my-4 mx-2 f-s-15 f-w-500">
+                Section 4
+            </p>
+            <div class="example-boundary">
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+
+                    <input [value]="'Field Name 1'" readonly="readonly" type="text" pInputText/>
+
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 2'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 3'" readonly="readonly" type="text" pInputText/>
+                </div>
+                <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+                    <input [value]="'Field Name 4'" readonly="readonly" type="text" pInputText/>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-3 ">
+            <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addTemplate.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn " (click)="preview() ">
+                {{'addTemplate.preview' | translate}} 
+        </button>
+            <button mat-flat-button class="submit-btn ">
+            {{'addTemplate.save' | translate}}
+       
+      
+    </button>
+
+        </div>
+    </div>
+</mat-card>

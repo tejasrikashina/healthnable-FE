@@ -1,0 +1,76 @@
+<mat-dialog-content class="mat-typography" style="overflow-y: auto; max-height:90vh">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: 500; font-size: 1.4rem; margin: 0;">
+                <span class="m-2">{{ 'entity.bulkimport' | translate }}</span>
+            </h2>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        </div>
+    </div>
+    <div>
+        <div class="container-fluid">
+
+            <div class="row m-lg-2">
+                <mat-card-title class="m-lg-3">
+                    <span class="m-2">{{ 'bulkIE.selectOperation' | translate }}</span>
+                </mat-card-title>
+                <form [formGroup]="bulkImportForm">
+                    <div class="m-lg-3">
+                        <p-radioButton name="bulkIE" value="Import" formControlName="bulkIE" inputId="Import" />
+                        <label for="Import">
+                       <span class="mx-4">Bulk Import</span> 
+                       </label>
+                        <p-radioButton name="bulkIE" value="Export" formControlName="bulkIE" inputId="Export" />
+                        <label for="Export" class="ml-2">
+                        <span class="mx-4">Bulk Export</span>
+                       </label>
+                    </div>
+                </form>
+                @if(bulkImportForm.value.bulkIE === 'Import'){
+                <div>
+                    <p class="my-3"> {{'bulkIE.uploadInfo' | translate}}</p>
+                    <div class="mx-4">
+                        <button mat-flat-button class="submit-btn">
+                            {{'bulkIE.download' | translate}}
+                            </button>
+                    </div>
+                    <div class="my-4">
+                        <button mat-flat-button class="cancel-btn text-black">  {{'bulkIE.chooseFile' | translate}}</button>
+                    </div>
+                    <div class="d-flex justify-content-center my-2">
+                        <button mat-flat-button class="submit-btn">
+                            {{'bulkIE.upload' | translate}}     
+                     </button>
+
+                    </div>
+                </div>
+
+                } @if(bulkImportForm.value.bulkIE === 'Export'){
+                <form [formGroup]="bulkExportForm">
+
+                    <p class="my-3"> {{'bulkIE.exportData' | translate}}</p>
+                    <div class="mx-3">
+                        <mat-checkbox class="mx-2" formControlName="entity">Entity Name</mat-checkbox>
+                        <mat-checkbox class="mx-2" formControlName="code">Entity Code</mat-checkbox>
+                        <mat-checkbox class="mx-2" formControlName="category">Category</mat-checkbox>
+                        <mat-checkbox class="mx-2" formControlName="status">Status</mat-checkbox>
+                        <mat-checkbox class="mx-2" formControlName="description">Description</mat-checkbox>
+
+                    </div>
+                    <div class="mx-4 my-2">
+                        <button mat-flat-button class="submit-btn">
+                                {{'bulkIE.export' | translate}}
+                                </button>
+                    </div>
+                    <div class="d-flex justify-content-center my-4">
+                        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'bulkIE.cancel' | translate}}</button>
+                    </div>
+                </form>
+                }
+            </div>
+
+        </div>
+    </div>
+</mat-dialog-content>

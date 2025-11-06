@@ -1,0 +1,184 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'kpi.kpiLogic'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="logicBuildForm">
+                <div class="container-fluid">
+                    <div class="row example-boundary">
+                        @for(row of rows; track row){ @for(header of headers; track header){
+
+                        <div class="col-md-3">
+                            <p class="f-w-500">{{header}}</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{row[header]}}</p>
+
+                        </div>
+                        } }
+                    </div>
+                    <div class="mt-5">
+                        <mat-card-title>
+                            <span class="m-2"> {{ 'kpi.buildFormula'  | translate }}</span>
+                        </mat-card-title>
+                        <div class=" m-3 row">
+                            <div class="col-md-1">
+                                <button mat-flat-button class="submit-btn">
+                           {{'('}}
+                        
+                        </button>
+                            </div>
+                            <div class="col-md-1">
+                                <button mat-flat-button class="submit-btn">
+                            {{')'}}
+</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-flat-button class="submit-btn" (click)="addOperand()">
+                         {{'kpi.addOperand' | translate}}
+</button>
+                            </div>
+
+                            <div class="col-md-3">
+
+
+                                <healthnable-select [noLabel]="true" [formControlName]="'operator'" [formGroupValue]="logicBuildForm" [required]="true" [options]="operator" [optionLabel]="'symbol'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+
+
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-flat-button class="cancel-btn text-black ">  {{'kpi.clear' | translate}}</button>
+
+                            </div>
+
+                        </div>
+                        <div class="card flex justify-content-center">
+                            <p-card header="Formula Preview">
+
+                                <div class="card flex justify-content-center mb-3">
+                                    <div>
+                                        <span class="m-2">( [Count] of [patient_id] where [ ama_flag = True ] and [ visit_type = 'ED' ] )
+                             
+                                    </span>
+                                        <span class="material-icons m-2" style="cursor:pointer" (click)="edit()">edit</span>
+                                    </div>
+                                </div>
+                                <div class="card flex justify-content-center mb-3">
+                                    <p class="m-2">/
+                                        <span class="material-icons m-2" style="cursor:pointer" (click)="edit()">edit</span>
+                                    </p>
+                                </div>
+                                <div class="card flex justify-content-center mb-3">
+                                    <p class="m-2">
+                                        ([Count] of [patient_id] where [visit_type=`ED`])
+                                        <span class="material-icons m-2" style="cursor:pointer" (click)="edit()">edit</span>
+                                    </p>
+                                </div>
+                                <div class="card flex justify-content-center mb-3">
+                                    <p class="m-2">
+                                        *
+                                        <span class="material-icons m-2" style="cursor:pointer" (click)="edit()">edit</span>
+                                    </p>
+                                </div>
+                                <div class="card flex justify-content-center mb-3">
+                                    <p class="m-2">
+                                        100 <span class="material-icons m-2" style="cursor:pointer" (click)="edit()">edit</span>
+                                    </p>
+                                </div>
+
+
+                            </p-card>
+
+                        </div>
+                        <mat-card-title class="my-4">
+                            <span class="m-2"> {{ 'kpi.addFilter'  | translate }}</span>
+                        </mat-card-title>
+                        <div class="card flex justify-content-center my-3">
+                            <div class="row">
+                                <div class="col-md-4 m-2">
+                                    <healthnable-select [label]="'kpi.field'" [formControlName]="'field'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="fieldValue" [name]="'field'" [placeholder]="'Select Field'"></healthnable-select>
+
+                                </div>
+                                <div class="col-md-4 m-2">
+                                    <healthnable-select [label]="'kpi.operator'" [formControlName]="'operator'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="operator" [optionLabel]="'symbol'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+
+                                </div>
+                                <div class="col-md-3 m-2">
+                                    <healthnable-select [label]="'kpi.value'" [formControlName]="'value'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="value" [optionLabel]="'name'" [name]="'value'" [placeholder]="'Select Value'"></healthnable-select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card flex justify-content-center my-3">
+                            <div class="row">
+                                <div class="col-md-4 m-2">
+                                    <healthnable-select [label]="'kpi.field'" [formControlName]="'field'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="fieldValue" [name]="'field'" [placeholder]="'Select Field'"></healthnable-select>
+
+                                </div>
+                                <div class="col-md-4 m-2">
+                                    <healthnable-select [label]="'kpi.operator'" [formControlName]="'operator'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="operator" [optionLabel]="'symbol'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+
+                                </div>
+                                <div class="col-md-3 m-2">
+                                    <healthnable-select [label]="'kpi.value'" [formControlName]="'value'" [formGroupValue]="logicBuildForm" [required]="false" [buttonDis]="false" [options]="value" [optionLabel]="'name'" [name]="'value'" [placeholder]="'Select Value'"></healthnable-select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 my-2">
+                            <button mat-flat-button class="submit-btn" (click)="addFilter()">
+                         {{'kpi.addFilter' | translate}}
+</button>
+                        </div>
+                        <mat-card-title class="my-2">
+                            <span class="m-2"> {{ 'kpi.groupBy'  | translate }}</span>
+                        </mat-card-title>
+                        <!-- <div class="mx-3 my-2">
+                            <mat-checkbox class="mx-2" formControlName="field1">Hospital Site</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="department">Department</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="date">Date</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="ageGroup">Age Group</mat-checkbox>
+
+                        </div> -->
+
+                        <div class="mx-3 my-2">
+                            @for(field of selectedFields; track field){
+                            <ng-container>
+                                <mat-checkbox class="mx-2" [formControlName]="field.value">{{ field.value }}</mat-checkbox>
+                            </ng-container>
+                            }
+                        </div>
+                        <div class="col-md-3" style="margin-left:30px">
+                            <p-multiSelect class="w-100 h-75 " formControlName="field1" optionLabel="name" [options]="fieldVal" placeholder="Select Field" display="chip">
+                            </p-multiSelect>
+                        </div>
+
+                        <div class="col-md-12 mt-4">
+                            <mat-card-title>
+                                <span class="m-2"> {{ 'kpi.summary'  | translate }}</span>
+                            </mat-card-title>
+                            <p class="m-4">Percentage of ED patients who left against medical advice, calculated as:(AMA patient / total ED arrivals) * 100, grouped by site and date.</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'kpi.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3" (click)="reset()">
+                            {{'kpi.reset' | translate}} 
+                    </button>
+                    <button mat-flat-button class="submit-btn " [disabled]="logicBuildForm.invalid ">
+                        {{'kpi.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

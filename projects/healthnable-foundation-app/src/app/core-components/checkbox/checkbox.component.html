@@ -1,0 +1,37 @@
+@if(formGroupValue) {
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-5">
+            <mat-label class="mat-subtitle-2 f-w-400">{{ label | translate }} @if(required) { <span class="required">*</span> }
+            </mat-label>
+        </div>
+        <div class="col-md-7 mb-2">
+            <p-checkbox class="w-100" [formControlName]="formControlName" [value]="value" [inputId]="input" />
+            <!-- <p-dropdown class="w-100" [formControlName]="formControlName" [options]="options" optionLabel="name" [placeholder]="placeholder" /> -->
+            @if(formGroupValue.get(formControlName)?.touched && formGroupValue.get(formControlName)?.invalid) {
+            <mat-hint class=" error-msg">
+                <div class="text-error">{{ label | translate }} is required</div>
+            </mat-hint>
+            }
+        </div>
+    </div>
+</form>
+} @if(!formGroupValue) {
+<!-- Template-driven form -->
+<div class="row d-flex align-items-center">
+    <div class="col-md-5">
+        <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">{{ label | translate }}</mat-label>
+    </div>
+    <div class="col-md-7 ">
+        <!-- <mat-form-field appearance="outline" class="w-100">
+                <mat-select #item [(ngModel)]="selectedId" placeholder="{{ placeholder | translate }}">
+                    @for(data of options; track data) {
+                    <mat-option [value]="data.id">{{ data.name | translate }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field> -->
+        <!-- <p-dropdown class="w-100" #item [(ngModel)]="selectedId" [options]="options" optionLabel="name" placeholder="{{ placeholder | translate }}" /> -->
+        <p-checkbox [(ngModel)]="selectedId" [label]="label" [name]="name" [value]="value" />
+    </div>
+</div>
+}

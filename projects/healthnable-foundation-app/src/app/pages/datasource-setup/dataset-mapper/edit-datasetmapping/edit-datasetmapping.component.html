@@ -1,0 +1,50 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addMapping.editMapping' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="mappingForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-select [variant]="'filled'" [readonly]="'readonly'" [label]="'addMapping.dashboard'" [formControlName]="'dashboard'" [formGroupValue]="mappingForm" [required]="false" [options]="dashboardValue" [optionLabel]="'name'" [name]="'dashboard'"
+                                [placeholder]="'Select Dashboard'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addMapping.kpi'" [formControlName]="'kpi'" [formGroupValue]="mappingForm" [required]="false" [options]="metricValue" [optionLabel]="'name'" [name]="'kpi'" [placeholder]="'Select KPI'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addMapping.source'" [formControlName]="'source'" [formGroupValue]="mappingForm" [required]="false" [options]="datasetValue" [optionLabel]="'name'" [name]="'source'" [placeholder]="'Select Source Dataset'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addMapping.apiEndpoint'" [formControlName]="'apiEndpoint'" [formGroupValue]="mappingForm" [required]="false" [name]="'apiEndpoint'" [placeholder]="'Enter API EndPoint'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addMapping.resKey'" [formControlName]="'resKey'" [formGroupValue]="mappingForm" [required]="false" [name]="'resKey'" [placeholder]="'Enter Response Key'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-5 text-end">
+                            <button mat-flat-button class="submit-btn">
+                                {{'addMapping.testApi' | translate}}
+                        </button>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="mappingForm" [label]="'addMapping.sampleResponse'" [formControlName]="'sampleResponse'" [required]="false" [rows]="2" [cols]="32" [placeholder]="'Enter Sample Response Format'" [maximum]="1000">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center my-3 ">
+                        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'addMapping.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn">
+                            {{'addMapping.update' | translate}}
+        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

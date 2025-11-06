@@ -1,0 +1,63 @@
+<div class="blank-layout-container justify-content-center">
+    <div class="position-relative row w-100 h-100">
+        <div class="col-lg-7 col-xl-7 p-0 bg-gredient">
+            <div class="h-100">
+                <a href="javascript:void(0)">
+                    <img src="assets/images/logos/Healthnable.png" height="35px" class="align-middle m-2" alt="logo" />
+                </a>
+                <div class="align-items-center justify-content-center img-height d-none d-lg-flex">
+                    <img src="assets/images/backgrounds/login-bg.svg" alt="login" style="width: 100%; max-width: 600px" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-xl-5 p-0" style="background-color: white;">
+            <div class=" d-flex align-items-start align-items-lg-center justify-content-center h-100" style="padding:10px">
+                <div class="row justify-content-center w-100">
+                    <div class="col-lg-9 max-width-form">
+                        <h4 class="f-w-500 f-s-20 m-0">Welcome to Healthnable</h4>
+                        <span class="d-block f-w-500 d-block" style="margin-top: 10px;">New to Healthnable?
+              <a  [routerLink]="['/register']" class="text-decoration-none f-w-500 f-s-14" style="color: #03c9d7">
+                Create an account</a>
+            </span>
+
+                        <form style="margin-top: 30px;" [formGroup]="loginForm" (ngSubmit)="submit()">
+
+                            <mat-label class="mb-3">E-mail <span class="required">*</span></mat-label>
+                            <input class="w-100 h-75 mb-2" pInputText formControlName="email_or_phone" placeholder="Email" /> @if(f['email_or_phone'].touched || f['email_or_phone'].invalid) {
+                            <mat-hint class="error-msg">
+                                @if(f['email_or_phone'].errors && f['email_or_phone'].errors['pattern']) {
+                                <div class="text-error">
+                                    Please enter a valid Email address
+                                </div>
+                                }
+
+                            </mat-hint>
+                            }
+                            <mat-label class="mb-3">{{'login.password' | translate}} <span class="required">*</span></mat-label>
+                            <input class="w-100 h-75 mb-2" pInputText [type]="inputType" formControlName="password" placeholder="Password" />
+
+                            <span class="password_icons" style="cursor: pointer;">
+                                    @if(inputType=='text'){
+                                        <img  (click)="getType('password')" src="assets/images/showeye.png" alt="">
+                                    }
+                                    @if(inputType=='password'){
+                                        <img  (click)="getType('text')" src="assets/images/hideeye.png" alt="">
+                                    }
+                                    
+                                </span>
+                            <div>
+                                <a (click)="forgotPassword()" href="javascript:void(0)" class="f-w-500 text-decoration-none m-l-auto f-s-14" style="color: #03c9d7">{{'login.forgotPassword' | translate}}</a>
+                            </div>
+                            <div class="d-flex align-items-center" style="margin-bottom: 12px;">
+                                <mat-checkbox (change)=" isChecked($event.checked)" formControlName="remember_me"><b class="f-w-500 text-decoration-none f-s-14 " style="color: #03c9d7 ">{{'login.rememberMe' | translate}}</b></mat-checkbox>
+                            </div>
+                            <button mat-button class="w-100 signinbutton text-white " [disabled]="loginForm.invalid">
+                                Sign In
+</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

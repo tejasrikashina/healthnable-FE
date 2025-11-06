@@ -1,0 +1,99 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addDepartment.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <form [formGroup]="depForm">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addDepartment.name'" [formControlName]="'department_name'" [formGroupValue]="depForm" [required]="true" [name]="'name'" [placeholder]="'Enter Department Name'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDepartment.associatedOrg'" [formControlName]="'associated_organizations'" [multiSelect]="true" [formGroupValue]="depForm" [required]="true" [options]="associatedOrg" [name]="'associatedOrg'" [placeholder]="'Select Associated Organization'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDepartment.type'" [formControlName]="'type_of_department'" [formGroupValue]="depForm" [required]="true" [options]="depType" [name]="'type_of_department'" [placeholder]="'Select Department Type'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDepartment.associatedLoc'" [formControlName]="'associated_facilities'" [multiSelect]="true" [formGroupValue]="depForm" [required]="true" [options]="associatedLoc" [name]="'associatedLoc'" [placeholder]="'Select Associated Location'"></healthnable-select>
+
+                        </div>
+
+
+                    </div>
+                    <div class="row m-lg-4">
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDepartment.parentDep'" [formControlName]="'parent_department'" [formGroupValue]="depForm" [required]="true" [options]="parentDepValue" [name]="'parentDep'" [placeholder]="'Select Parent Department'"></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{ 'addDepartment.opHours' | translate }} <span class="required">*</span>
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-3 mb-2 me-3">
+                                    <p-calendar inputId="calendar-timeonly" class="w-100 h-75" formControlName="operational_hours_from" [timeOnly]="true" [hourFormat]="'12'" placeholder="Select Time" />
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <p-calendar inputId="calendar-timeonly" class="w-100 h-75" formControlName="operational_hours_to" [timeOnly]="true" [hourFormat]="'12'" placeholder="Select Time" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDepartment.hod'" [formControlName]="'hod'" [formGroupValue]="depForm" [options]="hodValue" [required]="true" [name]="'hod'" [placeholder]="'Select Head of Department'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addDepartment.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="depForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addDepartment.email'" [formControlName]="'contact_email'" [formGroupValue]="depForm" [required]="false" [type]="'email'" [name]="'contact_email'" [minimum]="2" [maximum]="250" [placeholder]="'Enter Contact Email'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="depForm" [label]="'addDepartment.description'" [formControlName]="'notes'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <mat-label>{{'addDepartment.phoneNumber' | translate}} </mat-label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div (keydown.enter)="$event.preventDefault()">
+                                        <ngx-intl-tel-input [enableAutoCountrySelect]="true" [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Name, SearchCountryField.Iso2]" [enablePlaceholder]="true" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO ? selectedCountryISO : CountryISO.India"
+                                            [phoneValidation]="true" [separateDialCode]="true" name="contact_phone" formControlName="contact_phone" class="w-100 " [customPlaceholder]="'Enter phone number'">
+                                        </ngx-intl-tel-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-5 ">
+
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addDepartment.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="depForm.invalid " (click)="addDepartmentNew()">
+                            {{'addDepartment.saveandnew' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="depForm.invalid " (click)="addDepartment()">
+                        {{'addDepartment.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

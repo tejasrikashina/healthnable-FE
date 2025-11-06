@@ -1,0 +1,44 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+
+            <span class="m-2">{{'entity.entitystatus' | translate}}</span>
+        </mat-card-title>
+        <div class="my-5">
+            <div class="container-fluid">
+                <form [formGroup]="form">
+                    <div class="col-md-6 m-2">
+                        <healthnable-select [label]="'entity.type'" [formControlName]="'entityType'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'entityType'" [placeholder]="'Entity'"></healthnable-select>
+                    </div>
+                    <div class="col-md-6 m-2">
+                        <healthnable-select [label]="'entity.status'" [formControlName]="'status'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'status'" [placeholder]="'Entity'"></healthnable-select>
+                    </div>
+                </form>
+            </div>
+            <!-- Table Section -->
+            <div class="m-3">
+                <span class="f-w-500 f-s-24">Status Summary </span>
+            </div>
+
+            <div class="table-responsive col-md-12">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'entitystatus'"></healthnable-table>
+            </div>
+            <div class="m-3">
+                <span class="f-w-500 f-s-24"> Entity Status List</span>
+            </div>
+
+            <div class="table-responsive col-md-12 ">
+                <healthnable-table [displayedColumns]="displayedColumns2" [tableName]="'entitystatus'"></healthnable-table>
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">  {{'entity.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn" (click)="export('add',{})">
+                        {{'entity.export' | translate}}
+                        
+                </button>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

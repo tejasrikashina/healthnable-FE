@@ -1,0 +1,127 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'workflow.addworkflow' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4 mx-4">
+            <mat-card-title>
+                <span class="m-2">{{ 'addWorkflow.setWorkflow' | translate }}</span>
+            </mat-card-title>
+            <form [formGroup]="form">
+                <div class="container-fluid">
+
+
+                    <div class="row d-flex align-items-center mt-3">
+                        <div class="col-md-5">
+
+                            <healthnable-select [label]="'addWorkflow.if'" [smallText]="true" [formControlName]=" 'entity' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'entity' " [placeholder]="
+                                'Entity' "></healthnable-select>
+
+                        </div>
+                        <div class="col-md-5">
+
+                            <healthnable-select [label]="'addWorkflow.is'" [smallText]="true" [formControlName]=" 'condition' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'condition' " [placeholder]="
+                                'Condition'"></healthnable-select>
+                        </div>
+                        <div class="col-md-2">
+                            <mat-label class="mat-subtitle-2 f-w-400">
+                                {{'addWorkflow.then' | translate}}
+                            </mat-label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <healthnable-select [smallText]="true" [formControlName]=" 'action' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'action' " [placeholder]="
+                                'Action'"></healthnable-select>
+                        </div>
+                        <div class="col-md-5">
+
+                            <healthnable-select [smallText]="true" [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>'" [formControlName]="'tragetRole'" [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'tragetRole' " [placeholder]="
+            'Traget Role' "></healthnable-select>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="row ">
+                    <div class="col-md-4 my-3">
+                        <mat-label class="mat-subtitle-2 f-w-400">Example Conditions
+                        </mat-label>
+                    </div>
+                </div>
+                <div class="row  d-flex align-items-center">
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]="'addWorkflow.if' " [formControlName]=" 'stage' " [formGroupValue]="form " [required]="false " [name]=" 'stage' " [placeholder]=" 'Stage' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]="'addWorkflow.is' " [formControlName]=" 'pendingAction' " [formGroupValue]="form " [required]="false " [name]=" 'pendingAction' " [placeholder]=" 'Pending Action' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-label class="mat-subtitle-2 f-w-400">
+                            {{'addWorkflow.then' | translate}}
+                        </mat-label>
+                    </div>
+
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [formControlName]=" 'action' " [formGroupValue]="form " [required]="false " [name]=" 'action' " [placeholder]=" 'Action' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>' " [formControlName]=" 'escalation' " [formGroupValue]="form " [required]="false " [name]=" 'escalation' " [placeholder]=" 'Escalation' " [type]=" 'text' " [minimum]="2 "
+                            [maximum]="250 "></healthnable-input>
+                    </div>
+
+                </div>
+                <div class="row  d-flex align-items-center mt-5">
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]="'addWorkflow.if' " [formControlName]=" 'riskLevel' " [formGroupValue]="form " [required]="false " [name]=" 'riskLevel' " [placeholder]=" 'Risk Level' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]="'addWorkflow.is' " [formControlName]=" 'high' " [formGroupValue]="form " [required]="false " [name]=" 'high' " [placeholder]=" 'High' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-label class="mat-subtitle-2 f-w-400">
+                            {{'addWorkflow.then' | translate}}
+                        </mat-label>
+                    </div>
+
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [formControlName]=" 'action' " [formGroupValue]="form " [required]="false " [name]=" 'action' " [placeholder]=" 'Action' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+                    <div class="col-md-5">
+                        <healthnable-input [smallText]="true" [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>' " [formControlName]=" 'alertCompilance' " [formGroupValue]="form " [required]="false " [name]=" 'alertCompilance' " [placeholder]=" 'Alert Compilance Manager' "
+                            [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                    </div>
+
+                </div>
+
+                <div class="row my-2 " style="margin-left:70px;">
+                    <button mat-flat-button class="submit-btn ">     
+                            <span>{{'addWorkflow.addAnotherCondition' | translate }}</span>
+                        </button>
+                </div>
+
+            </form>
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+            <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'workflow.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn" (click)="previous()">
+                {{'addWorkflow.previous' | translate}}
+            
+            </button>
+
+            <button mat-flat-button class="submit-btn " (click)="next()">
+                {{'addWorkflow.next' | translate}}
+            
+            </button>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

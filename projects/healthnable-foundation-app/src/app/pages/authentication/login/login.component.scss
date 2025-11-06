@@ -1,0 +1,72 @@
+.bg-gredient {
+    &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.3;
+        background: radial-gradient( rgb(210, 241, 223), rgb(211, 215, 250), rgb(186, 216, 244)) 0% 0% / 400% 400%;
+        animation: 15s ease 0s infinite normal none running gradient;
+        z-index: -1;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+.max-width-form {
+    max-width: 450px;
+}
+
+.signinbutton {
+    border-radius: 10px !important;
+    background-color: #03c9d7;
+    &:disabled {
+        background-color: #b0e0e6;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+}
+
+.img-height {
+    height: calc(100vh - 96px);
+}
+
+.error-msg {
+    font-size: small;
+}
+
+.text-error {
+    color: #dc3545;
+}
+
+.password_icons {
+    display: flex;
+    justify-content: end;
+    margin-bottom: -10px;
+}
+
+.password_icons img {
+    height: 18px;
+    position: relative;
+    bottom: 40px;
+    right: 12px;
+    padding: 1px 6px;
+    background-color: white;
+}
+
+::ng-deep .mat-accent.mat-mdc-checkbox {
+    --mdc-checkbox-selected-pressed-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-focus-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-hover-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-icon-color: #fb9778 !important;
+}

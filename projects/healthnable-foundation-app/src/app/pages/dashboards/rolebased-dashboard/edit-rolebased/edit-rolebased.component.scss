@@ -1,0 +1,13 @@
+::ng-deep .p-card {
+    background: #ffffff;
+    color: #4b5563;
+    box-shadow: 1px 0 20px #00000014 !important;
+    border-radius: 16px;
+    height: 350px !important;
+}
+
+::ng-deep .p-card .p-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}

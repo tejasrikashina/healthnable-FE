@@ -1,0 +1,108 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'addEntity.headerforedit' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <!-- <div class="col-md-6">
+                            <healthnable-input [label]="'entity.code'" [formControlName]="'entityCode'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'entityCode'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Entity Code'" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div> -->
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'entity.name'" [formControlName]="'entityName'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'entityName'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Entity Name'" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'entity.category'" [formControlName]="'category'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'category'" [placeholder]="'category'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'entity.subcategory'" [formControlName]="'subcategory'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'subcategory'" [placeholder]="'Subcategory'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [label]="'entity.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="26" [placeholder]="'Description'">
+                            </healthnable-text-area>
+
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <healthnable-status [label]="'entity.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <mat-card-title class="mx-2 my-2">
+                            <span>Assign Attribute</span>
+                        </mat-card-title>
+                        <div class="col-md-4 col-12 d-flex justify-content-end mx-3 my-2">
+                            <div class="search-container d-flex align-items-center">
+                                <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                                <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="row my-2" style="margin-left:30px !important">
+                            <div class="col-md-6" formGroupName="assignAttribute">
+                                <div class="mx-3 my-2 heading">
+                                    <mat-checkbox formControlName="isAttribute" (change)="onCheckboxChange('Attributes', $event.checked)">Attributes</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isEmployee" (change)="onCheckboxChange('Employee Details', $event.checked)">Employee Details</mat-checkbox>
+                                </div>
+
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isEmployee" (change)="onCheckboxChange('Employee Details', $event.checked)">Employee Details</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isEducation" (change)="onCheckboxChange('Education Details', $event.checked)">Education Details</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isEducation" (change)="onCheckboxChange('Education Details', $event.checked)">Education Details</mat-checkbox>
+                                </div>
+
+                                <div class="card d-flex chipList my-2">
+                                    <div class="row m-2">
+                                        <div class="col-md-3">
+                                            <mat-label>Assign :</mat-label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            @for(keyword of reactiveKeywords;track keyword){
+                                            <p-chip [label]="keyword" [removable]="true" (onRemove)="onChipRemove(keyword)"></p-chip>
+                                            }
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <!-- <div class="d-flex my-3 justify-content-center">
+                                    <button mat-flat-button class="submit-btn" (click)="addChips()">
+                                        {{'addEntity.add' | translate}}
+                                  
+                                </button>
+                                    <button mat-flat-button class="cancel-btn text-black" (click)="onReset()">  {{'addEntity.reset' | translate}}</button>
+
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-3">
+                        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'addEntity.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn">
+                        {{'addEntity.update' | translate}}
+                   
+                  
+                </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

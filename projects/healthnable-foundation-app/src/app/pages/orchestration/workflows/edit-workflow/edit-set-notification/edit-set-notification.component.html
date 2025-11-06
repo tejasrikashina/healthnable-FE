@@ -1,0 +1,155 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'workflow.editworkflow' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4 mx-4">
+            <mat-card-title>
+                <span class="m-2">{{ 'addWorkflow.setNotification' | translate }}</span>
+            </mat-card-title>
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row mt-3 align-items-center">
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWorkflow.when'" [formControlName]="'trigger'" [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'trigger' " [placeholder]="
+                            'Trigger' "></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <mat-label class="mat-subtitle-2 f-w-400">Occurs Then
+                            </mat-label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <healthnable-select [label]="'addWorkflow.notify'" [formControlName]=" 'notify' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'notify' " [placeholder]="
+                                'Notify' "></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>'" [formControlName]="'recipient'" [formGroupValue]="form " [required]="false " [options]="locationValue " [icon]="true" [name]=" 'recipient' " [placeholder]="
+                                'Recipient' "></healthnable-select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'addWorkflow.via'" [formControlName]="'via'" [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'via' " [placeholder]="
+            'Via' "></healthnable-select>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="form" [label]="'addWorkflow.message'" [formControlName]="'message'" [required]="false" [rows]="2" [cols]="24" [placeholder]="'Message'">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col-md-4 my-3">
+                            <mat-label class="mat-subtitle-2 f-w-400">Example Conditions
+                            </mat-label>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.when' " [formControlName]=" 'stage' " [formGroupValue]="form " [required]="false " [name]=" 'stage' " [placeholder]=" 'Stage' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+
+                        </div>
+                        <div class="col-md-6">
+                            <mat-label class="mat-subtitle-2 f-w-400">Occurs Then
+                            </mat-label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.notify' " [formControlName]=" 'notifyCompilance' " [formGroupValue]="form " [required]="false " [name]=" 'notifyCompilance' " [placeholder]=" 'Notify Compilance' " [type]="
+                                'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>'" [formControlName]=" 'compilanceManager' " [formGroupValue]="form " [required]="false " [name]=" 'compilanceManager' " [placeholder]=" 'Compilance Manager' " [type]=" 'text' "
+                                [minimum]="2
+                                " [maximum]="250 " [icon]="true"></healthnable-input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.via' " [formControlName]=" 'viaApp' " [formGroupValue]="form " [required]="false " [name]=" 'viaApp' " [placeholder]=" 'viaApp' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-6 ">
+                            <healthnable-text-area [formGroupValue]="form " [label]=" 'addWorkflow.message' " [formControlName]=" 'message' " [required]="false " [rows]="2 " [cols]="24 " [placeholder]=" 'Message' ">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+
+
+                    <div class="row align-items-center">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.when' " [formControlName]=" 'task' " [formGroupValue]="form " [required]="false " [name]=" 'task' " [placeholder]=" 'Task' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-label class="mat-subtitle-2 f-w-400">Occurs Then
+                            </mat-label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.notify' " [formControlName]=" 'assignedUser' " [formGroupValue]="form " [required]="false " [name]=" 'assignedUser' " [placeholder]=" 'assignedUser' " [type]=" 'text'
+                                " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" '<i class=&quot;fa fa-arrow-right&quot;></i>'" [formControlName]=" 'name' " [formGroupValue]="form " [required]="false" [name]=" 'name' " [placeholder]=" 'Name' " [type]=" 'text' " [icon]="true" [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <healthnable-input [label]=" 'addWorkflow.via' " [formControlName]=" 'viaApp' " [formGroupValue]="form " [required]="false " [name]=" 'viaApp' " [placeholder]=" 'Via App' " [type]=" 'text' " [minimum]="2 " [maximum]="250 "></healthnable-input>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-6 ">
+                            <healthnable-text-area [formGroupValue]="form " [label]=" 'addWorkflow.message' " [formControlName]=" 'message' " [required]="false " [rows]="2 " [cols]="24" [placeholder]=" 'Message' ">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row my-2 " style="margin-left: 100px; ">
+                        <button mat-flat-button class="submit-btn ">
+                          
+                            <span>{{'addWorkflow.anotherNotifiaction' | translate }}</span>
+                        </button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center mb-3 ">
+            <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'workflow.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn " (click)="previous() ">
+                {{'addWorkflow.previous' | translate}}
+            
+            </button>
+
+            <button mat-flat-button class="submit-btn" (click)="preview()">
+                {{'addWorkflow.preview' | translate}}
+            
+            </button>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

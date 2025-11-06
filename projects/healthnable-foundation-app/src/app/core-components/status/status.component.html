@@ -1,0 +1,59 @@
+@if(formGroupValue) {
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">{{ label | translate }} @if(required) { <span class="required">*</span> }
+            </mat-label>
+        </div>
+        @if(formControlName ==='notification'){
+        <div class="col-md-8 d-flex align-items-center">
+            <p-inputSwitch [formControlName]="formControlName" (onChange)="statusChange" />
+            <span [ngStyle]="{'color': status ? '#03c9d7' : '#808080', 'font-weight': '400', 'margin': '0 0 5px 6px'}">
+                        {{ status ? ('Enable' | translate) : ('Disable' | translate) }}
+                      </span> @if(formGroupValue.get(formControlName)?.touched && formGroupValue.get(formControlName)?.invalid) {
+            <mat-hint class=" error-msg">
+                <div class="text-error">{{ label | translate }} is required</div>
+            </mat-hint>
+            }
+        </div>
+        } @else if(formControlName ==='show' || formControlName==='dashboardTile' || formControlName==='threshold'){
+        <div class="col-md-8 d-flex align-items-center">
+            <p-inputSwitch [formControlName]="formControlName" (onChange)="statusChange" />
+            <span [ngStyle]="{'color': status ? '#03c9d7' : '#808080', 'font-weight': '400', 'margin': '0 0 5px 6px'}">
+                        {{ status ? ('Yes' | translate) : ('No' | translate) }}
+                      </span> @if(formGroupValue.get(formControlName)?.touched && formGroupValue.get(formControlName)?.invalid) {
+            <mat-hint class=" error-msg">
+                <div class="text-error">{{ label | translate }} is required</div>
+            </mat-hint>
+            }
+        </div>
+        } @else{
+        <div class="col-md-8 d-flex align-items-center">
+            <p-inputSwitch [formControlName]="formControlName" (onChange)="statusChange" />
+            <span [ngStyle]="{'color': status ? '#03c9d7' : '#808080', 'font-weight': '400', 'margin': '0 0 5px 6px'}">
+                        {{ status ? ('Active' | translate) : ('Inactive' | translate) }}
+                      </span> @if(formGroupValue.get(formControlName)?.touched && formGroupValue.get(formControlName)?.invalid) {
+            <mat-hint class=" error-msg">
+                <div class="text-error">{{ label | translate }} is required</div>
+            </mat-hint>
+            }
+        </div>
+
+        }
+
+    </div>
+</form>
+} @if(!formGroupValue) {
+<!-- Template-driven form -->
+<div class="row d-flex align-items-center">
+    <div class="col-md-4">
+        <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">{{ label | translate }}</mat-label>
+    </div>
+    <div class="col-md-8 d-flex align-items-center">
+        <p-inputSwitch [formControlName]="formControlName" (onChange)="statusChange" />
+        <span [ngStyle]="{'color': status ? '#03c9d7' : '#808080', 'font-weight': '400', 'margin': '0 0 5px 6px'}">
+        {{ status ? ('Active' | translate) : ('Inactive' | translate) }}
+      </span>
+    </div>
+</div>
+}

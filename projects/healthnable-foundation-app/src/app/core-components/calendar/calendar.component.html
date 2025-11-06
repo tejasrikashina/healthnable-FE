@@ -1,0 +1,42 @@
+@if(formGroupValue) {
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">{{ label | translate }} @if(required) { <span class="required">*</span> }
+            </mat-label>
+        </div>
+        @if(formControlName==='operational_hours'){
+
+        <div class="col-md-3 mb-2 me-3">
+            <p-calendar inputId="calendar-12h" dateFormat="D" class="w-100 h-75" [formControlName]="formControlName" [showTime]="true" [hourFormat]="'12'" />
+        </div>
+        <div class="col-md-3 mb-2">
+            <p-calendar inputId="calendar-12h" dateFormat="D" class="w-100 h-75" [formControlName]="formControlName" [showTime]="true" [hourFormat]="'12'" />
+
+        </div>
+        } @else if(formControlName!='operational_hours'){
+        <div class="col-md-7 mb-2">
+            <p-calendar class="w-100 h-75" [formControlName]="formControlName" [iconDisplay]="'input'" [showIcon]="true" optionLabel="name" [placeholder]="placeholder" inputId="icondisplay" [readonlyInput]="readonly" /> @if(formGroupValue.get(formControlName)?.touched || formGroupValue.get(formControlName)?.invalid && required) {
+            <mat-hint class=" error-msg">
+                <div class="text-error">{{ label | translate }} is required</div>
+            </mat-hint>
+            }
+        </div>
+        }
+
+
+    </div>
+</form>
+} @if(!formGroupValue) {
+<!-- Template-driven form -->
+<div class="row d-flex align-items-center">
+    <div class="col-md-4">
+        <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">{{ label | translate }}</mat-label>
+    </div>
+    <div class="col-md-7 ">
+        <p-calendar class="w-100 h-75" #item [(ngModel)]="selectedId" [iconDisplay]="'input'" optionLabel="name" [showIcon]="true" placeholder="{{ placeholder | translate }}" inputId="icondisplay" [readonlyInput]="readonly" />
+
+
+    </div>
+</div>
+}

@@ -1,0 +1,106 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'addCondition.headerforaddCondition'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-7 mx-5">
+                            <healthnable-input [label]="'addCondition.conditionName'" [formControlName]="'conditionName'" [formGroupValue]="form" [required]="true" [name]="'conditionName'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'text'" [placeholder]="'Condition Name'"></healthnable-input>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-md-2 mx-5">
+                                <mat-label class="mat-subtitle-2 f-w-400">Condition Type
+                                </mat-label>
+                            </div>
+                            <span class="col-md-7">
+                                @for(category of categories; track category){
+
+                                <p-radioButton [inputId]="category.key" [value]="category" formControlName="selectedCondition" />
+                                <label [for]="category.key" class="mx-3">
+            {{ category.name }}
+        </label> }
+    </span>
+                        </div>
+                        <mat-card-title class="my-4">
+                            <span>Define Condition</span>
+                        </mat-card-title>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.attribute'" [formControlName]="'attribute'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'attribute'" [placeholder]="'Attribute'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.operator'" [formControlName]="'operator'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'operator'" [placeholder]="'Choose Operator'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-input [label]="'addCondition.value'" [formControlName]="'value'" [formGroupValue]="form" [required]="false" [name]="'value'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'text'" [placeholder]="'Choose Value'"></healthnable-input>
+                        </div>
+
+
+                        <mat-card-title class="my-2 ">
+                            <span>Aditional Logic</span>
+                        </mat-card-title>
+                        <div class="row my-3">
+                            <div class="col-md-2 mx-5">
+                                <mat-label class="mat-subtitle-2 f-w-400">Logic Operator
+                                </mat-label>
+                            </div>
+                            <span class="col-md-7">
+                            @for(logic of operators; track logic){
+
+                            <p-radioButton [inputId]="logic.key" [value]="logic" formControlName="selectedCondition" />
+                            <label [for]="logic.key" class="mx-3">
+        {{ logic.name }}
+    </label> }
+</span>
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.additionalAttr'" [formControlName]="'additionalAttr'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'additionalAttr'" [placeholder]="'Choose Attribute'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.additionalOperator'" [formControlName]="'additionalOperator'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'additionalOperator'" [placeholder]="'Choose Operator'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+
+                            <healthnable-input [label]="'addCondition.additionalVal'" [formControlName]="'additionalVal'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'additionalVal'" [minimum]="10" [maximum]="500" [placeholder]="'Additional Value'">
+                            </healthnable-input>
+
+                        </div>
+
+                        <mat-card-title class="my-4">
+                            <span>Trigger Actions</span>
+                        </mat-card-title>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.actionType'" [formControlName]="'actionType'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'actionType'" [placeholder]="'Choose Action'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'addCondition.target'" [formControlName]="'target'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'target'" [placeholder]="'Choose Target'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mt-3 mx-5">
+                            <healthnable-status [label]="'addCondition.notification'" [formControlName]="'notification'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addCondition.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="form.invalid ">
+                            {{'addCondition.saveandnew' | translate}}
+                        
+                        </button>
+                        <button mat-flat-button class="submit-btn" [disabled]="form.invalid ">
+                            {{'addCondition.save' | translate}}
+</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

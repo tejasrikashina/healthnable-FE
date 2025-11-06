@@ -1,0 +1,113 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addWard.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="addWardForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addWard.name'" [formControlName]="'ward_name'" [formGroupValue]="addWardForm" [required]="true" [name]="'ward_name'" [placeholder]="'Enter Ward Name'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.cleaning'" [formControlName]="'cleaning'" [formGroupValue]="addWardForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'cleaning'" [placeholder]="'Select Cleaning Category'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.ward_type'" [formControlName]="'ward_type'" [formGroupValue]="addWardForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'ward_type'" [placeholder]="'Select Ward Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addWard.fireSafety' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="fireSafety" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.facility'" [formControlName]="'facility'" [formGroupValue]="addWardForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.emergencyExit'" [formControlName]="'emergencyExit'" [formGroupValue]="addWardForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'emergencyExit'" [placeholder]="'Select Emergency Exists Count'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.floor'" [formControlName]="'floor'" [formGroupValue]="addWardForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'floor'" [placeholder]="'Select Floor'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addWard.hvac'" [formControlName]="'hvac'" [formGroupValue]="addWardForm" [required]="false" [name]="'hvac'" [placeholder]="'Enter HVAC/BMS Code'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.speciality'" [formControlName]="'speciality'" [formGroupValue]="addWardForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'speciality'" [placeholder]="'Select speciality'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addWard.rtls'" [formControlName]="'rtls'" [formGroupValue]="addWardForm" [required]="false" [name]="'rtls'" [placeholder]="'Enter RTLS UID'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addWard.bedCapacity'" [formControlName]="'bedCapacity'" [formGroupValue]="addWardForm" [required]="false" [name]="'bedCapacity'" [placeholder]="'Enter Bed Capacity'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addWard.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="addWardForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addWard.nurseStation'" [formControlName]="'nurseStation'" [formGroupValue]="addWardForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'nurseStation'" [placeholder]="'Select Nurse Station'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="addWardForm" [label]="'addWard.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+
+
+
+
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addWard.isDependency' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="isDependency" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="onCancel()">  {{'addWard.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3" [disabled]="addWardForm.invalid ">
+                            {{'addWard.saveandnew' | translate}} 
+                    </button>
+                    <button mat-flat-button class="submit-btn " [disabled]="addWardForm.invalid ">
+                        {{'addWard.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,94 @@
+@if(item.navCap === 'Main' ) {
+<div mat-subheader class="row d-flex align-items-center ">
+    <div class="col-8"></div>
+    <div class="col-4">
+        @if(showToggle) {
+        <button mat-icon-button (click)="toggleCollapsed.emit()" class="d-flex justify-content-center">
+                            <i-feather name="menu"></i-feather>
+                          </button> }
+    </div>
+
+
+
+</div>
+} @else {
+<div mat-subheader class="nav-caption">
+    {{ item.navCap }}
+</div>
+} @if(!item.navCap && !item.external) {
+<mat-list-item (click)="item.route ? onItemSelected(item) : null" [ngClass]="{
+        'mat-toolbar mat-accent activeMenu': isActive(item),  
+          'activeSubMenu': router.isActive(item.routeChild, true),
+        expanded: expanded,
+      }" class="menu-list-item">
+
+    <span class="hide-menu" [ngStyle]="{ 'margin-left': item.routeChild ? '25px' : '' }">
+        {{ item.displayName | translate }}</span> @if(item.children && item.children.length) {
+    <span class="arrow-icon" fxFlex>
+              <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="expanded   ? 'expanded' : 'collapsed'">
+        expand_more
+    </mat-icon>
+    </span>
+    }
+
+</mat-list-item>
+} @if(expanded ) { @for(child of item.children; track child) {
+<healthnable-nav-item [item]="child" (click)="onSubItemSelected(child)" [depth]="depth + 1">
+</healthnable-nav-item>
+
+} }
+
+
+
+
+
+<!-- @if(item.navCap === 'Main' ) {
+<div mat-subheader class="row d-flex align-items-center ">
+    <div class="col-8"></div>
+    <div class="col-4">
+        @if(showToggle) {
+        <button mat-icon-button (click)="toggleCollapsed.emit()" class="d-flex justify-content-center">
+                                <i-feather name="menu"></i-feather>
+                              </button> }
+    </div>
+
+
+
+</div>
+} @else {
+<div mat-subheader class="nav-caption">
+    {{ item.navCap }}
+</div>
+} @if(!item.navCap && !item.external) {
+<mat-list-item (click)="onItemSelected(item)" [ngClass]="{
+                   'mat-toolbar mat-accent activeMenu': nestedMenuOpen() ? nestedMenuOpen() : router.isActive(item.route, true),
+                  
+                }" class="menu-list-item">
+
+    <span class="hide-menu">
+            {{ item.displayName | translate }}</span> @if(item.children && item.children.length) {
+    <span class="arrow-icon" fxFlex>
+                          <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="nestedMenuOpen()   ? 'expanded' : 'collapsed'">
+        expand_more
+    </mat-icon>
+    </span>
+    }
+
+</mat-list-item>
+} @if(item.children && nestedMenuOpen() ) {
+<div @indicatorRotate>
+    @for(child of item.children; track child.displayName) {
+    <mat-list-item (click)="onSubItemSelected(child)" [ngClass]="{
+   'dropMenu': router.isActive(child.routeChild, true)   ,
+ }" class="menu-list-item">
+
+        <span class="hide-menu" [ngStyle]="{ 'margin-left': child.routeChild ? '25px' : '' }">
+{{ child.displayName | translate }}
+</span>
+
+
+    </mat-list-item>
+    }
+</div> } -->

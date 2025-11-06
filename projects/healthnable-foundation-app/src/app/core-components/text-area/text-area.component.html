@@ -1,0 +1,31 @@
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">
+                {{ label | translate }} @if(required){
+                <span class="required">*</span> }
+            </mat-label>
+            @if(subValue){
+            <p class="mt-3">(If External is selected) </p>
+            }
+        </div>
+        <div class="col-md-7 mb-3">
+
+            <textarea [style]="style" [rows]="rows" [cols]="cols" [readonly]="readonly" [formControlName]="formControlName" pInputTextarea [placeholder]="placeholder | translate">
+</textarea> @if (formGroupValue.get(formControlName)?.touched || formGroupValue.get(formControlName)?.invalid) {
+            <mat-hint class="error-msg">
+
+                @if ( formGroupValue.get(formControlName)?.hasError('minlength') || formGroupValue.get(formControlName)?.hasError('maxlength') && formControlName !='description' && formControlName !='appMessage' && formControlName !='smsMessage') {
+                <div class="text-error">
+                    {{ label | translate }} should have a minimum of {{ minimum }} and a maximum of {{ maximum }} characters.
+                </div>
+                } @else if (formGroupValue.get(formControlName)?.hasError('maxlength') && (formControlName==='description' || formControlName==='appMessage' || formControlName==='smsMessage')) {
+                <div class="text-error">
+                    {{ label | translate }} should have a maximum of {{ maximum }} characters.
+                </div>
+                }
+            </mat-hint>
+            }
+        </div>
+    </div>
+</form>

@@ -1,0 +1,125 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'alertSetup.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="setupForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'alertSetup.alertType'" [formControlName]="'alertType'" [formGroupValue]="setupForm" [required]="true" [optionLabel]="'name'" [options]="alertTypeValue" [name]="'dashboard'" [placeholder]="'Select Alert Type'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'alertSetup.kpi'" [formControlName]="'metric'" [formGroupValue]="setupForm" [required]="true" [optionLabel]="'name'" [options]="metricValue" [name]="'metric'" [placeholder]="'Select KPI'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'alertSetup.communicationChannel'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-4">
+
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'smsTemplate')" formControlName="smsTemplate">
+                                <p class="f-w-500 my-2">SMS Template</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-12">
+
+                                    <healthnable-text-area [formGroupValue]="setupForm" [label]="'alertSetup.message'" [formControlName]="'smsMessage'" [required]="smsReq" [rows]="2" [cols]="27" [placeholder]="'Enter Message Text'" [maximum]="160">
+                                    </healthnable-text-area>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row m-lg-4">
+
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'emailTemplate')" formControlName="emailTemplate">
+                                <p class="f-w-500 my-2">Email Template</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-12">
+                                    <healthnable-input [label]="'alertSetup.subject'" [formControlName]="'subject'" [formGroupValue]="setupForm" [required]="emailReq" [buttonDis]="true" [name]="'subject'" [placeholder]="'Enter Subject'" [type]="'text'" [maximum]="100"></healthnable-input>
+                                </div>
+                                <div class="col-md-12">
+
+                                    <healthnable-text-area [formGroupValue]="setupForm" [label]="'alertSetup.body'" [formControlName]="'body'" [required]="emailReq" [rows]="2" [cols]="27" [placeholder]="'Enter Body Text'" [maximum]="1000">
+                                    </healthnable-text-area>
+                                </div>
+                                <div class="text-end ">
+                                    <mat-checkbox class="mx-2" formControlName="snapshot">Include KPI Snapshot</mat-checkbox>
+                                    <mat-checkbox class="mx-2" formControlName="timeStamp">Include Timestamp</mat-checkbox>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row m-lg-4">
+
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'inApp')" formControlName="inApp">
+                                <p class="f-w-500 my-2">In-App Notification</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-12">
+                                    <healthnable-input [label]="'alertSetup.title'" [formControlName]="'title'" [formGroupValue]="setupForm" [required]="appReq" [buttonDis]="true" [name]="'title'" [placeholder]="'Enter Title'" [type]="'text'" [maximum]="40"></healthnable-input>
+                                </div>
+                                <div class="col-md-12">
+
+                                    <healthnable-text-area [formGroupValue]="setupForm" [label]="'alertSetup.msg'" [formControlName]="'appMessage'" [required]="appReq" [rows]="2" [cols]="27" [placeholder]="'Enter Message Text'" [maximum]="200">
+                                    </healthnable-text-area>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'alertSetup.communicationChannel'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-5">
+
+
+
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'alertSetup.targetDep'" [formControlName]="'targetDep'" [multiSelect]="true" [formGroupValue]="setupForm" [required]="false" [optionLabel]="'name'" [options]="depValue" [name]="'targetDep'" [placeholder]="'Select Target Department'"></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'alertSetup.targetRole'" [formControlName]="'targetRole'" [formGroupValue]="setupForm" [multiSelect]="true" [required]="false" [optionLabel]="'name'" [options]="roleValue" [name]="'targetRole'" [placeholder]="'Select Target Roles'"></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'alertSetup.additionalRole'" [formControlName]="'additionalRole'" [multiSelect]="true" [formGroupValue]="setupForm" [required]="false" [optionLabel]="'name'" [options]="additionalRole" [name]="'additionalRole'" [placeholder]="'Select Additional Roles/Users'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center my-5 ">
+
+                        <button mat-flat-button class="cancel-btn text-black " (click)="reset()">  {{'alertSetup.reset' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="setupForm.invalid ">
+                            {{'alertSetup.saveandnew' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="setupForm.invalid ">
+                        {{'alertSetup.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

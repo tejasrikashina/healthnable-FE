@@ -1,0 +1,21 @@
+.entitybutton span {
+    margin-left: 8px;
+}
+
+.entitybutton {
+    background-color: #fb9778;
+    border-color: #ffffff73;
+    box-shadow: 0 2px 6px #00000040;
+    color: #fff;
+    width: 100%;
+    max-width: 100px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+::ng-deep .mat-accent.mat-mdc-checkbox {
+    --mdc-checkbox-selected-pressed-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-focus-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-hover-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-icon-color: #fb9778 !important;
+}

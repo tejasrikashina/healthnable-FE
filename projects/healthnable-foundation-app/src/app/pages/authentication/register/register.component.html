@@ -1,0 +1,149 @@
+<div class="blank-layout-container justify-content-center">
+    <div class="position-relative row w-100 h-100">
+        <div class="col-lg-7 col-xl-7 bg-gredient p-0">
+            <div class=" h-100" style="padding:10px">
+
+                <a href="javascript:void(0)">
+                    <img src="assets/images/logos/Healthnable.png" height="35px" class="align-middle m-2" alt="logo" />
+                </a>
+
+
+                <div class="align-items-center justify-content-center img-height d-none d-lg-flex">
+                    <img src="assets/images/backgrounds/login-bg.svg" alt="login" style="width: 100%; max-width: 600px" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-xl-5 p-0" style="background-color: white;">
+            <div class="d-flex align-items-start align-items-lg-center justify-content-center h-100" style="padding: 30px;">
+                <div class="row justify-content-center w-100">
+                    <div class="col-lg-9 max-width-form">
+                        <h4 class="f-w-500 f-s-24 ">Let's get you setup with a new account</h4>
+                        <span class="d-block f-w-500 " style="margin-top: 10px;">Already have an Account?
+                <a [routerLink]="['/login']" class="text-decoration-none f-w-500 f-s-14" style="color: #03c9d7">
+                    Sign In</a>
+              </span>
+
+                        <form style="margin-top: 10px;" [formGroup]="form" (ngSubmit)="submit()">
+                            <mat-label>{{'register.userName' | translate}}<span class="required">*</span></mat-label>
+                            <input class="w-100 h-75 mb-2" pInputText (input)="onUsernameChange($event)" formControlName="username" placeholder="User Name" /> @if(f['username'].touched || f['username'].invalid) {
+                            <mat-hint class="error-msg">
+
+                                @if(f['username'].errors && (f['username'].errors['minlength'] || f['username'].errors['maxlength']) ) {
+                                <div class="text-error">
+                                    User Name should have a minimum of 3 and a maximum of 70 characters
+                                </div>
+                                }
+
+
+                            </mat-hint>
+                            }
+                            <mat-label>{{'register.email' | translate}}<span class="required">*</span></mat-label>
+                            <input class="w-100 h-75 mb-2" pInputText type="email" (input)="onEmailChange($event)" formControlName="email" placeholder="Email" /> @if(f['email'].touched || f['email'].invalid) {
+                            <mat-hint class=" error-msg">
+                                @if(f['email'].errors && f['email'].errors['pattern']) {
+                                <div class="text-error">
+                                    Please enter a valid Email address
+                                </div>
+                                } @if(f['email'].errors && (f['email'].errors['minlength'] || f['email'].errors['maxlength'] )){
+                                <div class="text-error">
+                                    Email should have a minimum of 5 and a maximum of 100 characters
+                                </div>
+                                }
+                            </mat-hint>
+                            }
+                            <mat-label>{{'register.password' | translate}} <span class="required">*</span></mat-label>
+
+                            <input class="w-100  h-75" pInputText [type]="inputType" formControlName="password" placeholder="Password" />
+                            <span class="password_icons" style="cursor: pointer;">
+                                    @if(inputType=='text'){
+                                        <img  (click)="getType('password')" src="assets/images/showeye.png" alt="">
+                                    }
+                                    @if(inputType=='password'){
+                                        <img  (click)="getType('text')" src="assets/images/hideeye.png" alt="">
+                                    }
+                                    
+                                </span> @if(f['password'].touched || f['password'].invalid) {
+                            <mat-hint class=" error-msg">
+                                @if(f['password'].errors?.['minlength'] || f['password'].errors?.['maxlength']) {
+                                <div class="text-error">
+                                    Password should have a minimum of 8 and a maximum of 16 characters
+                                </div>
+                                } @else if(f['password'].errors?.['pattern']) {
+                                <div class="text-error">
+                                    Password must include at least one uppercase letter, one lowercase letter, and one number
+                                </div>
+                                }
+
+                            </mat-hint>
+                            }
+                            <mat-label>Confirm Password <span class="required">*</span></mat-label>
+
+                            <input class="w-100  h-75" pInputText [type]="inputType1" formControlName="confirm_password" placeholder="Confirm Password" />
+
+                            <span class="password_icons" style="cursor: pointer;">
+                                    @if(inputType1=='text'){
+                                        <img  (click)="getType1('password')" src="assets/images/showeye.png" alt="">
+                                    }
+                                    @if(inputType1=='password'){
+                                        <img  (click)="getType1('text')" src="assets/images/hideeye.png" alt="">
+                                    }
+                            
+                            </span>
+                            <mat-hint class="error-msg">
+                                @if( !f['confirm_password'].hasError('required')&& f['confirm_password'].dirty && form.hasError('mismatch')){
+                                <div class="text-error">
+                                    Password do not match
+                                </div>
+                                }
+
+                            </mat-hint>
+                            <mat-label>{{'register.phoneNumber' | translate}} <span class="required">*</span></mat-label>
+
+                            <div class="w-100">
+                                <!-- <ngx-intl-tel-input [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true" [searchCountryFlag]="true" 
+                                [searchCountryField]="[SearchCountryField.Name, SearchCountryField.Iso2]" [enablePlaceholder]="true" [selectFirstCountry]="false"
+                                    [selectedCountryISO]="selectedCountryISO ? selectedCountryISO : CountryISO.India" [phoneValidation]="true" [separateDialCode]="true" name="phone_number" formControlName="phone_number" class="w-100 " [customPlaceholder]="'Enter your phone number'">
+                                </ngx-intl-tel-input> -->
+                                <div (keydown.enter)="$event.preventDefault()">
+                                    <ngx-intl-tel-input [enableAutoCountrySelect]="true" [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [enablePlaceholder]="true" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO"
+                                        [phoneValidation]="true" [separateDialCode]="true" name="phone_number" formControlName="phone_number" class="w-100" [customPlaceholder]="'Enter your phone number'">
+                                    </ngx-intl-tel-input>
+                                </div>
+                            </div>
+                            <mat-hint class="error-msg">
+                                @if (f['phone_number'].touched && f['phone_number'].hasError('validatePhoneNumber')) {
+                                <div class="text-error">
+                                    Please enter a valid phone number
+
+                                </div>
+                                }
+                            </mat-hint>
+
+                            <mat-checkbox (change)="isChecked($event.checked)" color="primary">
+                                I have read and agree to the <a (click)="termsAndCondition()" style="color: #03c9d7"><b>Terms
+                                and Conditions</b></a>
+                            </mat-checkbox>
+
+                            <button mat-button class="w-100 signupbutton text-white" [disabled]="!form.valid || !isTermsChecked">
+                                Sign Up
+                              </button>
+
+                        </form>
+                        <!-- <div class="or-divider my-2">
+                            <span class="or-text ">Or</span>
+                        </div> -->
+
+
+                        <!-- <button mat-flat-button class="signup " (click)="google() ">
+                                    <img src="assets/images/svgs/google-icon.svg " width="17px ">
+                                    <span class="signup-text ">Sign up with Google</span>
+                                </button> -->
+                        <!-- <div id="google-btn" style="display:flex;justify-content: center;">
+
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

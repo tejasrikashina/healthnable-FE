@@ -1,0 +1,58 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> Metric - Level Access Right Configuration</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="metriclevelForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'Select Role'" [formControlName]="'role'" [variant]="'filled'" [readonly]="'readonly'" [formGroupValue]="metriclevelForm" [required]="false" [options]="roleValue" [name]="'role'" [placeholder]="'Select Role Value'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'Select Department'" [formControlName]="'department'" [variant]="'filled'" [readonly]="'readonly'" [formGroupValue]="metriclevelForm" [required]="false" [options]="depValue" [name]="'department'" [placeholder]="'Select Department Value'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'Select Facility'" [formControlName]="'facility'" [variant]="'filled'" [readonly]="'readonly'" [formGroupValue]="metriclevelForm" [required]="false" [options]="facValue" [name]="'facility'" [placeholder]="'Select Facility Value'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'Select Dashboard'" [formControlName]="'dashboard'" [formGroupValue]="metriclevelForm" [required]="true" [options]="dashboardValue" [name]="'dashboard'" [placeholder]="'Select Dashboard Value'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 mx-5">
+                            <healthnable-select [label]="'Accessible Metrics'" [formControlName]="'accMetric'" [formGroupValue]="metriclevelForm" [required]="true" [options]="metricValue" [name]="'accMetric'" [placeholder]="'Select Accessible Metrics Value'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+                    <button mat-flat-button class="cancel-btn text-black ">  Cancel</button>
+
+                    <button mat-flat-button class="submit-btn ">
+                      Update
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+            <div>
+                <mat-card-title>
+                    <span class="m-lg-5">Configured Log Rules Table</span>
+                </mat-card-title>
+                <div class="table-responsive col-md-12 my-2">
+                    <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'metricLevel'"></healthnable-table>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

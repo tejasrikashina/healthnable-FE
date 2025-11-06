@@ -1,0 +1,117 @@
+<mat-dialog-content class="mat-typography" style="overflow-y: auto; max-height:80vh;background-color: white;">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: 500; font-size: 1.4rem; margin: 0;">
+                <span class="m-2">{{ 'kpi.editOperand' | translate }}</span>
+            </h2>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        </div>
+    </div>
+    <div class="container-fluid ">
+        <form [formGroup]="addOpForm">
+            <div class="row m-lg-4">
+
+                <div class="col-md-12">
+                    <healthnable-select [label]="'kpi.operandType'" [formControlName]="'operandType'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="operandType" [optionLabel]="'name'" [name]="'operandType'" [placeholder]="'Select Operand Type'"></healthnable-select>
+                </div>
+                @if(addOpForm.get('operandType')?.value?.name !=='Custom' && addOpForm.get('operandType')?.value?.name !=='Constant'){
+                <div class="col-md-12 mt-5">
+                    <healthnable-select [label]="'kpi.opDataset'" [formControlName]="'dataset'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="dataset" [optionLabel]="'name'" [name]="'dataset'" [placeholder]="'Select Dataset'"></healthnable-select>
+                </div>
+                <div class="col-md-12">
+                    <healthnable-select [label]="'kpi.field'" [formControlName]="'field'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="field" [optionLabel]="'name'" [name]="'field'" [placeholder]="'Select Field'"></healthnable-select>
+                </div>
+
+
+                <mat-card-title>
+                    <span class="my-3"> {{ 'kpi.condition'  | translate }}</span>
+                </mat-card-title>
+
+                <div class="col-md-12">
+                    <healthnable-select [label]="'kpi.field'" [formControlName]="'field1'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="field" [optionLabel]="'name'" [name]="'field1'" [placeholder]="'Select Field'"></healthnable-select>
+                </div>
+                <div class="col-md-12">
+                    <healthnable-select [label]="'kpi.operator'" [formControlName]="'operator'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="operator" [optionLabel]="'name'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+                </div>
+                <div class="col-md-12">
+                    <healthnable-select [label]="'kpi.value'" [formControlName]="'value'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="value" [optionLabel]="'name'" [name]="'value'" [placeholder]="'Select Value'"></healthnable-select>
+                </div>
+                <ng-container formArrayName="conditions">
+                    @for(condition of conditionsFormArray.controls;track condition; let index=$index){
+                    <div [formGroupName]="index">
+                        <div class="col-md-12">
+                            <healthnable-select [label]="'kpi.field'" [formGroupValue]="getConditionGroup(index)" [formControlName]="'field1'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="field" [optionLabel]="'name'" [name]="'field1'" [placeholder]="'Select Field'"></healthnable-select>
+                        </div>
+                        <div class="col-md-12">
+                            <healthnable-select [label]="'kpi.operator'" [formControlName]="'operator'" [formGroupValue]="getConditionGroup(index)" [required]="false" [buttonDis]="true" [options]="operator" [optionLabel]="'name'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+                        </div>
+                        <div class="col-md-12">
+                            <!-- <healthnable-select [label]="'addTemplate.queType'" [formControlName]="'type'" [formGroupValue]="getConditionGroup(index)" [required]="true" [options]="locationValue" [name]="'type'" [placeholder]="'Rating Scale'"></healthnable-select> -->
+                            <healthnable-select [label]="'kpi.value'" [formControlName]="'value'" [formGroupValue]="getConditionGroup(index)" [required]="false" [buttonDis]="true" [options]="value" [optionLabel]="'name'" [name]="'value'" [placeholder]="'Select Value'"></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-7  my-2">
+                            <button mat-flat-button class="cancel-btn text-black" (click)="removeCondition(index)"> {{'kpi.remove' | translate}}</button>
+                        </div>
+
+                    </div>
+
+                    }
+
+                </ng-container>
+                <div class="col-md-12">
+                    <button mat-flat-button class="submit-btn" (click)="addCondition()">
+                         {{'kpi.addCondition' | translate}}
+                    </button>
+                </div>
+                } @else if (addOpForm.get('operandType')?.value?.name ==='Constant') {
+                <div class="my-5">
+                    <div class="col-md-12">
+                        <healthnable-select [label]="'kpi.opDataset'" [formControlName]="'dataset'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="dataset" [optionLabel]="'name'" [name]="'dataset'" [placeholder]="'Select Dataset'"></healthnable-select>
+                    </div>
+                    <div class="col-md-12 mt-3">
+
+                        <healthnable-input appOnlyNumbers [label]="'kpi.value'" [formControlName]="'value1'" [formGroupValue]="addOpForm" [name]="'value1'" [required]="false" [placeholder]="'Enter Value'" [maximum]="10"></healthnable-input>
+
+                    </div>
+                </div>
+                } @else if (addOpForm.get('operandType')?.value?.name ==='Custom') {
+                <div class="my-5">
+                    <div class="col-md-12">
+                        <healthnable-select [label]="'kpi.opDataset'" [formControlName]="'dataset'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="dataset" [optionLabel]="'name'" [name]="'dataset'" [placeholder]="'Select Dataset'"></healthnable-select>
+                    </div>
+                    <div class="col-md-12">
+                        <healthnable-select [label]="'kpi.operand'" [formControlName]="'operand'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="operand" [optionLabel]="'name'" [name]="'operand'" [placeholder]="'Select Operand'"></healthnable-select>
+                    </div>
+                    <div class="col-md-12">
+                        <healthnable-select [label]="'kpi.operator'" [formControlName]="'operator'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="operator" [optionLabel]="'name'" [name]="'operator'" [placeholder]="'Select Operator'"></healthnable-select>
+                    </div>
+                    <div class="col-md-12">
+                        <healthnable-select [label]="'kpi.operand'" [formControlName]="'operand1'" [formGroupValue]="addOpForm" [required]="false" [buttonDis]="true" [options]="operand" [optionLabel]="'name'" [name]="'operand1'" [placeholder]="'Select Operand'"></healthnable-select>
+                    </div>
+                </div>
+                }
+            </div>
+
+
+            <div class="d-flex justify-content-center my-3">
+                <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'kpi.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn me-3" (click)="reset()">
+                            {{'kpi.reset' | translate}} 
+                    </button>
+                <button mat-flat-button class="submit-btn " (click)="saveOperand()" [disabled]="addOpForm.invalid">
+                        {{'kpi.update' | translate}}
+                   
+                  
+                </button>
+
+
+            </div>
+        </form>
+    </div>
+
+
+</mat-dialog-content>

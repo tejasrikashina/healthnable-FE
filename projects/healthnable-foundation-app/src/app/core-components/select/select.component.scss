@@ -1,0 +1,31 @@
+::ng-deep .p-dropdown {
+    width: 100% !important;
+}
+
+::ng-deep .p-dropdown-items-wrapper {
+    margin-left: -33px !important;
+    height: 160px;
+}
+
+.error-msg {
+    font-size: small;
+}
+
+.text-error {
+    color: #dc3545;
+}
+
+::ng-deep .p-multiselect {
+    width: 100% !important;
+}
+
+::ng-deep .p-multiselect-items .p-multiselect-item {
+    max-width: 415px;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: ellipsis;
+}
+
+::ng-deep .p-multiselect-panel {
+    max-width: 415px;
+}

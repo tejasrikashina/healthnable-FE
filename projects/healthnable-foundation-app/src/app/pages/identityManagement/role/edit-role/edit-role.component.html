@@ -1,0 +1,99 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="f-w-500 f-s-24">{{'roles.headerForEdit' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'roles.roleName'" [formControlName]="'roleName'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'roleName'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Role Name'" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div>
+
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'roles.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'description'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Description'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-8">
+                            <healthnable-select [label]="'roles.reportTo'" [formControlName]="'reportTo'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'reportTo'" [placeholder]="'Report To'"></healthnable-select>
+                        </div>
+                        <div class="col-md-8 my-3">
+                            <healthnable-status [label]="'roles.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status" [required]="true"></healthnable-status>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="mat-subtitle-2 f-w-400">{{'roles.permissions' |
+                                            translate}} <span class="required">*</span> </label>
+                            </div>
+                            <div class="col-md-9 d-flex align-items-center">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="search-container d-flex align-items-center">
+                                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                                            <input type="search" placeholder="Attribute" class="form-control search-input" aria-label="Search">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 my-2" formGroupName="permissions">
+                                        <div class="col-md-12">
+                                            <mat-checkbox formControlName="isCreate" (change)="onCheckboxChange('Create', $event.checked)">Can Create Attribute</mat-checkbox>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <mat-checkbox formControlName="isEdit" (change)="onCheckboxChange('Edit', $event.checked)">Can Edit Attribute</mat-checkbox>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <mat-checkbox formControlName="isView" (change)="onCheckboxChange('View', $event.checked)">Can View Attribute</mat-checkbox>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <mat-checkbox formControlName="isDelete" (change)="onCheckboxChange('Delete', $event.checked)">Can Delete Attribute</mat-checkbox>
+                                        </div>
+
+                                    </div>
+                                    <!-- <div class="d-flex my-4">
+                                        <button mat-flat-button class="submit-btn" (click)="addChips()">
+                                            {{'roles.add' | translate}}
+                                      
+                                    </button>
+                                        <button mat-flat-button class="cancel-btn text-black" (click)="onReset()">  {{'roles.reset' | translate}}</button>
+
+                                    </div> -->
+                                    <div class="card d-flex chipList">
+                                        <div class="row m-2">
+                                            @for(chip of chipheader;track chip){
+                                            <div class="col-md-3 my-2">
+                                                <mat-label>{{chip}} : </mat-label>
+                                            </div>
+
+                                            <div class="col-md-9">
+                                                @for(keyword of reactiveKeywords;track keyword){
+                                                <p-chip [label]="keyword" [removable]="true" (onRemove)="onChipRemove(keyword)"></p-chip>
+                                                }
+                                            </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center mb-3">
+                        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'roles.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn">
+                            {{'roles.update' | translate}}
+                      
+                    </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

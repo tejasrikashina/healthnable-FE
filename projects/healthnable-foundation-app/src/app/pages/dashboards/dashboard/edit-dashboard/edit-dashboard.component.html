@@ -1,0 +1,53 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addDashboard.edit' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="dashboardForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addDashboard.name'" [formControlName]="'dashboard_name'" [formGroupValue]="dashboardForm" [required]="false" [name]="'dashboard_name'" [placeholder]="'Enter Dashboard Value'" [type]="'text'" [minimum]="3" [maximum]="70" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+
+                            <healthnable-text-area [formGroupValue]="dashboardForm" [label]="'addDashboard.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="35" [placeholder]="'Enter Description'" [maximum]="1000">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDashboard.dashboardtype'" [formControlName]="'dashboard_type'" [formGroupValue]="dashboardForm" [required]="true" [buttonDis]="true" [options]="categoryValue" [optionLabel]="'dashboard_type'" [name]="'dashboard_type'"
+                                [placeholder]="'Select Category'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <healthnable-status [label]="'addDashboard.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="dashboardForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addDashboard.theme'" [formControlName]="'theme'" [formGroupValue]="dashboardForm" [required]="false" [options]="themeValue" [optionLabel]="'key'" [name]="'theme'" [placeholder]="'Select Theme Value'"></healthnable-select>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addDashboard.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn " (click)="editDashboard()">
+                        {{'addDashboard.update' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

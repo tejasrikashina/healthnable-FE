@@ -1,0 +1,118 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2 f-s-24"> {{ 'addAction.headerforeditAction'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-7">
+                            <healthnable-input [label]="'addAction.actionName'" [formControlName]="'actionName'" [formGroupValue]="form" [required]="false" [name]="'actionName'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'text'" [placeholder]="'Action Name'" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-md-2">
+                                <mat-label class="mat-subtitle-2 f-w-400">Action Type
+                                </mat-label>
+                            </div>
+                            <span class="col-md-7 " style="margin-left: 35px;">
+                                @for(action of actions; track action){
+
+                                <p-radioButton [inputId]="action.key" [value]="action" formControlName="selectedAction" />
+                                   <label [for]="action.key" class="mx-3">
+                              {{ action.name }}
+                               </label> }
+                                     </span>
+                        </div>
+                    </div>
+                    <p class="f-s-15 f-w-500">Trigger Event</p>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.performAction'" [formControlName]="'performAction'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'performAction'" [placeholder]="'Perform Action'"></healthnable-select>
+
+                    </div>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-input [label]="'addAction.delay'" [formControlName]="'delay'" [formGroupValue]="form" [required]="false" [name]="'delay'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'text'" [placeholder]="'Delay'"></healthnable-input>
+                    </div>
+
+
+
+                    <p class="f-s-15 f-w-500 my-2">Define Action Details</p>
+
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.performAction'" [formControlName]="'performAction'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'performAction'" [placeholder]="' performAction'"></healthnable-select>
+
+                    </div>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.tragetAttr'" [formControlName]="'tragetAttr'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'tragetAttr'" [placeholder]="'Target Attribute'"></healthnable-select>
+
+                    </div>
+                    <div class="col-md-7 mx-5">
+
+                        <healthnable-input [label]="'addAction.value'" [formControlName]="'value'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'value'" [minimum]="10" [maximum]="500" [placeholder]="'Value'">
+                        </healthnable-input>
+
+                    </div>
+
+                    <p class="f-s-15 f-w-500 my-2">Target Recipient</p>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.targetRole'" [formControlName]="'targetRole'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'targetRole'" [placeholder]="'Target Role'"></healthnable-select>
+
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-2 mx-5">
+                            <mat-label class="mat-subtitle-2 f-w-400">Notification Type
+                            </mat-label>
+                        </div>
+                        <span class="col-md-7">
+                                @for(type of notification; track type){
+
+                                <p-radioButton [inputId]="type.key" [value]="type" formControlName="selectedNotification" />
+                                <label [for]="type.key" class="mx-3">
+            {{ type.name }}
+        </label> }
+    </span>
+                    </div>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-text-area [formGroupValue]="form" [label]="'addAction.customMessage'" [formControlName]="'customMessage'" [required]="false" [rows]="2" [cols]="30" [placeholder]="'Custom Message'">
+                        </healthnable-text-area>
+                    </div>
+                    <p class="f-s-15 f-w-500 my-2">Approval Settings</p>
+                    <div class="row my-3">
+                        <div class="col-md-2 mx-5">
+                            <mat-label class="mat-subtitle-2 f-w-400">Approval Needed
+                            </mat-label>
+                        </div>
+                        <span class="col-md-7">
+                            @for(approve of approval; track approve){
+
+                            <p-radioButton [inputId]="approve.key" [value]="approve" formControlName="selectedApproval" />
+                            <label [for]="approve.key" class="mx-2">
+        {{ approve.name }}
+    </label> }
+</span>
+                    </div>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.approvalRole'" [formControlName]="'approvalRole'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'approvalRole'" [placeholder]="'Approve Role'"></healthnable-select>
+
+                    </div>
+                    <div class="col-md-7 mx-5">
+                        <healthnable-select [label]="'addAction.escalationPath'" [formControlName]="'escalationPath'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'escalationPath'" [placeholder]="'Escalation Path'"></healthnable-select>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-3 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addAction.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn ">
+                            {{'addAction.update' | translate}}
+                        
+                        </button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

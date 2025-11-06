@@ -1,0 +1,151 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'attributes.cloneAttribute' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row  example-boundary">
+                        <div class="row m-lg-3">
+                            <!-- <div class="col-md-6">
+                                <healthnable-input [label]="'addAttribute.code'" [formControlName]="'code'" [formGroupValue]="form" [required]="false" [name]="'code'" [placeholder]="'Attribute Code'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                            </div> -->
+                            <div class="col-md-6">
+                                <healthnable-input [label]="'addAttribute.name'" [formControlName]="'name'" [formGroupValue]="form" [required]="false" [name]="'name'" [placeholder]="'Attribute Name'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                            </div>
+
+                            <div class="col-md-6">
+                                <healthnable-text-area [label]="'addAttribute.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="26" [placeholder]="'Description'" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'">
+                                </healthnable-text-area>
+
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'addAttribute.categories'" [formControlName]="'categories'" [variant]="'filled'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'categories'" [placeholder]="'Categories'" [readonly]="'readonly'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'addAttribute.subcategories'" [formControlName]="'subcategories'" [variant]="'filled'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'subcategories'" [placeholder]="'Subcategories'" [readonly]="'readonly'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'addAttribute.dataType'" [formControlName]="'datatype'" [variant]="'filled'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'datatype'" [placeholder]="'Data Type'" [readonly]="'readonly'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-input [label]="'addAttribute.status'" [formControlName]="'status'" [formGroupValue]="form" [required]="false" [name]="'status'" [placeholder]="'Active'" [type]="'text'" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-lg-5">
+                        <!-- <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.code'" [formControlName]="'code'" [formGroupValue]="form" [required]="false" [name]="'code'" [placeholder]="'Attribute Code'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div> -->
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.name'" [formControlName]="'name'" [formGroupValue]="form" [required]="true" [name]="'name'" [placeholder]="'Attribute Name'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-text-area [label]="'addAttribute.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="26" [placeholder]="'Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.categories'" [formControlName]="'categories'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'categories'" [placeholder]="'Categories'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.subcategories'" [formControlName]="'subcategories'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'subcategories'" [placeholder]="'Subcategories'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.dataType'" [formControlName]="'datatype'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'datatype'" [placeholder]="'Data Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <healthnable-status [label]="'addAttribute.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.defaultValue'" [formControlName]="'defaultValue'" [formGroupValue]="form" [required]="false" [name]="'defaultValue'" [placeholder]="'Default Value'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row  align-items-center mb-2">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">
+                                        Value Constrains
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- <healthnable-input [label]="'addAttribute.minValue'" [formControlName]="'minVal'" [formGroupValue]="form" [required]="false" [name]="'minVal'" [placeholder]="'Min Value'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input> -->
+                                    <label class="mat-subtitle-2">Min Value</label>
+                                    <div><input pInputText formControlName="minVal" style="width: 90%;" placeholder="Min Value" type="text" /></div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- <healthnable-input [label]="'addAttribute.maxValue'" [formControlName]="'maxVal'" [formGroupValue]="form" [required]="false" [name]="'maxVal'" [placeholder]="'Max Value'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input> -->
+                                    <label class="mat-subtitle-2 ">Max Value</label>
+                                    <div><input pInputText formControlName="maxVal" style="width: 90%;" placeholder="Max Value" type="text" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.regexPattern'" [formControlName]="'regexPattern'" [formGroupValue]="form" [required]="false" [name]="'regexPattern'" [placeholder]="'Regex Pattern'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.allowedValues'" [formControlName]="'allowedValues'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'allowedValues'" [placeholder]="'Allowed Value'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.inputType'" [formControlName]="'inputType'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'inputType'" [placeholder]="'Input Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.checkboxes'" [formControlName]="'checkboxes'" [formGroupValue]="form" [required]="false" [name]="'checkboxes'" [placeholder]="'3'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="mx-3">
+                            <mat-checkbox class="mx-2" formControlName="isMandatory">Is Mandatory?</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="isEditable">Is Editable?</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="isSearchable">Searchable?</mat-checkbox>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.visibilityRules'" [formControlName]="'visibilityRules'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'visibilityRules'" [placeholder]="'Rules'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.validationRules'" [formControlName]="'validationRules'" [formGroupValue]="form" [required]="false" [name]="'validationRules'" [placeholder]="'Validation Rules'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.dependencyRules'" [formControlName]="'dependencyRules'" [formGroupValue]="form" [required]="false" [name]="'dependencyRules'" [placeholder]="'Dependency Rules'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.conditionLogic'" [formControlName]="'conditionLogic'" [formGroupValue]="form" [required]="false" [name]="'conditionLogic'" [placeholder]="'Conditional Logic'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addAttribute.administrator'" [formControlName]="'administrator'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'administrator'" [placeholder]="'Administrator'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.apiField'" [formControlName]="'apiField'" [formGroupValue]="form" [required]="false" [name]="'apiField'" [placeholder]="'Api Field Mapping'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="m-lg-3">
+                            <mat-checkbox formControlName="isAudit">Audit Tracking?</mat-checkbox>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addAttribute.dbColumn'" [formControlName]="'dbColumn'" [formGroupValue]="form" [required]="false" [name]="'dbColumn'" [placeholder]="'Date of Birth'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="m-lg-3">
+                            <mat-checkbox formControlName="isIndex">Indexing?</mat-checkbox>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'addAttribute.cancel' | translate}}</button>
+
+                    <button mat-flat-button class="submit-btn" [disabled]="form.invalid">
+                        {{'addAttribute.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

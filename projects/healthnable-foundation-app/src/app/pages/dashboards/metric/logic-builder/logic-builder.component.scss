@@ -1,0 +1,16 @@
+    .example-boundary {
+        width: 100%;
+        min-height: 100px;
+        padding: 20px;
+        max-width: 100%;
+        border-radius: 10px;
+        border: 1.2px solid black;
+        overflow: visible;
+    }
+    
+     ::ng-deep .mat-accent.mat-mdc-checkbox {
+        --mdc-checkbox-selected-pressed-icon-color: #fb9778 !important;
+        --mdc-checkbox-selected-focus-icon-color: #fb9778 !important;
+        --mdc-checkbox-selected-hover-icon-color: #fb9778 !important;
+        --mdc-checkbox-selected-icon-color: #fb9778 !important;
+    }

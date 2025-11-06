@@ -1,0 +1,75 @@
+// ::ng-deep .iti__selected-flag {
+//     z-index: 1;
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     height: 100%;
+//     padding: 0 6px 0 8px;
+//     cursor: pointer;
+// }
+// ::ng-deep .iti__flag-container {
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     right: auto;
+//     left: 0;
+//     padding: 1px;
+//     cursor: pointer;
+// }
+// ::ng-deep .iti.separate-dial-code input {
+//     height: 3.5rem;
+// }
+// ::ng-deep .iti__country-list {
+//     list-style: none;
+//     padding: 0;
+//     overflow: hidden;
+// }
+// ::ng-deep .dropdown-menu.show {
+//     display: block;
+//     max-height: 200px;
+//     overflow-y: auto;
+//     width: 100%;
+// }
+.add-btn {
+    border-radius: 10px !important;
+    background-color: #03c9d7!important;
+    width: 10% !important;
+}
+
+.remove-btn {
+    border-radius: 10px !important;
+    background-color: red!important;
+    width: 10% !important;
+}
+
+.password_icons {
+    display: flex;
+    justify-content: end;
+    margin-bottom: -16px;
+}
+
+.password_icons img {
+    height: 18px;
+    position: relative;
+    bottom: 28px;
+    right: 12px;
+    padding: 1px 6px;
+    background-color: white;
+}
+
+.error-msg {
+    font-size: small;
+}
+
+.text-error {
+    color: #dc3545;
+}
+
+::ng-deep .p-multiselect-panel {
+    background: #ffffff;
+    width: 100%;
+    color: #4b5563;
+    border: 0 none;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}

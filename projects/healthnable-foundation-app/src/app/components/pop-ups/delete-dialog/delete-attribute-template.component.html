@@ -1,0 +1,45 @@
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="color: #f20808; font-weight: 500; font-size: 1.4rem; margin: 0;">
+                {{tags.headerfordeletDailog | translate}}
+            </h2>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        </div>
+        <div class="line mb-3"></div>
+        <div>
+            <p class="f-w-500 f-s-20">{{tags.details | translate}}</p>
+        </div>
+        <div class="row">
+            @for(header of headers; track header){
+
+            <div class="col-md-6 text-center">
+                <p>{{header}}</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p>gg</p>
+
+            </div>
+
+            }
+        </div>
+
+
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+            <!-- <i-feather name="info" style="color: rgb(255, 14, 14); width: 15px; height: 22px; margin-right: 5px;"></i-feather> -->
+            <img src="assets/images/warning.png" alt="warning" height="20">
+            <p class="f-w-500 f-s-14 mb-0 text-center">{{tags.warning | translate}}:&nbsp;</p>
+            <p class="f-w-500 f-s-14 mb-0 text-center">{{tags.error | translate}}</p>
+
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" class="my-3">
+    <button mat-flat-button class="submit-btn">{{tags.delete | translate}}</button>
+    <button mat-flat-button class="gray-background text-white" [mat-dialog-close]="true">{{tags.cancel | translate}}</button>
+</mat-dialog-actions>

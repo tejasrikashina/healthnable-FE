@@ -1,0 +1,37 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+
+            <span class="m-2">{{'entity.manageRelationship' | translate}}</span>
+        </mat-card-title>
+        <div class="my-5">
+            <div class="container-fluid">
+                <form [formGroup]="form">
+                    <div class="col-md-6 m-2">
+                        <healthnable-select [label]="'entity.selectpriEntity'" [formControlName]="'primaryEntity'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'primaryEntity'" [placeholder]="'Entity'"></healthnable-select>
+                    </div>
+                    <div class="col-md-6 m-2">
+                        <healthnable-select [label]="'entity.selectsecEntity'" [formControlName]="'secEntity'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'secEntity'" [placeholder]="'Entity'"></healthnable-select>
+                    </div>
+                    <div class="col-md-6 m-2">
+                        <healthnable-select [label]="'entity.relationType'" [formControlName]="'relType'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'relType'" [placeholder]="'Entity'"></healthnable-select>
+                    </div>
+                </form>
+            </div>
+            <!-- Table Section -->
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'manageEntity'"></healthnable-table>
+            </div>
+
+            <div class="d-flex justify-content-center m-3">
+                <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">  {{'entity.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn">
+                        {{'entity.addrelationship' | translate}}
+                        
+                </button>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

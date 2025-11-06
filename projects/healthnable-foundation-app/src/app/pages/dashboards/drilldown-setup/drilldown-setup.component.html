@@ -1,0 +1,120 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'drilldown.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+
+            <span class="m-2 f-w-500 f-s-18"> {{ 'drilldown.subheader'  | translate }}</span>
+            <form [formGroup]="drilldownForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'drilldown.screenName'" [formControlName]="'screenName'" [formGroupValue]="drilldownForm" [required]="true" [buttonDis]="false" [options]="screenNameValue" [optionLabel]="'name'" [name]="'screenName'" [placeholder]="'Screen Name'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row my-2">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">Navigation Type
+                                        <span class="required">*</span>
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-7 mx-3">
+                                    @for(setup of drilldownSetup; track setup){
+
+                                    <p-radioButton [inputId]="setup.key" [value]="setup.name" formControlName="selectedDrilldown" />
+                                    <label [for]="setup.key" class="mx-2">
+                {{ setup.name }}
+            </label> }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'drilldown.screenType'" [formControlName]="'screenType'" [formGroupValue]="drilldownForm" [required]="true" [buttonDis]="false" [options]="screenTypeValue" [optionLabel]="'name'" [name]="'screenType'" [placeholder]="'Select Screen Type'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <healthnable-text-area [formGroupValue]="drilldownForm" [label]="'drilldown.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [maximum]="1000" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'drilldown.objType'" [formControlName]="'objType'" [formGroupValue]="drilldownForm" [required]="true" [buttonDis]="false" [options]="objTypeValue" [optionLabel]="'name'" [name]="'objType'" [placeholder]="'Select Linked Object Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <healthnable-status [label]="'drilldown.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="drilldownForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row my-2">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">Screen Source Type
+                                        <span class="required">*</span>
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-7 mx-3">
+                                    @for(setup of sourceType; track setup){
+
+                                    <p-radioButton [inputId]="setup.key" [value]="setup.name" formControlName="source" />
+                                    <label [for]="setup.key" class="mx-2">
+                {{ setup.name }}
+            </label> }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                        @if(drilldownForm.get('source')?.value ==='Internal' ){
+                        <div class="col-md-6 ">
+                            <div class="row my-2">
+                                <div class="col-md-4 my-2">
+                                    <mat-label class="mat-subtitle-2 f-w-400">Filterable Fields
+
+                                    </mat-label>
+                                    <p class="mt-3">(If Internal is selected) </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <button mat-flat-button class="submit-btn" (click)="addFeildMapping()">
+                                        {{'drilldown.addField' | translate}}
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                        } @if(drilldownForm.get('source')?.value ==='External' ){
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6 mt-3">
+
+                            <healthnable-text-area [formGroupValue]="drilldownForm" [required]="true" [subValue]="true" [label]="'drilldown.external'" [formControlName]="'external'" [rows]="2" [cols]="27" [placeholder]="'Enter External URL Template'">
+                            </healthnable-text-area>
+                        </div>
+
+
+                        }
+
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="reset()">  {{'drilldown.reset' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn " [disabled]="drilldownForm.invalid " (click)="saveDrilldown()">
+                        {{'drilldown.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+            <div>
+                <mat-card-title>
+                    <span class="m-lg-5">{{'drilldown.tableHeader' | translate}}</span>
+                </mat-card-title>
+                <div class="table-responsive col-md-12 my-2">
+                    <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'metric'"></healthnable-table>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

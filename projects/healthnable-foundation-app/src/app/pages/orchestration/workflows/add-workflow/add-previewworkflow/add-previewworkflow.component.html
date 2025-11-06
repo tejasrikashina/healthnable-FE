@@ -1,0 +1,69 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'workflow.addworkflow' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4 mx-4">
+            <span class="m-2 f-s-15 f-w-500">{{ 'previewWF.preview' | translate }}</span>
+            <div class="my-4 mx-4">
+                <span class="f-s-15 f-w-500">{{ 'previewWF.summary' | translate }}</span>
+            </div>
+            <div class="row mx-4 my-3">
+                @for(row of rows; track row){ @for(header of headers; track header){
+
+                <div class="col-md-3">
+                    <p>{{header}}</p>
+                </div>
+                <div class="col-md-9">
+                    <p>{{row[header]}}</p>
+
+                </div>
+                } }
+            </div>
+            <div class="my-4 mx-4">
+                <span class="f-s-15 f-w-500">{{ 'previewWF.stages' | translate }}</span>
+            </div>
+            <div class="row mx-4 my-3">
+                @for(header of headers1; track header){
+
+                <div class="col-md-8">
+                    <p>{{header}}</p>
+                </div>
+                }
+            </div>
+            <div class="my-4 mx-4">
+                <span class="m-2 f-s-15 f-w-500">{{ 'previewWF.assignedRoles' | translate }}</span>
+            </div>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns"></healthnable-table>
+            </div>
+            <div class="my-4 mx-4">
+                <span class="m-2 f-s-15 f-w-500">{{ 'previewWF.workFlowConditions' | translate }}</span>
+            </div>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns1"></healthnable-table>
+            </div>
+            <div class="my-4 mx-4">
+                <span class="m-2 f-s-15 f-w-500">{{ 'previewWF.notification' | translate }}</span>
+            </div>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns2"></healthnable-table>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center mb-3">
+            <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'workflow.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn" (click)="previous()">
+                {{'previewWF.previous' | translate}}
+            
+            </button>
+            <button mat-flat-button class="submit-btn ">
+                {{'previewWF.save' | translate}}
+            
+            </button>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

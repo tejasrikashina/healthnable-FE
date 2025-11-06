@@ -1,0 +1,14 @@
+         ::ng-deep .mat-mdc-menu-panel {
+            background-color: white !important;
+            box-shadow: 1px 0 20px rgba(0, 0, 0, 0.0784313725) !important
+        }
+        
+        .cardWithShadow {
+            border-radius: 10px !important;
+        }
+        
+         ::ng-deep .mat-mdc-menu-content {
+            margin: 0;
+            padding: 8px 25px !important;
+            outline: 0;
+        }

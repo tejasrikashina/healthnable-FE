@@ -1,0 +1,45 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addCategory.headerforEditDailog' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <!-- <div class="col-md-7">
+                            <healthnable-input [label]="'addCategory.Ccode'" [formControlName]="'code'" [formGroupValue]="form" [required]="false" [name]="'code'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'number'" [placeholder]="'category code'" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div> -->
+
+                        <div class="col-md-7">
+
+                            <healthnable-input [label]="'addCategory.category'" [formControlName]="'categoryname'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'categoryname'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Category Name'"
+                                [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-7">
+
+                            <healthnable-text-area [label]="'addCategory.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="31" [placeholder]="'Description'">
+                            </healthnable-text-area>
+
+                        </div>
+                        <div class="col-md-7">
+                            <healthnable-status [label]="'addCategory.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3">
+                        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'addCategory.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn ">
+                            {{'addCategory.update' | translate}}
+                        
+                        </button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

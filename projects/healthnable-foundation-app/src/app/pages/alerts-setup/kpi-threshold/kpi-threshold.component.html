@@ -1,0 +1,172 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'thresholdConfig.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="thresholdForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'thresholdConfig.dashboard'" [formControlName]="'dashboard'" [formGroupValue]="thresholdForm" [required]="true" [optionLabel]="'name'" [options]="dashboardValue" [name]="'dashboard'" [placeholder]="'Select Dashboard'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'thresholdConfig.kpi'" [formControlName]="'metric'" [formGroupValue]="thresholdForm" [required]="true" [optionLabel]="'name'" [options]="metricValue" [name]="'metric'" [placeholder]="'Select KPI'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'thresholdConfig.thresholdSettings'  | translate }}</span>
+                    </mat-card-title>
+
+                    <div class="row m-lg-5">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'thresholdConfig.kpiName'" [formControlName]="'kpiName'" [formGroupValue]="thresholdForm" [required]="false" [name]="'kpiName'" [placeholder]="'ED Average wait Time'" [type]="'text'" [minimum]="3" [maximum]="70" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'thresholdConfig.dataType'" [formControlName]="'dataType'" [formGroupValue]="thresholdForm" [required]="false" [name]="'dataType'" [placeholder]="'Numeric(Minutes)'" [type]="'text'" [minimum]="3" [maximum]="70" [readonly]="'readonly'"
+                                [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'thresholdConfig.currentThreshold'" [formControlName]="'currentThreshold'" [formGroupValue]="thresholdForm" [required]="false" [name]="'currentThreshold'" [placeholder]="'> 120'" [type]="'text'" [minimum]="3" [maximum]="70"
+                                [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.alertSeverity'" [formControlName]="'alertSeverity'" [formGroupValue]="thresholdForm" [required]="true" [optionLabel]="'name'" [options]="severityValue" [name]="'alertSeverity'" [placeholder]="'Select Alert Severity'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.alertTrigger'" [formControlName]="'alertTrigger'" [formGroupValue]="thresholdForm" [required]="true" [optionLabel]="'name'" [options]="triggerValue" [name]="'alertTrigger'" [placeholder]="'Select Alert Trigger'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.notification'" [formControlName]="'notification'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="notificationValue" [name]="'notification'" [placeholder]="'Select Notification Type'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'thresholdConfig.thresholdRule'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'thresholdConfig.operator'" [formControlName]="'operator'" [formGroupValue]="thresholdForm" [required]="false" [name]="'operator'" [placeholder]="'Enter Operator'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-input appOnlyNumbers [label]="'thresholdConfig.value'" [formControlName]="'value'" [formGroupValue]="thresholdForm" [required]="false" [name]="'value'" [placeholder]="'Enter Value'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.unit'" [formControlName]="'unit'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="unitValue" [name]="'unit'" [placeholder]="'Select Unit'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+
+                    <ng-container formArrayName="conditions">
+                        @for(condition of conditionFormArray.controls;track condition; let index=$index){
+                        <div [formGroupName]="index" class="row m-lg-5">
+                            <div class="col-md-6">
+                                <healthnable-input [label]="'thresholdConfig.operator'" [formControlName]="'operator'" [formGroupValue]="thresholdForm" [required]="false" [name]="'operator'" [placeholder]="'Enter Operator'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                            </div>
+
+                            <div class="col-md-6">
+                                <healthnable-input appOnlyNumbers [label]="'thresholdConfig.value'" [formControlName]="'value'" [formGroupValue]="thresholdForm" [required]="false" [name]="'value'" [placeholder]="'Enter Value'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <healthnable-select [label]="'thresholdConfig.unit'" [formControlName]="'unit'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="unitValue" [name]="'unit'" [placeholder]="'Select Unit'"></healthnable-select>
+
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-center my-5 ">
+                            <button mat-flat-button class="cancel-btn text-black " (click)="removeCondition(index)">  {{'thresholdConfig.remove' | translate}}</button>
+                        </div>}
+                    </ng-container>
+                    <div class="d-flex justify-content-center my-5 ">
+
+
+                        <button mat-flat-button class="submit-btn me-3" (click)="addCondition()">
+                            {{'thresholdConfig.addCondition' | translate}} 
+                    </button>
+
+
+                    </div>
+
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'thresholdConfig.notified'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.department'" [formControlName]="'department'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="depValue" [name]="'department'" [placeholder]="'Select Department '"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.role'" [formControlName]="'role'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="roleValue" [name]="'role'" [placeholder]="'Select Role'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6 ">
+                            <healthnable-select [label]="'thresholdConfig.addRecipient'" [formControlName]="'addRecipient'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="recipientValue" [name]="'role'" [placeholder]="'Select Add Recipient'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <mat-checkbox (change)=" isChecked($event.checked,'enable')" formControlName="enable" class="mx-2">
+                                <p class="my-2">Enable Auto-Escalation if not acknowledged in:30mins</p>
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                    <div class="row m-lg-2">
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'thresholdConfig.escalationRole'" [formControlName]="'escalationRole'" [formGroupValue]="thresholdForm" [required]="false" [optionLabel]="'name'" [options]="escRoleValue" [name]="'escalationRole'" [placeholder]="'Select Escalation Role'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row  align-items-center mb-2">
+
+                                <div class="col-md-8">
+                                    <healthnable-input appOnlyNumbers [dashboard]="true" [label]="'thresholdConfig.escTime'" [formControlName]="'escTime'" [formGroupValue]="thresholdForm" [required]="false" [name]="'escTime'" [placeholder]="'Enter Escalation Time'" [type]="'text'" [minimum]="2"
+                                        [maximum]="250"></healthnable-input>
+                                </div>
+                                <div class="col-md-4">
+                                    <healthnable-select [noLabel]="true" [formControlName]="'time'" [formGroupValue]="thresholdForm" [required]="false" [options]="unitValue" [optionLabel]="'name'" [name]="'time'" [placeholder]="'Select Units'"></healthnable-select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+
+                        <button mat-flat-button class="cancel-btn text-black " (click)="resetThreshold()">  {{'thresholdConfig.reset' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3">
+                            {{'thresholdConfig.testAlert' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="thresholdForm.invalid ">
+                        {{'thresholdConfig.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </mat-card-content>
+</mat-card>

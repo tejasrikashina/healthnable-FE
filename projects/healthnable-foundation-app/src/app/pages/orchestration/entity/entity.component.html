@@ -1,0 +1,92 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'entity.header' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-12 d-flex  justify-content-end">
+                        <div class="search-container d-flex align-items-center">
+                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                            <input type="search" placeholder="Search" [(ngModel)]="searchEntity" (keyup.enter)="onSearch()" (search)="inputClearValue()" class="form-control search-input" aria-label="Search">
+
+                            <!-- <span (click)="menu.toggle($event)" style="cursor:pointer">
+                                    <img src="assets/images/Filter.png" alt="filter" height="20" class="m-lg-2" >
+                                    </span>
+                            <p-tieredMenu #menu [model]="items" [popup]="true" /> -->
+
+                            <span (click)="toggleCardVisibility()">
+                                <img src="assets/images/Filter.png" alt="filter" height="20" class="m-lg-2">
+                              </span>
+                            <div class="card-container">
+                                @if(isCardVisible){
+                                <div class="card">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li (click)="onClick('status')" [ngClass]="{'active': selectedCategory === 'status'}" (click)="showCategoryDetails('status')">Status
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </li>
+                                            <li (click)="onClick('category')" [ngClass]="{'active': selectedCategory === 'category'}" (click)="showCategoryDetails('category')">Category
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                } @if(isCategoryActive && isCardVisible){
+                                <div class="card second-card">
+
+                                    <div class="card-body">
+                                        @if( currentCategory === 'category'){
+                                        <div>
+                                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position2">
+                                            <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search" style="margin-bottom: 5px;"> @for(item of categoryItems; track item){
+                                            <div>
+                                                <label style="margin-bottom: 6px;">
+                                          <input type="checkbox"  class="m-lg-2" >{{ item.label }}
+                                           </label>
+                                            </div>
+                                            }
+                                        </div>
+                                        } @if(currentCategory === 'status'){
+                                        <div>
+
+                                            <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search" style="margin-bottom: 5px;"> @for(item of status; track item){
+                                            <div>
+                                                <label style="margin-bottom: 6px;">
+                                          <input type="checkbox"  class="m-lg-2">{{ item.label }}
+                                        </label>
+                                            </div>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                            <img src="assets/images/Reset.png" style="cursor:pointer" alt="reset" height="20" class="m-lg-2">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mx-3 my-4">
+                    <div class="col-md-8 ">
+                        <button mat-flat-button class="submit-btn" (click)="addEntity('Add',{})">
+                         
+                            <span>{{'entity.addButton' | translate }}</span>
+                        </button>
+
+                        <button mat-flat-button class="submit-btn" (click)="bulkImport()">
+                            <span>{{'entity.import' | translate }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'entity'"></healthnable-table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

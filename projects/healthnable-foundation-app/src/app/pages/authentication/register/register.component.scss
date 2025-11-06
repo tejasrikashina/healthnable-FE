@@ -1,0 +1,162 @@
+.img-height {
+    height: calc(100vh - 96px);
+}
+
+.bg-gredient {
+    &::before {
+        content: "";
+        position: absolute;
+        height: 140%;
+        width: 100%;
+        opacity: 0.3;
+        background: radial-gradient( rgb(210, 241, 223), rgb(211, 215, 250), rgb(186, 216, 244)) 0% 0% / 400% 400%;
+        animation: 15s ease 0s infinite normal none running gradient;
+        z-index: -1;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+.max-width-form {
+    max-width: 450px;
+}
+
+.signupbutton {
+    border-radius: 10px !important;
+    background-color: #03c9d7;
+    margin-top: 10px;
+    &:disabled {
+        background-color: #b0e0e6;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+}
+
+.signup {
+    background-color: white !important;
+    border: 1px solid rgb(67, 65, 65);
+    border-radius: 6px;
+    color: gray !important;
+    font-weight: 400;
+}
+
+.signup-text {
+    margin-left: 6px;
+}
+
+// .or-divider {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     text-align: center;
+// }
+// .or-divider::before,
+// .or-divider::after {
+//     content: '';
+//     flex-grow: 1;
+//     border-top: 1px solid #ddd;
+// }
+// .or-text {
+//     margin: 0 10px;
+//     font-weight: bold;
+//     color: #555;
+// }
+.error-msg {
+    font-size: small;
+}
+
+.text-error {
+    color: #dc3545;
+}
+
+// ::ng-deep .iti__selected-flag {
+//     z-index: 1;
+//     position: relative;
+//     display: flex;
+//     align-items: center;
+//     height: 100%;
+//     padding: 0 0 0 5px;
+//     cursor: pointer;
+// }
+// ::ng-deep .iti__flag-container {
+//     position: absolute;
+//     padding: 1px;
+//     height: 100% !important;
+//     cursor: pointer;
+//     border: 1px solid #d4cece;
+//     border-radius: 7px;
+// }
+// ::ng-deep .iti.separate-dial-code input {
+//     height: 3rem;
+//     right: -99px !important;
+// padding-right: 40px !important;
+//     padding-left: 15px !important;
+//     width: 118%;
+// }
+::ng-deep .iti__country-list {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+// ::ng-deep .iti__selected-flag {
+//     border: 1px solid #d4cece;
+//     border-left: 5px;
+// } recently added not new css
+::ng-deep .iti {
+    width: 100% !important;
+}
+
+::ng-deep .iti input#country-search-box {
+    // padding-left: 6px !important;
+    // height: 45px !important;
+    width: 106% !important;
+    padding-left: 10px !important;
+    height: 45px !important;
+    margin-left: 0px;
+    margin-top: 10px !important;
+}
+
+::ng-deep .iti__tel-input,
+ ::ng-deep .iti__flag-container {
+    height: 3rem !important;
+}
+
+::ng-deep .dropdown-menu.show {
+    display: block;
+    max-height: 240px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.password_icons {
+    display: flex;
+    justify-content: end;
+    margin-bottom: -16px;
+}
+
+.password_icons img {
+    height: 18px;
+    position: relative;
+    bottom: 32px;
+    right: 12px;
+    padding: 1px 6px;
+    background-color: white;
+}
+
+::ng-deep .mat-accent.mat-mdc-checkbox {
+    --mdc-checkbox-selected-pressed-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-focus-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-hover-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-icon-color: #fb9778 !important;
+}

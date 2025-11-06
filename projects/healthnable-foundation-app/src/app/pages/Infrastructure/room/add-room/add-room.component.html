@@ -1,0 +1,109 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addRoom.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="addRoomForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addRoom.name'" [formControlName]="'room_name'" [formGroupValue]="addRoomForm" [required]="true" [name]="'room_name'" [placeholder]="'Enter Room Name'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.cleaning'" [formControlName]="'cleaning'" [formGroupValue]="addRoomForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'cleaning'" [placeholder]="'Select Cleaning Category'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.type'" [formControlName]="'room_type'" [formGroupValue]="addRoomForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'room_type'" [placeholder]="'Select Room Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addRoom.fireSafety' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="fireSafety" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.facility'" [formControlName]="'facility'" [formGroupValue]="addRoomForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addRoom.hvac'" [formControlName]="'hvac'" [formGroupValue]="addRoomForm" [required]="false" [name]="'hvac'" [placeholder]="'Enter HVAC/BMS Code'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.floor'" [formControlName]="'floor'" [formGroupValue]="addRoomForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'floor'" [placeholder]="'Select Floor'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addRoom.rtls'" [formControlName]="'rtls'" [formGroupValue]="addRoomForm" [required]="false" [name]="'rtls'" [placeholder]="'Enter RTLS'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.ward'" [formControlName]="'ward'" [formGroupValue]="addRoomForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'ward'" [placeholder]="'Select Ward'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <healthnable-status [label]="'addRoom.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="addRoomForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.bedCapacity'" [formControlName]="'bedCapacity'" [formGroupValue]="addRoomForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'ward'" [placeholder]="'Select Bed Capacity'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="addRoomForm" [label]="'addRoom.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addRoom.gender'" [formControlName]="'gender'" [formGroupValue]="addRoomForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'gender'" [placeholder]="'Select Gender Specific'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addRoom.isPrimary' | translate}}
+                                        <span class="required">*</span>
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="isPrimaryRoom" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="onCancel()">  {{'addRoom.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3" [disabled]="addRoomForm.invalid ">
+                            {{'addRoom.saveandnew' | translate}} 
+                    </button>
+                    <button mat-flat-button class="submit-btn " [disabled]="addRoomForm.invalid ">
+                        {{'addRoom.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

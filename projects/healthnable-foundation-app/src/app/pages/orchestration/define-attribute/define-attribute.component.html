@@ -1,0 +1,50 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <!-- <mat-icon>keyboard_backspace</mat-icon> -->
+            <!-- <mat-icon>arrow_back</mat-icon> -->
+            <span class="m-2">{{'attributes.define' | translate}}</span>
+        </mat-card-title>
+        <div class="my-5">
+            <div class="container-fluid">
+
+                <!-- <div class="search-container d-flex align-items-center mb-3">
+                    <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                    <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search">
+
+                </div> -->
+                <!-- <div class="line"></div> -->
+                <div class="col-md-6 m-2">
+
+                    <healthnable-input [label]="'templates.template'" [formControlName]="'templateName'" [formGroupValue]="form" [required]="true" [type]="'text'" [name]="'categoryname'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Template Name'">
+                    </healthnable-input>
+                </div>
+                <div class="col-md-6 m-2">
+                    <healthnable-input [label]="'attributes.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="true" [type]="'text'" [name]="'description'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'description'">
+                    </healthnable-input>
+                </div>
+            </div>
+            <!-- Table Section -->
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'users'"></healthnable-table>
+            </div>
+            <div>
+                <button mat-flat-button class="submit-btn m-2" [mat-dialog-close]="true" (click)="addAttr('delete',{})">  {{'attributes.add' | translate}}</button>
+                <button mat-flat-button class="submit-btn" (click)="deleteAttr('delete',{})">
+                        {{'attributes.deleteattr' | translate}}   
+                  
+                </button>
+
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">  {{'attributes.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn">
+                        {{'attributes.save' | translate}}
+                        
+                </button>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

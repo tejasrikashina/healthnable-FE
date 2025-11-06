@@ -1,0 +1,28 @@
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="color: #f20808; font-weight: 500; font-size: 1.4rem; margin: 0;">
+                {{tags.deleteattr | translate}}
+            </h2>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        </div>
+        <div class="line mb-3"></div>
+        <div class="col-md-12 d-flex justify-content-center align-items-center mt-3">
+            <!-- <i-feather name="info" style="color: rgb(255, 14, 14); width:40px; height: 74px; margin-right: 5px;"></i-feather> -->
+            <img src="assets/images/warning.png" alt="warning" style="margin-bottom: 50px;">
+            <p class="text-center">Deleting this {{tags.deleteValue | translate}} will remove all its associations across the platform. This action cannot be undone. Dependencies may exist, and this {{tags.deleteValue | translate}} could be used in workflowa and templates.
+            </p>
+        </div>
+
+
+
+
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center" class="my-3">
+    <button mat-flat-button class="submit-btn">{{tags.delete | translate}}</button>
+    <button mat-flat-button class="gray-background text-white" mat-dialog-close>{{tags.cancel | translate}}</button>
+</mat-dialog-actions>

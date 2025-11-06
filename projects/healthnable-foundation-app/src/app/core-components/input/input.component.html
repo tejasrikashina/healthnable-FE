@@ -1,0 +1,183 @@
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        @if(icon){
+        <div class="col-md-1">
+            <mat-label class="mat-subtitle-2 f-w-400" [innerHTML]="label | translate">
+
+            </mat-label>
+        </div>
+        } @else if(smallText){
+        <div class="col-md-2">
+            <mat-label class="mat-subtitle-2 f-w-400" [innerHTML]="label | translate">
+
+            </mat-label>
+        </div>
+        } @else if(dashboard ){
+        <div class="col-md-6">
+            <mat-label class="mat-subtitle-2 f-w-400">
+                {{label | translate}} @if(required) {
+                <span class="required">*</span> }
+            </mat-label>
+        </div>
+        } @else if(!dashboard){
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">
+                {{label | translate}} @if(required) {
+                <span class="required">*</span> }
+            </mat-label>
+        </div>
+        } @if(smallText){
+        <div class="col-md-10 mb-2">
+            <input class="w-100 h-75" [type]="type" pInputText [formControlName]="formControlName" [placeholder]="placeholder" (input)="input" [readonly]="readonly" [variant]="variant" [style]="style" />
+        </div>
+        } @if(dashboard){
+        <div class="col-md-6 mb-2">
+            <input class="w-100 h-75" [type]="type" pInputText [formControlName]="formControlName" [placeholder]="placeholder" (input)="input" [readonly]="readonly" [variant]="variant" [style]="style" />
+        </div>
+        } @if(formControlName !='phone' && !smallText && !dashboard){
+        <div class="col-md-7 mb-3">
+            <input class="w-100 h-75" [type]="type" pInputText [formControlName]="formControlName" [placeholder]="placeholder" (input)="input" [variant]="variant" [readonly]="readonly" [style]="style" /> @if((formGroupValue.get(formControlName)?.touched
+            || formGroupValue.get(formControlName)?.dirty) || formGroupValue.get(formControlName)?.invalid ) {
+            <mat-hint class=" error-msg">
+                @if(formGroupValue.get(formControlName)?.errors) { @if(formGroupValue.get(formControlName)?.errors?.['required'] && buttonDis) {
+                <div class="text-error">
+                    <!-- {{ label | translate }} is required. -->
+                </div>
+                } @if(formGroupValue.get(formControlName)?.errors?.['pattern'] && patternValue == 'number') {
+                <div class="text-error">
+                    Only numbers are allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors?.['pattern'] && patternValue == 'name') {
+                <div class="text-error">
+                    Only alphabets are allowed, whitespace is not allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('invalidApiEndpoint')) {
+                <div class="text-error">
+                    API Endpoint must be a valid URL or relative path starting with /api/ or /analytics/.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('invalidCharactersaddress')) {
+                <div class="text-error">
+                    Only single space between words, hyphens (-), commas (,), periods (.), slashes (/), Colon (:), Question mark (?) Number Sign (#) and parentheses (()), are allowed
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('firstCharacterInvalid')) {
+                <div class="text-error">
+                    The first character must be an alphabet letter
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors?.['pattern'] && patternValue == 'numberAlphabetOnly') {
+                <div class="text-error">
+                    Alphabets and numbers are allowed, whitespace is not allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('firstCharAlpabetsandNumbers')) {
+                <div class="text-error">
+                    {{ logError(formControlName,'firstCharAlpabetsandNumbers') }} The first character must be an alphabet letter or a number.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('allowonlyHyphensandPeriods')) {
+                <div class="text-error">
+                    Only single space between words, hyphens (-) and periods (.) are allowed
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors?.['pattern'] && patternValue == 'numberAlphabetdothipen') {
+                <div class="text-error">
+                    Alphabets and numbers are allowed, except (- .) and whitespace is not allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors?.['pattern'] && patternValue == 'password' && required) {
+                <div class="text-error">
+                    Password must contain at least 1 uppercase, 1 lowercase, 1 special character and 1 digit
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors && formGroupValue.get(formControlName)?.errors?.['pattern'] && type == 'text' && required){
+                <div class="text-error">
+                    Please Enter a Valid {{label | translate}}
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('firstCharAlpabetsandNumbers')) {
+                <!-- <div class="text-error">
+                                    {{ logError(formControlName,'firstCharAlpabetsandNumbers') }} The first character must be an alphabet letter or a number.
+                                </div> -->
+                } @else if(formGroupValue.get(formControlName)?.hasError('allowonlyhyphens') && !formGroupValue.get(formControlName)?.hasError('firstCharAlpabetsandNumbers')) {
+                <div class="text-error">
+                    {{ logError(formControlName,'allowonlyhyphens') }} Only hyphens (-) are allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('maxlength') && !(formGroupValue.get(formControlName)?.hasError('minlength')) && type == 'text' ) {
+                <div class="text-error">
+                    {{ label | translate }} should have a maximum of {{maximum}} characters
+                </div>
+
+                } @else if(formGroupValue.get(formControlName)?.hasError('maxlength') || formGroupValue.get(formControlName)?.hasError('minlength') && type == 'text' ) {
+                <div class="text-error">
+                    {{ label | translate }} should have a minimum of {{ minimum }} and a maximum of {{maximum}} characters
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('invalidCharactersOrSpacingforDesc')) {
+                <div class="text-error">
+                    Only hyphens(-, . , /, (), ! , ?, : , ; , " , ` ) are allowed
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('firstCharAlpabetsandNumbers')) {
+                <div class="text-error">
+                    The first character must be an alphabet letter or a number.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('allowOnlyHyphensPeriodandcammas')) {
+                <div class="text-error">
+                    Only hyphens (-), commas (,), and periods (.) are allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('firstcharacterisNumberOnly')) {
+                <div class="text-error">
+                    The first character must be a number.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('isallowonlyhyphens')) {
+                <div class="text-error">
+                    Only single space between words, hyphens (-) is allowed
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('invalidDecimal')) {
+                <div class="text-error">
+                    Invalid input: Only numeric values and a decimal point are allowed.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('allowOnlyHyphensAndPeriod')) {
+                <div class="text-error">
+                    Only hyphens (-), and periods (.) are allowed.
+                </div>
+                } @else if((formGroupValue.get(formControlName)?.touched || formGroupValue.get(formControlName)?.errors || formGroupValue.get(formControlName)?.errors?.['pattern'] )&& (formControlName === 'npi' || formControlName==='npi_number' || formControlName ===
+                'tax_id' || formControlName ==='fax_number') && !required ){
+                <div class="text-error">
+                    Enter Valid {{label | translate}}
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.errors && formGroupValue.get(formControlName)?.errors?.['pattern'] && type == 'url'){
+
+                <div class="text-error">
+                    {{label | translate}} must be a valid format (http/https).
+                </div>
+                }
+                <!-- @else if(formGroupValue.get(formControlName)?.errors && formGroupValue.get(formControlName)?.errors?.['pattern'] && formControlName === 'tax_id'){
+                <div class="text-error">
+                    Enter Valid {{label | translate}}
+                </div>
+                } -->
+                @else if((formGroupValue.get(formControlName)?.errors?.['min'] || formGroupValue.get(formControlName)?.errors?.['max']) && type == 'number') {
+                <div class="text-error">
+                    {{ label | translate }} should be min {{ minimum }} and max {{ maximum }} digits.
+                </div>
+                }
+                <!-- @else if((formGroupValue.get(formControlName)?.errors?.['minlength'] || formGroupValue.get(formControlName)?.errors?.['maxlength']) && type == 'text') {
+                <div class="text-error">
+                    {{ label | translate }} should be min {{ minimum }} and max {{ maximum }} alphabets.
+                </div>
+                } -->
+                @else if((formGroupValue.get(formControlName)?.errors?.['minlength'] || formGroupValue.get(formControlName)?.errors?.['maxlength']) && type == 'password' && required) {
+                <div class="text-error">
+                    {{ label | translate }} should be min {{ minimum }} and max {{ maximum }} characters.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('maxlength') && required) {
+                <div class="text-error">
+                    {{ label | translate }} should be max {{ maximum }} characters.
+                </div>
+                } @else if(formGroupValue.get(formControlName)?.hasError('minlength') && required) {
+                <div class="text-error">
+                    {{ label | translate }} should be max {{ maximum }} characters.
+                </div>
+                } }
+            </mat-hint>
+            }
+        </div>
+        }
+
+    </div>
+
+
+
+</form>

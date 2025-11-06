@@ -1,0 +1,65 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'roleBased.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="rolebasedForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 ">
+                            <healthnable-select [variant]="'filled'" [readonly]="'readonly'" [label]="'roleBased.role'" [formControlName]="'role'" [formGroupValue]="rolebasedForm" [required]="false" [optionLabel]="'name'" [options]="roleValue" [name]="'role'" [placeholder]="'Nurse'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [variant]="'filled'" [readonly]="'readonly'" [label]="'roleBased.department'" [formControlName]="'department'" [formGroupValue]="rolebasedForm" [required]="false" [optionLabel]="'name'" [options]="depValue" [name]="'department'" [placeholder]="'Emergency'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7">
+                            <healthnable-select [variant]="'filled'" [readonly]="'readonly'" [label]="'roleBased.facility'" [formControlName]="'facility'" [formGroupValue]="rolebasedForm" [required]="false" [optionLabel]="'name'" [options]="facilityValue" [name]="'facility'" [placeholder]="'Manama Central Hospital'"></healthnable-select>
+
+                        </div>
+                    </div>
+                    <div class="row m-lg-5">
+                        <div class="col-lg-5 mx-3">
+                            <p-card header="Available Dashboards" class="cardWithShadow">
+                                @for(dashboard of availableDashboards; track dashboard.name){
+                                <div class="mx-3 my-2">
+                                    <!-- <mat-checkbox formControlName="roleBased" [checked]="assignedDashboards.includes(role)" (change)="onCheckboxChange(role, $event.checked)">{{role}}</mat-checkbox> -->
+                                    <mat-checkbox [checked]="false" (change)="onCheckboxChange(dashboard.name, $event.checked)">
+                                        {{ dashboard.name }}
+                                    </mat-checkbox>
+                                </div>
+                                }
+                            </p-card>
+                        </div>
+                        <div class="col-lg-5">
+                            <p-card header="Assigned Dashboards" class="cardWithShadow">
+                                @for(role of assignedDashboards;track role){
+                                <div class="my-3">
+                                    <p-chip [label]="role" [removable]="true" (onRemove)="removeAssignedDashboard(role) "></p-chip>
+
+                                </div>
+                                }
+                            </p-card>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-3 ">
+                        <button mat-flat-button class="cancel-btn text-black ">  {{'roleBased.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn " [disabled]="rolebasedForm.invalid " (click)="saveRoleBasedDashboard()">
+                            {{'roleBased.update' | translate}}
+</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="table-responsive col-md-12 my-2">
+            <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'rolebased_dashboard'"></healthnable-table>
+        </div>
+    </mat-card-content>
+</mat-card>

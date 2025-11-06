@@ -1,0 +1,24 @@
+@if(formGroupValue) {
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">
+                {{label | translate}} @if(required) {
+                <span class="required">*</span> }
+            </mat-label>
+        </div>
+        <div class="col-md-7 mb-2">
+            @if (previewUrl) {
+            <div class="text-center mb-2">
+                <img [src]="previewUrl" alt="Selected Image" style="max-width: 100px; max-height: 100px;" />
+            </div>
+            }
+            <input #file type="file" writeFile="true" [hidden]="true" [accept]="acceptValue" (change)="handleFileInput(file.files)" (change)="fileInput($event)" />
+
+            <button mat-flat-button class="submit-btn" (mousedown)="file.click()">Browse</button> &nbsp;
+            <span class="ms-2">{{imgFileName ? imgFileName : 'No Image Chosen'}}</span>
+        </div>
+
+    </div>
+</form>
+}

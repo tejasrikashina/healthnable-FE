@@ -1,0 +1,120 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addOrg.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <form [formGroup]="orgForm">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addOrg.name'" [buttonDis]="true" [formControlName]="'organization_name'" [formGroupValue]="orgForm" (input)="onOrgNameChange($event)" [required]="true" [name]="'organization_name'" [placeholder]="'Enter Organization Name'"
+                                [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <mat-label>{{'addOrg.phone' | translate}} <span class="required">*</span></mat-label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div (keydown.enter)="$event.preventDefault()">
+
+                                        <ngx-intl-tel-input [enableAutoCountrySelect]="true" [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Name, SearchCountryField.Iso2]" [enablePlaceholder]="true" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO ? selectedCountryISO : CountryISO.India"
+                                            [phoneValidation]="true" [separateDialCode]="true" name="phone" formControlName="phone" class="w-100 " [customPlaceholder]="'Enter phone number'">
+                                        </ngx-intl-tel-input>
+                                    </div>
+                                    <mat-hint class="error-msg">
+                                        @if (f['phone'].touched && f['phone'].hasError('validatePhoneNumber') || f['phone'].errors?.['pattern']) {
+                                        <div class="text-error">
+                                            Please enter a valid phone number
+
+                                        </div>
+                                        }
+                                    </mat-hint>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.type'" [formControlName]="'organization_type'" [formGroupValue]="orgForm" [required]="true" [options]="orgType" [optionLabel]="'organization_type_name'" [name]="'organization_type'" [placeholder]="'Select Organization Type'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addOrg.email'" [formControlName]="'email'" [formGroupValue]="orgForm" [required]="true" [type]="'text'" [name]="'email'" [maximum]="100" [placeholder]="'Enter Email'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input appOnlyNumbers [label]="'addOrg.npiNumber'" [formControlName]="'npi'" [formGroupValue]="orgForm" [name]="'npi'" [required]="false" [placeholder]="'Enter NPI Number'" [maximum]="10"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addOrg.website'" [formControlName]="'website'" [formGroupValue]="orgForm" [required]="false" [type]="'text'" [name]="'website'" [patternValue]="'name'" [placeholder]="'Enter Website Url'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input appTaxId [label]="'addOrg.taxId'" [formControlName]="'tax_id'" [formGroupValue]="orgForm" [name]="'tax_id'" [required]="false" [placeholder]="'Enter Tax ID (e.g. 12-3456789)'" [minimum]="2" [maximum]="10"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addOrg.primaryContact'" (input)="onPriContChange($event)" [formControlName]="'primary_contact'" [formGroupValue]="orgForm" [required]="true" [type]="'text'" [name]="'primary_contact'" [minimum]="3" [maximum]="70" [patternValue]="'name'"
+                                [placeholder]="'Enter Primary Contact'">
+                            </healthnable-input>
+                        </div>
+                    </div>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="orgForm" [label]="'addOrg.add1'" [formControlName]="'address_line1'" [required]="true" [rows]="2" [cols]="27" [placeholder]="'Enter Address1'" [minimum]="5" [maximum]="250">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input appPincode [label]="'addOrg.zip'" [formControlName]="'zipcode'" [formGroupValue]="orgForm" [required]="true" [minimum]="5" [type]="'text'" [maximum]="10" [name]="'zipcode'" [placeholder]="'Enter Zip Code'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="orgForm" [label]="'addOrg.add2'" [formControlName]="'address_line2'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Address2'" [minimum]="5" [maximum]="250">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.time'" [formControlName]="'timezone'" [formGroupValue]="orgForm" [required]="true" [options]="timezoneValue" [optionLabel]="'name'" [name]="'timezone'" [placeholder]="'Select Time Zone'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.country'" [filter]="true" [formControlName]="'country'" [formGroupValue]="orgForm" [required]="true" [options]="countryValue" [optionLabel]="'name'" [name]="'country'" [placeholder]="'Select Country'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.language'" [filter]="true" [formControlName]="'default_language'" [formGroupValue]="orgForm" [required]="true" [options]="languageValue" [optionLabel]="'name'" [name]="'default_language'" [placeholder]="'Select Language'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.state'" [filter]="true" [formControlName]="'state'" [formGroupValue]="orgForm" [required]="true" [options]="stateValue" [optionLabel]="'name'" [name]="'state'" [placeholder]="'Select State'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <healthnable-status [label]="'addOrg.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="orgForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addOrg.city'" [filter]="true" [formControlName]="'city'" [formGroupValue]="orgForm" [required]="true" [options]="cityValue" [optionLabel]="'name'" [name]="'city'" [placeholder]="'Select City'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select-file [label]="'addOrg.logo'" [formControlName]="'logo'" [formGroupValue]="orgForm" [required]="false" [acceptValue]="'image/png, image/jpg, image/jpeg'" [fileType]="'image'"></healthnable-select-file>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <healthnable-select-file [label]="'addOrg.favLogo'" [formControlName]="'favicon'" [formGroupValue]="orgForm" [required]="false" [acceptValue]="'image/png, image/jpg, image/jpeg'" [fileType]="'image'"></healthnable-select-file>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="orgForm" [label]="'addOrg.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [maximum]="1000" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addOrg.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="orgForm.invalid " (click)="addNewOrg()">
+                            {{'addOrg.saveandnew' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="orgForm.invalid " (click)="addOrg()">
+                        {{'addOrg.save' | translate}}   
+                </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

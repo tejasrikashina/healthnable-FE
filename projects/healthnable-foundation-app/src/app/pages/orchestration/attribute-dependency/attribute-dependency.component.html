@@ -1,0 +1,24 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'attributes.attrdepheader' | translate}}</span>
+        </mat-card-title>
+        <div class="my-5">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <div class="search-container d-flex align-items-center">
+                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                            <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="table-responsive col-md-12 my-5">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'attribute'"></healthnable-table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

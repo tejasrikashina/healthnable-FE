@@ -1,0 +1,130 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addFloor.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="addFloorForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFloor.name'" [formControlName]="'floor_name'" [formGroupValue]="addFloorForm" [required]="true" [name]="'floor_name'" [placeholder]="'Enter Floor Name'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.functionType'" [formControlName]="'functionType'" [formGroupValue]="addFloorForm" [required]="true" [options]="FunctionalValue" [optionLabel]="'name'" [name]="'functionType'" [placeholder]="'Select Functional Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.facility'" [formControlName]="'facility'" [formGroupValue]="addFloorForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addFloor.bedTypes' | translate}}
+                                    </mat-label>
+                                </div>
+
+                                <div class=" col-md-7">
+                                    <mat-checkbox class="mx-2" formControlName="icu">ICU</mat-checkbox>
+                                    <mat-checkbox class="mx-2" formControlName="isolation">Isolation</mat-checkbox>
+                                    <mat-checkbox class="mx-2" formControlName="stepDown">Step-Down</mat-checkbox>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.level'" [formControlName]="'floor_level'" [formGroupValue]="addFloorForm" [required]="true" [options]="FloorLevel" [optionLabel]="'name'" [name]="'floor_level'" [placeholder]="'Select Floor'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFloor.capacity'" [formControlName]="'floor_capacity'" [formGroupValue]="addFloorForm" [required]="false" [name]="'floor_capacity'" [placeholder]="'Enter Floor Capacity'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="row my-3">
+                            <mat-card-title>
+                                <span class="m-2">{{'addFloor.floorZones' | translate}}</span>
+                            </mat-card-title>
+                            <div class="my-4">
+                                <button mat-flat-button class="submit-btn"> {{'addFloor.addFloorZone' | translate}}</button>
+                            </div>
+                            <div class="table-responsive col-md-12 my-2">
+                                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'addFloor'"></healthnable-table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addFloor.rtlsCover' | translate}}
+                                    </mat-label>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <mat-checkbox class="mx-2" formControlName="zoneA">Zone A</mat-checkbox>
+                                    <mat-checkbox class="mx-2" formControlName="zoneB">Zone B</mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.cloneForm'" [formControlName]="'cloneForm'" [formGroupValue]="addFloorForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'cloneForm'" [placeholder]="'Select Clone Form Existing'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.cleaning'" [formControlName]="'cleaning'" [formGroupValue]="addFloorForm" [required]="false" [options]="cleaningValue" [optionLabel]="'name'" [name]="'cleaning'" [placeholder]="'Select cleaning Protocol'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select-file [label]="'addFloor.floorMap'" [formControlName]="'floorMap'" [formGroupValue]="addFloorForm" [required]="false" [acceptValue]="'image/png, image/jpg, image/jpeg'" [fileType]="'image'"></healthnable-select-file>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addFloor.fireSafety' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="fireSafety" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="addFloorForm" [label]="'addFloor.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFloor.emergencyExit'" [formControlName]="'emergencyExit'" [formGroupValue]="addFloorForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'emergencyExit'" [placeholder]="'Select Emergency Exists Count'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addFloor.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="addFloorForm" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFloor.bmsCode'" [formControlName]="'bmsCode'" [formGroupValue]="addFloorForm" [required]="false" [name]="'bmsCode'" [placeholder]="'Enter HVAC/BMS Code'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFloor.rtls'" [formControlName]="'rtls'" [formGroupValue]="addFloorForm" [required]="false" [name]="'rtls'" [placeholder]="'Enter RTLS UD'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="onCancel()">  {{'addFloor.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3" [disabled]="addFloorForm.invalid ">
+                            {{'addFloor.saveandnew' | translate}} 
+                    </button>
+                    <button mat-flat-button class="submit-btn " [disabled]="addFloorForm.invalid ">
+                        {{'addFloor.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

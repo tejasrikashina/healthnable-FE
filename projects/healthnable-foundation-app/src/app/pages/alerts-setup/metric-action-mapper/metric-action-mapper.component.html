@@ -1,0 +1,119 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'alertMapper.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="metricActionMapper">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'alertMapper.dashboard'" [formControlName]="'dashboard'" [formGroupValue]="metricActionMapper" [required]="true" [optionLabel]="'name'" [options]="dashboardValue" [name]="'dashboard'" [placeholder]="'Select Dashboard'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'alertMapper.metric'" [formControlName]="'metric'" [formGroupValue]="metricActionMapper" [required]="true" [optionLabel]="'name'" [options]="metricValue" [name]="'metric'" [placeholder]="'Select KPI'"></healthnable-select>
+
+                        </div>
+
+                    </div>
+
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'alertMapper.assignedAction'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <mat-checkbox (change)=" isChecked($event.checked,'notify')" formControlName="notify" class="mx-2">
+                                <p class="f-w-500 my-2">Notify Assigned Department</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-7">
+                                    <healthnable-select [label]="'alertMapper.via'" [formControlName]="'via'" [formGroupValue]="metricActionMapper" [required]="viaReq" [optionLabel]="'name'" [options]="viaValue" [name]="'via'" [placeholder]="'Select Via'"></healthnable-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'escalateRole')" formControlName="escalateRole">
+                                <p class="f-w-500 my-2">Escalate to Supervisor</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-9">
+                                    <healthnable-select [label]="'alertMapper.escalation'" [formControlName]="'escalation'" [formGroupValue]="metricActionMapper" [required]="escReq" [optionLabel]="'name'" [options]="dashboardValue" [name]="'escalation'" [placeholder]="'Select Escalation Role'"></healthnable-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'createTask')" formControlName="creatTask">
+                                <p class="f-w-500 my-2">Create Task</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-8">
+                                    <healthnable-select [label]="'alertMapper.taskCategory'" [formControlName]="'taskCategory'" [formGroupValue]="metricActionMapper" [required]="taskReq" [optionLabel]="'name'" [options]="dashboardValue" [name]="'taskCategory'" [placeholder]="'Select Task Category'"></healthnable-select>
+                                </div>
+                            </div>
+                            <div class="row m-lg-2">
+                                <div class="col-md-8">
+                                    <healthnable-select [label]="'alertMapper.taskForm'" [formControlName]="'taskForm'" [formGroupValue]="metricActionMapper" [required]="taskReq" [optionLabel]="'name'" [options]="dashboardValue" [name]="'taskForm'" [placeholder]="'Select Task Category'"></healthnable-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'trigger')" formControlName="trigger">
+                                <p class="f-w-500 my-2">Trigger Workflow</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-9">
+                                    <healthnable-select [label]="'alertMapper.workflowName'" [formControlName]="'workflowName'" [formGroupValue]="metricActionMapper" [required]="workflowReq" [optionLabel]="'name'" [options]="dashboardValue" [name]="'workflowName'" [placeholder]="'Select workflow Name'"></healthnable-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <mat-checkbox class="mx-2" (change)="isChecked($event.checked,'extUrl')" formControlName="extUrl">
+                                <p class="f-w-500 my-2">Open External Link</p>
+                            </mat-checkbox>
+                            <div class="row m-lg-2">
+                                <div class="col-md-7">
+                                    <healthnable-input [label]="'alertMapper.url'" [formControlName]="'url'" [formGroupValue]="metricActionMapper" [required]="urlReq" [name]="'url'" [placeholder]="'Enter URL'" [type]="'url'" [minimum]="2" [maximum]="250"></healthnable-input>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-card-title>
+                        <span class="m-2"> {{ 'alertMapper.actionParameters'  | translate }}</span>
+                    </mat-card-title>
+                    <div class="row m-lg-3">
+                        <div class="col-md-12">
+                            <healthnable-status [label]="'alertMapper.dashboardTile'" [formControlName]="'dashboardTile'" [statusChange]="onStatusChange()" [required]="false" [formGroupValue]="metricActionMapper" [status]="status"></healthnable-status>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <healthnable-status [label]="'alertMapper.threshold'" [formControlName]="'threshold'" [statusChange]="onStatusChange()" [required]="false" [formGroupValue]="metricActionMapper" [status]="status1"></healthnable-status>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="resetMapper()">  {{'alertMapper.reset' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3">
+                            {{'alertMapper.preview' | translate}} 
+                    </button>
+                    <button mat-flat-button class="submit-btn " [disabled]="metricActionMapper.invalid ">
+                        {{'alertMapper.save' | translate}}
+                   
+                  
+                </button>
+
+                </div>
+            </form>
+        </div>
+
+    </mat-card-content>
+</mat-card>

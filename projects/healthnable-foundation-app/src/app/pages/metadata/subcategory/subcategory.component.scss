@@ -1,0 +1,127 @@
+// ::ng-deep .p-tieredmenu {
+//     left: 500px !important;
+//     ;
+//     top: 35px !important;
+// }
+// ::ng-deep .p-tieredmenu ul {
+//     list-style: none;
+//     text-decoration: none;
+// }
+// ::ng-deep .p-tieredmenu .p-menuitem.p-highlight>.p-menuitem-content {
+//     background: #fb9778 !important;
+//     border-radius: 10px !important
+// }
+// ::ng-deep .p-tieredmenu .p-menuitem.p-highlight>.p-menuitem-content .p-menuitem-link .p-menuitem-text {
+//     color: white !important;
+// }
+// ::ng-deep .p-menuitem-content {
+//     margin-left: -27px !important;
+// }
+// .title_name {
+//     border-radius: 10px !important;
+//     width: auto
+// }
+// .filter-list {
+//     list-style-type: none;
+//     padding: 0;
+//     margin: 0;
+// }
+// .filter-item {
+//     display: flex;
+//     align-items: center;
+//     padding: 13px 0;
+// }
+// .filter-item:hover {
+//     background-color: #fb9778;
+//     color: #fff;
+// }
+// .arrow_mark:hover {
+//     color: #fff;
+// }
+// .filter-label {
+//     font-size: 14px;
+//     font-weight: 500;
+//     color: #333;
+//     padding-left: 10px;
+// }
+// .arrow_mark i-feather {
+//     color: #aaa;
+//     font-size: 16px;
+// }
+// .arrow_mark {
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+//     width: 24px;
+//     height: 24px;
+// }
+// .div-box {
+//     padding: 5px 10px;
+//     background: white;
+//     position: relative;
+// }
+// .individual-box {
+//     margin-left: 20px;
+//     overflow-y: auto;
+//     max-height: 260px;
+//     max-width: 330px;
+//     box-shadow: 0px 1px 3px rgba(163, 163, 163, 0.945);
+// }
+.card-container {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.card {
+    position: absolute;
+    width: 160px;
+    z-index: 1;
+    top: 16px;
+    left: -40px;
+    border-radius: 8px;
+    border-radius: 8px;
+    border-top: 10px solid #fb9778;
+    border-left: 5px solid #fb9778;
+    border-right: 5px solid #fb9778;
+    border-bottom: 5px solid #fb9778;
+}
+
+.second-card {
+    position: absolute;
+    z-index: 1;
+    width: 220px;
+    left: 120px;
+    top: 70px;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    cursor: pointer
+}
+
+.card-body ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.card-body ul li.active {
+    background: #fb9778 !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    color: white;
+}

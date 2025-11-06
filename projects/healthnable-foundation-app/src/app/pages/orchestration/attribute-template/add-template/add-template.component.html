@@ -1,0 +1,124 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addTemplate.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <!-- <div class="col-md-6">
+                            <healthnable-input [label]="'addTemplate.code'" [formControlName]="'code'" [formGroupValue]="form" [name]="'code'" [placeholder]="'Template Code'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div> -->
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addTemplate.name'" [formControlName]="'name'" [formGroupValue]="form" [required]="true" [name]="'name'" [placeholder]="'Template Name'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <healthnable-text-area [formGroupValue]="form" [label]="'addTemplate.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addTemplate.categories'" [formControlName]="'categories'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'categories'" [placeholder]="'categories'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addTemplate.templateType'" [formControlName]="'type'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'type'" [placeholder]="'Form'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addTemplate.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+
+                    </div>
+                    <p class="my-4 f-s-16 f-w-500">
+                        Add Section
+                    </p>
+                    <div class="mx-4 mb-4">
+                        <button mat-flat-button class="submit-btn"> {{'addTemplate.addSection' | translate}}</button>
+                    </div>
+                    <div class="col-md-5 mb-4" style="margin-left: 60px;">
+                        <healthnable-input [smallText]="true" [label]="'addTemplate.section'" [formControlName]="'section'" [formGroupValue]="form" [required]="false" [name]="'section'" [placeholder]="'section'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                    </div>
+                    <div class="row">
+                        <!-- <mat-card-title class="mx-5 my-2">
+                            <span class="f-s-16">Add Attribute</span>
+                        </mat-card-title> -->
+                        <p class="mx-5 my-4 f-s-15 f-w-500">
+                            Add Attribute
+                        </p>
+                        <div class="col-md-4 col-12 d-flex justify-content-end mx-4">
+                            <div class="search-container d-flex align-items-center">
+                                <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                                <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left:30px !important">
+                            <div class="col-md-6" formGroupName="addAttribute">
+                                <div class="mx-3 my-2 heading">
+                                    <mat-checkbox formControlName="isAttribute" (change)="onCheckboxChange('Attributes', $event.checked)">Attributes</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isfirstName" (change)="onCheckboxChange('First Name', $event.checked)">First Name</mat-checkbox>
+                                </div>
+
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isfirstDelDate" (change)="onCheckboxChange('First Delivery Date', $event.checked)">First Deliver Details</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="eduDetails" (change)="onCheckboxChange('Education Details', $event.checked)">Education Details</mat-checkbox>
+                                </div>
+                                <div class="mx-3">
+                                    <mat-checkbox formControlName="isDob" (change)="onCheckboxChange('DOB', $event.checked)">DOB</mat-checkbox>
+                                </div>
+
+                                <div class="card d-flex chipList my-2">
+                                    <div class="row m-2">
+                                        <div class="col-md-4">
+                                            <mat-label class="f-s-16">Add Attribute</mat-label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @for(keyword of reactiveKeywords;track keyword){
+                                            <p-chip [label]="keyword" [removable]="true"></p-chip>
+                                            }
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="d-flex my-3 justify-content-center ">
+                                    <button mat-flat-button class="submit-btn " (click)="addChips() ">
+                                        {{'addTemplate.addChip' | translate}}
+                                  
+                                </button>
+                                    <button mat-flat-button class="cancel-btn text-black " (click)="onReset() ">  {{'addTemplate.reset' | translate}}</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="table-responsive col-md-12 ">
+                        <healthnable-table [displayedColumns]="displayedColumns " [tableName]=" 'assignedAttribute' "></healthnable-table>
+                    </div>
+                    <div style="margin-left: 30px">
+                        <button mat-flat-button class="submit-btn " (click)="arrangeFields() "> {{'addTemplate.arrange' | translate}}</button>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addTemplate.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn " [disabled]="form.invalid " (click)="preview() ">
+                            {{'addTemplate.preview' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="form.invalid ">
+                        {{'addTemplate.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

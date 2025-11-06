@@ -1,0 +1,72 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <!-- <mat-icon>keyboard_backspace</mat-icon> -->
+            <!-- <mat-icon>arrow_back</mat-icon> -->
+            <span class="m-2">{{'uploadFile.importheader' | translate}}</span>
+        </mat-card-title>
+
+        <div class="container-fluid">
+            <form [formGroup]="form">
+                <div class="row m-lg-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <healthnable-select [label]="'uploadFile.selectFile'" [formControlName]="'selectFile'" [formGroupValue]="form" [required]="false" [options]="" [name]="'selectFile'" [placeholder]="'choose File'"></healthnable-select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="mat-subtitle-2 f-w-400">{{'uploadFile.format' |
+                                            translate}}  </label>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-center">
+                                @for(file of fileFormat; track file) {
+
+                                <p-radioButton [value]="file" formControlName="fileFormat" />
+                                <label [for]="file.key" class="mx-2">{{ file.name }}</label> }
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <healthnable-select [label]="'uploadFile.type'" [formControlName]="'entityType'" [formGroupValue]="form" [required]="false" [options]="" [name]="'entityType'" [placeholder]="'Entity Type'"></healthnable-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+
+                            <healthnable-select [label]="'uploadFile.mapping'" [formControlName]="'mapping'" [formGroupValue]="form" [required]="false" [options]="" [name]="'mapping'" [placeholder]="'Mapping Template'"></healthnable-select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center">
+
+                            <!-- <i-feather name="info" style="color: rgb(255, 14, 14); width: 15px; height: 29px;  margin-right: 5px;"></i-feather> -->
+                            <img src="assets/images/warning.png" alt="warning" style=" width: 15px; height: 29px;">
+                            <p class="f-w-500 f-s-14 mb-0 text-center ">{{tags.note}}</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 d-flex justify-content-center align-items-center">
+                    <a href="">Download the sample template</a>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </mat-card-content>
+    <mat-card-actions class=" d-flex justify-content-center align-items-center">
+        <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">{{tags.cancel | translate}}</button>
+        <button mat-flat-button class="submit-btn">{{tags.upload | translate}}</button>
+
+    </mat-card-actions>
+</mat-card>

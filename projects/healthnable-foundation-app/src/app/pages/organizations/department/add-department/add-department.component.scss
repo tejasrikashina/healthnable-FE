@@ -1,0 +1,39 @@
+::ng-deep .iti__country-list {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+::ng-deep .iti {
+    width: 100% !important;
+}
+
+::ng-deep .iti input#country-search-box {
+    width: 106% !important;
+    padding-left: 10px !important;
+    height: 45px !important;
+    margin-top: 10px !important;
+}
+
+::ng-deep .iti__tel-input,
+ ::ng-deep .iti__flag-container {
+    height: 3rem !important;
+}
+
+::ng-deep .dropdown-menu.show {
+    display: block;
+    max-height: 240px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+::ng-deep .p-button {
+    color: #ffffff;
+    background: #fb9778;
+    border: 1px solid #fb9778;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+    outline-color: transparent;
+}

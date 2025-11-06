@@ -1,0 +1,21 @@
+.search-img-position {
+    position: absolute;
+    left: 10px;
+}
+
+.chipList {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #F1F1F1;
+    width: 80%;
+    height: 170px;
+}
+
+::ng-deep .p-overlay .p-component {
+    z-index: 1002;
+    transform-origin: center top;
+    top: 50px;
+    left: 0px;
+    margin-top: calc(var(--p-anchor-gutter));
+    width: 454px;
+}

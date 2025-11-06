@@ -1,0 +1,67 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addSpeciality.edit' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <form [formGroup]="form">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addSpeciality.code'" [formControlName]="'code'" [formGroupValue]="form" [name]="'code'" [placeholder]="'SPEC-001'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addSpeciality.name'" [formControlName]="'name'" [formGroupValue]="form" [required]="true" [name]="'name'" [placeholder]="'Cardiology'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addSpeciality.type'" [formControlName]="'type'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'type'" [placeholder]="'Clinical'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addSpeciality.department'" [formControlName]="'department'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'department'" [placeholder]="'Clinical'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addSpeciality.isSubspec' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="subSpeciality" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addSpeciality.pSpeciality'" [formControlName]="'pSpeciality'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'pSpeciality'" [placeholder]="'Parent Speciality'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="form" [label]="'addSpeciality.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Description'">
+                            </healthnable-text-area>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addSpeciality.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status"></healthnable-status>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center my-5">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addSpeciality.cancel' | translate}}</button>
+
+                        <button mat-flat-button class="submit-btn ">
+                        {{'addSpeciality.update' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

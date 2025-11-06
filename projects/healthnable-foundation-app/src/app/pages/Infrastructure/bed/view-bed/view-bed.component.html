@@ -1,0 +1,32 @@
+<mat-dialog-content class="mat-typography" style="overflow-y: auto; max-height:80vh;background-color: white;">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+            <h2 style="font-weight: 500; font-size: 1.4rem; margin: 0;">
+                <span class="m-2">{{ 'bed.bedDetails' | translate }}</span>
+            </h2>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+        </div>
+    </div>
+    <div class="container-fluid ">
+
+        <div class="row mx-4 my-2">
+            @for(row of rows; track row){ @for(header of headers; track header){
+
+            <div class="col-md-4">
+                <p class="f-w-500 f-s-16">{{header}}</p>
+            </div>
+            <div class="col-md-8">
+                <p>{{row[header]}}</p>
+
+            </div>
+
+            } }
+        </div>
+    </div>
+    <mat-dialog-actions align="center" class="my-3">
+        <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">{{'bed.back' | translate}}
+    </button>
+    </mat-dialog-actions>
+</mat-dialog-content>

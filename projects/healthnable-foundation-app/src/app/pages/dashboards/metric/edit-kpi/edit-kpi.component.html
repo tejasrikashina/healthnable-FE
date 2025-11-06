@@ -1,0 +1,80 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'kpi.header' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="metricForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'kpi.code'" [style]="'background-color:rgb(245 245 245)'" [readonly]="'readonly'" [formControlName]="'kpiCode'" [formGroupValue]="metricForm" [name]="'kpiCode'" [placeholder]="'KPI_ED_WAIT'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'kpi.applicableDash'" [formControlName]="'applicableDash'" [formGroupValue]="metricForm" [required]="false" [options]="appDashValue" [optionLabel]="'name'" [name]="'applicableDash'" [placeholder]="'Select Applicable Dashboards'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'kpi.kpiName'" [style]="'background-color:rgb(245 245 245)'" [readonly]="'readonly'" (input)="onKPINameChange($event)" [formControlName]="'kpiName'" [formGroupValue]="metricForm" [required]="false" [buttonDis]="false" [name]="'kpiName'"
+                                [placeholder]="'ED Average Wait Time'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row my-2">
+                                <div class="col-md-4 my-2">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'kpi.logicDefinition' | translate}}
+
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-6">
+                                    <button mat-flat-button class="submit-btn" (click)="logicBuilder()">
+                                            {{'kpi.logicBuilder' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'kpi.unit'" [formControlName]="'unit'" [formGroupValue]="metricForm" [required]="false" [options]="unitValue" [optionLabel]="'name'" [name]="'unit'" [placeholder]="'Select Unit'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="metricForm" [label]="'kpi.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [maximum]="1000" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'kpi.frequency'" [formControlName]="'frequency'" [formGroupValue]="metricForm" [required]="false" [options]="freqValue" [optionLabel]="'name'" [name]="'frequency'" [placeholder]="'Select Frequency'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <healthnable-status [label]="'kpi.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="metricForm" [status]="status"></healthnable-status>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'kpi.dataset'" [formControlName]="'source'" [formGroupValue]="metricForm" [required]="false" [options]="datasetValue" [optionLabel]="'name'" [name]="'source'" [placeholder]="'Select Source Dataset'"></healthnable-select>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="reset() ">  {{'kpi.reset' | translate}}</button>
+                        <button mat-flat-button class="submit-btn" (click)="addKpi()" [disabled]="metricForm.invalid">
+                            {{'kpi.update' | translate}} 
+                    </button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <mat-card-title>
+                <span class="m-lg-5">{{'kpi.subHeader' | translate}}</span>
+            </mat-card-title>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'metric'"></healthnable-table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

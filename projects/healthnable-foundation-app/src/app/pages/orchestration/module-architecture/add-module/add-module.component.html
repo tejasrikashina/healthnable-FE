@@ -1,0 +1,45 @@
+<div style="overflow-y: auto; max-height:90vh">
+    <mat-card-content class="mt-3">
+        @if(action == 'Add' || action == 'Edit'){
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="f-w-500 f-s-24"> {{ action === 'Add' ? tags.headerforAddDailog : tags.headerforEditDailog | translate }}</span>
+            <button mat-icon-button class="text-end" (click)="onCancel()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <form [formGroup]="form">
+            <div class="row m-lg-3">
+                <div class="col-md-12">
+                    <healthnable-input [label]="'module.module'" [formControlName]="'module'" [formGroupValue]="form" [required]="true" [name]="'module'" [placeholder]="'Module Name'"></healthnable-input>
+                </div>
+                <div class="col-md-12">
+
+                    <healthnable-input [label]="'module.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="true" [type]="'text'" [name]="'description'" [minimum]="10" [maximum]="500" [placeholder]="'Description'">
+                    </healthnable-input>
+
+                </div>
+
+
+                <div class="col-md-11">
+                    <healthnable-status [label]="'module.status'" [formControlName]="'status'" [required]="true" [formGroupValue]="form"></healthnable-status>
+                </div>
+                <div class="col-md-12">
+
+                    <healthnable-input [label]="'module.version'" [formControlName]="'version'" [formGroupValue]="form" [required]="true" [type]="'text'" [name]="'version'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Version'">
+                    </healthnable-input>
+                </div>
+
+
+            </div>
+        </form>
+        }
+        <div class="d-flex justify-content-center mb-3">
+            <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">  {{'user.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn">
+                {{'user.save' | translate}}
+           
+          
+        </button>
+        </div>
+    </mat-card-content>
+</div>

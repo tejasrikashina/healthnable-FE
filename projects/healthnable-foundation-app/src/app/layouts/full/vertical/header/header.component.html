@@ -1,0 +1,39 @@
+<div class="text-end" style="padding: 20px;">
+    <button mat-icon-button aria-label="Notifications">
+        <i-feather class="d-flex icon-18" name="message-square" matBadge="2" matBadgeSize="small"
+          matBadgeColor="accent"></i-feather>
+      </button>
+    <button mat-icon-button class="nav-button" aria-label="Notifications">
+        <i-feather class="icon-18" name="bell" matBadge="0" matBadgeSize="small" matBadgeColor="primary"></i-feather>
+      </button>
+    <button mat-icon-button class="nav-button" aria-label="Notifications">
+        <i-feather class="icon-18" name="settings" ></i-feather>
+      </button>
+    <button mat-icon-button>
+        <img src="assets/images/profile/user-8.jpg" class="rounded-circle" style="width: 30px; height:30px"  />
+      </button>
+    <span class="">
+        <button mat-button [matMenuTriggerFor]="profilemenu" style="margin-top: -9px;">
+          <p class="mt-0 f-w-500 f-s-22">Hi john <i-feather name="chevron-down"></i-feather></p>
+          
+         </button>
+      </span>
+
+
+    <mat-menu #profilemenu="matMenu" class="cardWithShadow">
+        <ng-scrollbar style="height:150px; width:160px; position:relative">
+            <div class="px-3">
+                <p class="f-s-20 f-w-600 my-2">User Profile</p>
+
+            </div>
+
+
+            <div class="text-center my-4">
+                <button mat-flat-button class="submit-btn f-s-16 f-w-500 mx-1" (click)="logout()">
+              <img src="assets/images/logout.png" alt="" width="20px">
+              LogOut
+          </button>
+            </div>
+        </ng-scrollbar>
+    </mat-menu>
+</div>

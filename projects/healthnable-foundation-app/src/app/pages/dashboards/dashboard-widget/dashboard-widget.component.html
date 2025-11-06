@@ -1,0 +1,101 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'widget.header' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="widgetForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'widget.dashboard'" [formControlName]="'dashboard'" [formGroupValue]="widgetForm" [required]="true" [options]="dashboardValue" [optionLabel]="'name'" [name]="'dashboard'" [placeholder]="'Select Dashboard'"></healthnable-select>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.kpiName'" [formControlName]="'kpi'" [formGroupValue]="widgetForm" [required]="true" [options]="metricValue" [optionLabel]="'name'" [name]="'kpi'" [placeholder]="'Select KPI Name'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-input [label]="'widget.displayName'" (input)="onDisplayNameChange($event)" [formControlName]="'displayName'" [formGroupValue]="widgetForm" [name]="'displayName'" [placeholder]="'Enter Display Name'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.visualization'" [formControlName]="'visualizationType'" [formGroupValue]="widgetForm" [required]="true" [optionLabel]="'name'" [options]="visualizationValue" [name]="'visualizationType'" [placeholder]="'Select Visualization Type Mapping'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row  align-items-center mb-2">
+
+                                    <div class="col-md-8">
+                                        <healthnable-input appOnlyNumbers [dashboard]="true" [label]="'widget.thresholds'" [formControlName]="'threshold'" [formGroupValue]="widgetForm" [required]="true" [name]="'threshold'" [placeholder]="'Enter thresholds'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <healthnable-select [noLabel]="true" [formControlName]="'patients'" [formGroupValue]="widgetForm" [required]="true" [options]="patientValue" [optionLabel]="'name'" [name]="'patients'" [placeholder]="'Select Patients'"></healthnable-select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.alertColor'" [formControlName]="'alertColor'" [formGroupValue]="widgetForm" [required]="true" [options]="colorValue" [optionLabel]="'name'" [name]="'alertColor'" [placeholder]="'Select Alert Color'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.drilldown'" [formControlName]="'drilldown'" [formGroupValue]="widgetForm" [required]="false" [options]="drilldownValue" [optionLabel]="'name'" [name]="'drilldown'" [placeholder]="'Select Drilldown Screen'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.mapping'" [formControlName]="'mapping'" [formGroupValue]="widgetForm" [required]="true" [options]="datasetValue" [optionLabel]="'name'" [name]="'mapping'" [placeholder]="'Select Mapping Dataset'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6">
+                                <healthnable-select [label]="'widget.refresh'" [formControlName]="'refresh'" [formGroupValue]="widgetForm" [required]="true" [options]="refreshValue" [optionLabel]="'name'" [name]="'refresh'" [placeholder]="'Select Refresh Interval'"></healthnable-select>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <healthnable-status [label]="'widget.show'" [formControlName]="'show'" [statusChange]="onStatusChange()" [required]="true" [formGroupValue]="widgetForm" [status]="status"></healthnable-status>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="submit-btn" (click)="addWidget()" [disabled]="widgetForm.invalid">
+                            {{'widget.addWidget' | translate}} 
+                    </button>
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="my-4">
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'widget'"></healthnable-table>
+            </div>
+        </div>
+        <div style="margin-left:90px !important" class="my-5  m-lg-5">
+            <button mat-flat-button class="submit-btn " (click)="arrange()"> {{'widget.arrange' | translate}}</button>
+        </div>
+        <mat-card-title>
+            <span class="m-lg-4 my-3">{{'widget.auditTrails' | translate}}</span>
+        </mat-card-title>
+        <div class="row m-lg-2">
+            <div class="col-md-3">
+                <p>Last Modified By</p>
+            </div>
+            <div class="col-md-9">
+                <p>Dr. Ali - Apr 18, 2025 | 11:24 AM</p>
+
+            </div>
+            <div class="my-2">
+                <button mat-flat-button class="submit-btn "> {{'widget.changeHistory' | translate}}</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center my-3 ">
+            <button mat-flat-button class="cancel-btn text-black ">  {{'widget.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn me-3">
+                {{'widget.saveandnew' | translate}}
+            
+            </button>
+            <button mat-flat-button class="submit-btn ">
+                {{'widget.save' | translate}}
+</button>
+
+        </div>
+    </mat-card-content>
+</mat-card>

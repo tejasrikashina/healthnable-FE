@@ -1,0 +1,56 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'dataset.header' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="datasetForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5 d-flex align-items-center">
+
+                        <div class="col-md-5 ml-3">
+                            <healthnable-select [label]="'dataset.dashboard'" [formControlName]="'dashboard'" [formGroupValue]="datasetForm" [required]="true" [options]="dashboardValue" [optionLabel]="'name'" [name]="'dashboard'" [placeholder]="'Select Dashboard'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-3">
+                            <img src="assets/images/Reset.png" style="cursor:pointer" alt="reset" height="20" class="m-lg-2" (click)="reset()">
+                        </div>
+
+                        <div class="mx-5 my-3">
+                            <button mat-flat-button class="submit-btn" (click)="addMapping()">
+                                {{'dataset.addMapping' | translate}}
+    </button>
+                        </div>
+                        <div class="table-responsive col-md-12 my-2">
+                            <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'dataset'"></healthnable-table>
+                        </div>
+                        <div class="row m-lg-2">
+                            @for(row of rows; track row){ @for(header of headers; track header){
+
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <p class="f-w-500">{{header}}</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{row[header]}}</p>
+
+                            </div>
+                            } }
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center my-3 ">
+                <button mat-flat-button class="cancel-btn text-black">  {{'dataset.clearMapping' | translate}}</button>
+                <button mat-flat-button class="submit-btn me-3">
+                    {{'dataset.preview' | translate}}
+                
+                </button>
+                <button mat-flat-button class="submit-btn ">
+                    {{'dataset.update' | translate}}
+</button>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

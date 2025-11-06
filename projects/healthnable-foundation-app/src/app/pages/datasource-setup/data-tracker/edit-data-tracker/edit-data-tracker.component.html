@@ -1,0 +1,77 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'dataTracker.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="datatrackerForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'dataTracker.dashboardName'" [variant]="'filled'" [readonly]="'readonly'" [formControlName]="'dashboardName'" [formGroupValue]="datatrackerForm" [required]="false" [buttonDis]="true" [options]="dashboardValue" [optionLabel]="'name'"
+                                [name]="'dashboardName'" [placeholder]="'InPatient Flow'"></healthnable-select>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'dataTracker.kpiName'" [variant]="'filled'" [readonly]="'readonly'" [formControlName]="'kpiName'" [formGroupValue]="datatrackerForm" [required]="false" [buttonDis]="true" [options]="kpiValue" [optionLabel]="'name'" [name]="'kpiName'"
+                                [placeholder]="'ED Census'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'dataTracker.sourceDataset'" [variant]="'filled'" [readonly]="'readonly'" [formControlName]="'sourceDataset'" [formGroupValue]="datatrackerForm" [required]="false" [buttonDis]="true" [options]="datasetValue" [optionLabel]="'name'"
+                                [name]="'sourceDataset'" [placeholder]="'Select Source Dataset'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'dataTracker.lastSync'" [formControlName]="'lastSync'" [formGroupValue]="datatrackerForm" [required]="false" [buttonDis]="true" [options]="syncValue" [optionLabel]="'name'" [name]="'lastSync'" [placeholder]="'Select Last Sync Field'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'dataTracker.refreshInterval'" [formControlName]="'expectedInt'" [formGroupValue]="datatrackerForm" [required]="true" [buttonDis]="true" [options]="refreshValue" [optionLabel]="'name'" [name]="'expectedInt'" [placeholder]="'Select Expected Refresh Interval'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'dataTracker.acceptableDelay'" appOnlyNumbers [formControlName]="'acceptableDelay'" [formGroupValue]="datatrackerForm" [required]="false" [buttonDis]="true" [name]="'acceptableDelay'" [placeholder]="'Enter Acceptable Delay'"
+                                [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-md-2">
+                                <mat-label class="mat-subtitle-2 f-w-400">Enable Alert if Delayed
+                                </mat-label>
+                            </div>
+                            <span class="col-md-7">
+                            @for(enable of alert; track enable){
+
+                            <p-radioButton [inputId]="enable.key" [value]="enable" formControlName="selectedAlert" />
+                            <label [for]="enable.key" class="mx-2">
+        {{ enable.name }}
+    </label> }
+</span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="d-flex justify-content-center my-5 ">
+                        <button mat-flat-button class="submit-btn " [disabled]="datatrackerForm.invalid" (click)="addMapping()">
+                        {{'dataTracker.updateMapping' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'datatracker'"></healthnable-table>
+            </div>
+
+        </div>
+    </mat-card-content>
+</mat-card>

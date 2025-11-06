@@ -1,0 +1,101 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'workflow.editworkflow' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4 mx-4">
+            <mat-card-title>
+                <span class="m-2">{{ 'addWorkflow.assignWorkflow' | translate }}</span>
+            </mat-card-title>
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5 ">
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addWorkflow.role' " [formControlName]=" 'workflowrole' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'workflowrole' " [placeholder]="
+                            'role' "></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addWorkflow.department' " [formControlName]=" 'department' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'department' " [placeholder]="
+                            'department' "></healthnable-select>
+
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-4">
+                                <mat-label class="mat-subtitle-2 f-w-400">Stages: New
+                                </mat-label>
+                            </div>
+                        </div>
+                        <div class="mx-3 my-2">
+                            <mat-checkbox class="mx-2" formControlName="edit">Full Edit</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="view">View Only</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="access">No Access</mat-checkbox>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-4">
+                                <mat-label class="mat-subtitle-2 f-w-400">Stages: Under Investigation
+                                </mat-label>
+                            </div>
+                        </div>
+                        <div class="mx-3 my-2">
+                            <mat-checkbox class="mx-2" formControlName="edit">Full Edit</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="view">View Only</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="access">No Access</mat-checkbox>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-6">
+                                <mat-label class="mat-subtitle-2 f-w-400">Stages: Pending Corrective Action
+                                </mat-label>
+                            </div>
+                        </div>
+                        <div class="mx-3 my-2">
+                            <mat-checkbox class="mx-2" formControlName="edit">Full Edit</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="view">View Only</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="access">No Access</mat-checkbox>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-4">
+                                <mat-label class="mat-subtitle-2 f-w-400">Stages: Resolved
+                                </mat-label>
+                            </div>
+                        </div>
+                        <div class="mx-3 my-2">
+                            <mat-checkbox class="mx-2" formControlName="edit">Full Edit</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="view">View Only</mat-checkbox>
+                            <mat-checkbox class="mx-2" formControlName="access">No Access</mat-checkbox>
+                        </div>
+                        <div class="row my-2">
+                            <button mat-flat-button class="submit-btn ">
+                            
+                                <span>{{'addWorkflow.addtoGrid' | translate }}</span>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="table-responsive col-md-12 my-2">
+                    <healthnable-table [displayedColumns]="displayedColumns"></healthnable-table>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+            <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'workflow.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn" (click)="onCancel()">
+                {{'addWorkflow.previous' | translate}}
+            
+            </button>
+
+            <button mat-flat-button class="submit-btn " (click)="next()">
+                {{'addWorkflow.next' | translate}}
+            
+            </button>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,81 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addBed.edit' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="addBedForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addBed.name'" [formControlName]="'bed_name'" [formGroupValue]="addBedForm" [required]="false" [name]="'bed_name'" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'" [placeholder]="'Enter Bed Name'" [type]="'text'"
+                                [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6 my-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{'addBed.isolation' | translate}}
+                                    </mat-label>
+                                </div>
+                                <span class="col-md-6">
+                                @for(sub of subSpec; track sub){
+    
+                            <p-radioButton [inputId]="sub.key" [value]="sub.name" formControlName="isolation" />
+                            <label [for]="sub.key" class="mx-3">
+            {{ sub.name }}
+        </label> }
+                            </span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addBed.bed_type'" [formControlName]="'bed_type'" [formGroupValue]="addBedForm" [required]="true" [options]="locationValue" [optionLabel]="'name'" [name]="'bed_type'" [placeholder]="'Select Bed Type'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addBed.rtls'" [formControlName]="'rtls'" [formGroupValue]="addBedForm" [required]="false" [name]="'rtls'" [placeholder]="'Enter RTLS'" [type]="'text'" [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addBed.facility'" [readonly]="'readonly'" [variant]="'filled'" [formControlName]="'facility'" [formGroupValue]="addBedForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="addBedForm" [label]="'addBed.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'">
+                            </healthnable-text-area>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addBed.floor'" [readonly]="'readonly'" [variant]="'filled'" [formControlName]="'floor'" [formGroupValue]="addBedForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'floor'" [placeholder]="'Select Floor'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addBed.ward'" [variant]="'filled'" [formControlName]="'ward'" [formGroupValue]="addBedForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'ward'" [placeholder]="'Select Ward'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6"></div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addBed.room'" [readonly]="'readonly'" [variant]="'filled'" [formControlName]="'room'" [formGroupValue]="addBedForm" [required]="false" [options]="locationValue" [optionLabel]="'name'" [name]="'room'" [placeholder]="'Select Room'"></healthnable-select>
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-5 ">
+
+                    <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addBed.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3">
+                            {{'addBed.update' | translate}} 
+                    </button>
+
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

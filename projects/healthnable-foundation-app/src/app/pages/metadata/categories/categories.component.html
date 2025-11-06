@@ -1,0 +1,129 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'category.header' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-12 d-flex  justify-content-end">
+                        <div class="search-container d-flex align-items-center">
+                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                            <input type="search" placeholder="Search" class="form-control search-input" [(ngModel)]="searchCategoryName" (keyup.enter)="enterEvent()" (search)="inputClearValue()" aria-label="Search">
+
+                            <!-- <span (click)="menu.toggle($event)">
+                                    <img src="assets/images/Filter.png" alt="filter" height="20" class="m-lg-2" >
+                                    </span>
+                            <p-tieredMenu #menu [model]="items" [popup]="true">
+
+                                <ng-template pTemplate="item" let-item [autoZIndex]="false">
+                                    <div *ngIf="item.template === 'input'">
+                                        <input type="search" placeholder="Search" class="form-control search-input" [(ngModel)]="searchCategoryName" (keyup.enter)="enterEvent()" (search)="inputClearValue()" aria-label="Search" />
+                                    </div>
+                                    <div *ngIf="item.template === 'checkbox'" class="m-2">
+                                        <p-checkbox [label]="item.label">
+                                        </p-checkbox>
+                                    </div>
+                                    <div *ngIf="item.template !== 'checkbox'" class="m-2">
+                                        <span>{{item.label}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-tieredMenu> -->
+
+                            <span (click)="toggleCardVisibility()">
+                                <img src="assets/images/Filter.png" alt="filter" height="20" class="m-lg-2">
+                              </span>
+                            <!-- <div class="card-container">
+                              
+                                <div *ngIf="!isCategoryActive && isCardVisible" class="card">
+                                    <div class="card-header">
+                                        <h5>Parent Category</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li (click)="showCategoryDetails('category')">Category Type</li>
+                                            <li (click)="showCategoryDetails('status')">Status</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div *ngIf="isCategoryActive && isCardVisible" class="card">
+                                    <div class="card-header">
+                                        <h5>{{ currentCategory }} Details</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div *ngIf="currentCategory === 'category'">
+                                            <input type="search" [(ngModel)]="searchTerm" placeholder="Search" (keyup.enter)="search()" />
+                                            <div *ngFor="let item of categoryItems">
+                                                <label>
+                                            <input type="checkbox" [(ngModel)]="item.selected" (change)="onCheckboxChange()">{{ item.label }}
+                                          </label>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="currentCategory === 'status'">
+                                            <label>
+                                          <input type="checkbox" [(ngModel)]="statusActive" (change)="onCheckboxChange()"> Active
+                                        </label>
+                                            <label>
+                                          <input type="checkbox" [(ngModel)]="statusInactive" (change)="onCheckboxChange()"> Inactive
+                                        </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                            <div class="card-container">
+
+                                <div *ngIf="isCardVisible" class="card">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li (click)="onClick('status')" [ngClass]="{'active': selectedCategory === 'status'}" (click)="showCategoryDetails('status')">Status
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div *ngIf="isCategoryActive && isCardVisible" class="card second-card">
+
+                                    <div class="card-body">
+                                        <div *ngIf="currentCategory === 'status'">
+                                            <!-- <label>
+                                        <input type="checkbox" [(ngModel)]="statusActive" (change)="onCheckboxChange()"> Active
+                                      </label>
+                                            <label>
+                                        <input type="checkbox" [(ngModel)]="statusInactive" (change)="onCheckboxChange()"> Inactive
+                                      </label> -->
+                                            <img src="assets/images/search.png" alt="search" height="20" class="search-img-position2">
+                                            <input type="search" placeholder="Search" class="form-control search-input" aria-label="Search" style="margin-bottom: 5px;">
+                                            <div *ngFor="let item of status">
+                                                <label style="margin-bottom: 6px;">
+                                          <input type="checkbox"  class="m-lg-2" [(ngModel)]="item.selected" (change)="onCheckboxChange()">{{ item.label }}
+                                        </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img src="assets/images/Reset.png" style="cursor:pointer" alt="reset" height="20" class="m-lg-2">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mx-3 my-4">
+                    <div class="col-md-4 ">
+                        <button mat-flat-button class="submit-btn" (click)="addCategories('Add',{})">
+                          
+                            <span>{{'category.addButton' | translate }}</span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'categories'"></healthnable-table>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

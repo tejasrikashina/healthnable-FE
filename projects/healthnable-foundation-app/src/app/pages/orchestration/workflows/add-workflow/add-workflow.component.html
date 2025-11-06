@@ -1,0 +1,83 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'workflow.addworkflow' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4 mx-4">
+
+            <mat-card-title>
+                <span class="m-2">{{ 'workflow.defineworkflow' | translate }}</span>
+            </mat-card-title>
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5 ">
+                        <!-- <div class="col-md-7">
+                            <healthnable-input [label]="'workflow.code'" [formControlName]="'code'" [formGroupValue]="form" [required]="false" [name]="'code'" [placeholder]="'Workflow Code'" [type]="'text'" [minimum]="2" [maximum]="250" [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'"></healthnable-input>
+                        </div> -->
+                        <div class="col-md-7">
+                            <healthnable-input [label]="'workflow.name'" [formControlName]="'name'" [formGroupValue]="form" [required]="true" [type]="'text'" [name]="'name'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Workflow Name'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-7">
+                            <healthnable-input [label]="'workflow.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [name]="'description'" [placeholder]="'Description'" [type]="'text'" [minimum]="2" [maximum]="250"></healthnable-input>
+                        </div>
+                    </div>
+                </div>
+                <mat-card-title>
+                    <span class="m-2">{{ 'workflow.stages' | translate }}</span>
+                </mat-card-title>
+                <div class="m-lg-3">
+                    <mat-checkbox>New (Incident is reported)</mat-checkbox>
+                </div>
+                <div class="m-lg-3">
+                    <mat-checkbox>Under Investigation (Investigators assigned)</mat-checkbox>
+                </div>
+                <div class="m-lg-3">
+                    <mat-checkbox>Pending Corrective Action (Action plan assigned)</mat-checkbox>
+                </div>
+                <div class="m-lg-3">
+                    <mat-checkbox>Resolved (Incident Closed after mitigation)</mat-checkbox>
+                </div>
+                <div class="col-md-4 col-12 d-flex">
+                    <button mat-button class="submit-btn text-white" style="margin-right: 10px;">
+                     
+                        <span>{{'workflow.newstage' | translate }}</span>
+                    </button>
+
+
+                </div>
+                <div class="row align-items-center mt-3">
+                    <!-- <div class="col-md-7">
+                        <healthnable-calendar [label]="'workflow.date'" [formControlName]="'fromDate'" [formGroupValue]="form" [required]="false" [name]="'fromDate'" [placeholder]="'From'"></healthnable-calendar>
+
+                    </div>
+                    <div class="col-md-5">
+                        <healthnable-calendar [formControlName]="'toDate'" [formGroupValue]="form" [required]="false" [name]="'toDate'" [placeholder]="'To'"></healthnable-calendar>
+                    </div> -->
+                    <div class="col-md-2">
+                        <mat-label class="mat-subtitle-2 f-w-400">{{ 'workflow.date' | translate }}
+                        </mat-label>
+                    </div>
+                    <div class="col-md-3">
+                        <p-calendar class="w-90 h-75" formControlName="fromDate" [iconDisplay]="'input'" [showIcon]="true" optionLabel="fromDate" placeholder="From" inputId="icondisplay" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <p-calendar class="w-90 h-75" formControlName="toDate" [iconDisplay]="'input'" [showIcon]="true" optionLabel="toDate" placeholder="To" inputId="icondisplay" />
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center mb-3">
+            <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'workflow.cancel' | translate}}</button>
+            <button mat-flat-button class="submit-btn " (click)="next()">
+                {{'workflow.next' | translate}}
+            
+            </button>
+
+
+        </div>
+    </mat-card-content>
+</mat-card>

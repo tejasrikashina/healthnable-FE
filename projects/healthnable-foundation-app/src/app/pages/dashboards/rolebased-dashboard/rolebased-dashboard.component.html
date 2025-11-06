@@ -1,0 +1,72 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'roleBased.header'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="rolebasedForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'roleBased.role'" [formControlName]="'role_name'" [formGroupValue]="rolebasedForm" [required]="true" [options]="roleValue" [name]="'role'" [placeholder]="'Select Role'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]="'roleBased.department'" [formControlName]="'department_names'" [formGroupValue]="rolebasedForm" [required]="true" [options]="depValue" [name]="'department'" [placeholder]="'Select Department'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7">
+                            <healthnable-select [label]="'roleBased.facility'" [formControlName]="'facility_names'" [formGroupValue]="rolebasedForm" [required]="true" [options]="facilityValue" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+
+                        </div>
+                    </div>
+                    <div class="row m-lg-5">
+                        <div class="col-lg-5 mx-1 my-2">
+                            <p-card header="Available Dashboards" class="cardWithShadow">
+                                <div class="scroll-container">
+                                    @for(dashboard of availableDashboards; track dashboard.name){
+                                    <div class="mx-3 my-2">
+                                        <!-- <mat-checkbox formControlName="roleBased" [checked]="assignedDashboards.includes(role)" (change)="onCheckboxChange(role, $event.checked)">{{role}}</mat-checkbox> -->
+                                        <mat-checkbox [checked]="false" (change)="onCheckboxChange(dashboard.name, $event.checked)">
+                                            {{ dashboard.name }}
+                                        </mat-checkbox>
+                                    </div>
+                                    }
+                                </div>
+                            </p-card>
+                        </div>
+                        <div class="col-lg-5 my-2">
+                            <p-card header="Assigned Dashboards" class="cardWithShadow">
+                                <div class="scroll-container">
+                                    @for(role of assignedDashboards;track role){
+                                    <div class="my-3">
+                                        <p-chip [label]="role" [removable]="true" (onRemove)="removeAssignedDashboard(role) "></p-chip>
+
+                                    </div>
+                                    }
+                                </div>
+                            </p-card>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-3 ">
+                        <button mat-flat-button class="cancel-btn text-black ">  {{'roleBased.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="rolebasedForm.invalid ">
+                            {{'roleBased.saveandnew' | translate}}
+                        
+                        </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="rolebasedForm.invalid " (click)="saveRoleBasedDashboard()">
+                            {{'roleBased.save' | translate}}
+</button>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="table-responsive col-md-12 my-2">
+            <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'rolebased_dashboard'"></healthnable-table>
+        </div>
+    </mat-card-content>
+</mat-card>

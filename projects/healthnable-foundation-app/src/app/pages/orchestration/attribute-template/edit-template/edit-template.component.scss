@@ -1,0 +1,18 @@
+.chipList {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #F1F1F1;
+    height: 170px;
+}
+
+::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+    border-color: #fb9778 !important;
+    background: #fb9778 !important;
+}
+
+::ng-deep .mat-accent.mat-mdc-checkbox {
+    --mdc-checkbox-selected-pressed-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-focus-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-hover-icon-color: #fb9778 !important;
+    --mdc-checkbox-selected-icon-color: #fb9778 !important;
+}

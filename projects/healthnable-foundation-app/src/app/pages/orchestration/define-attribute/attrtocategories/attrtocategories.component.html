@@ -1,0 +1,38 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'attributes.assigntocategories' | translate}}</span>
+        </mat-card-title>
+        <div class="my-5">
+            <div class="container-fluid">
+
+
+                <div class="col-md-6">
+                    <healthnable-select [label]="'attributes.category'" [formControlName]="'category'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'category'" [placeholder]="'Select Category'"></healthnable-select>
+                </div>
+
+            </div>
+            <!-- Table Section -->
+            <div class="table-responsive col-md-12 my-2">
+                <healthnable-table [displayedColumns]="displayedColumns" [tableName]="'users'"></healthnable-table>
+            </div>
+            <div>
+                <button mat-flat-button class="submit-btn m-2" [mat-dialog-close]="true" (click)="addAttr('delete',{})">  {{'attributes.add' | translate}}</button>
+                <button mat-flat-button class="submit-btn" (click)="deleteAttr('delete',{})">
+                        {{'attributes.deleteattr' | translate}}   
+                  
+                </button>
+
+            </div>
+            <div class="d-flex justify-content-center m-3">
+                <button mat-flat-button class="cancel-btn text-black" [mat-dialog-close]="true">  {{'attributes.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn">
+                        {{'attributes.save' | translate}}
+                        
+                </button>
+
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

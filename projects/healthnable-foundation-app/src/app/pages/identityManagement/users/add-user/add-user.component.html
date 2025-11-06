@@ -1,0 +1,121 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="f-w-500 f-s-24">{{'user.addUser' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="userForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'user.firstName'" [formControlName]="'first_name'" [formGroupValue]="userForm" [required]="true" [type]="'text'" (input)="onFirstNameChange($event)" [buttonDis]="true" [name]="'first_name'" [minimum]="3" [maximum]="70" [placeholder]="'First Name'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'user.lastName'" [formControlName]="'last_name'" [formGroupValue]="userForm" [required]="true" [type]="'text'" (input)="onLastNameChange($event)" [buttonDis]="true" [name]="'last_name'" [minimum]="3" [maximum]="70" [patternValue]="'name'"
+                                [placeholder]="'Last Name'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'user.email'" [formControlName]="'email'" [formGroupValue]="userForm" [required]="true" [type]="'text'" [name]="'email'" [minimum]="5" [maximum]="100" [placeholder]="'Enter Email'">
+                            </healthnable-input>
+
+                        </div>
+
+                        <div class="col-md-8">
+                            <healthnable-select [label]="'user.role'" [formControlName]="'roles'" [multiSelect]="true" [formGroupValue]="userForm" [required]="true" [options]="role" [name]="'roles'" [placeholder]="'Select Role'"></healthnable-select>
+
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <healthnable-select [label]="'user.department'" [formControlName]="'department'" [formGroupValue]="userForm" [required]="true" [options]="department" [name]="'department'" [placeholder]="'Select Department'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-8 mb-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label>{{'user.password' | translate}} <span class="required">*</span></mat-label>
+                                </div>
+                                <div class="col-md-7 ">
+                                    <input class="w-100" pInputText [type]="inputType" formControlName="temporary_password" placeholder="Enter Temporary Password" />
+                                    <span class="password_icons" style="cursor: pointer;">
+                                    @if(inputType=='text'){
+                                        <img  (click)="getType('password')" src="assets/images/showeye.png" alt="">
+                                    }
+                                    @if(inputType=='password'){
+                                        <img  (click)="getType('text')" src="assets/images/hideeye.png" alt="">
+                                    }
+                                    
+                                </span> @if(f['temporary_password'].touched || f['temporary_password'].invalid) {
+                                    <mat-hint class=" error-msg">
+                                        @if(f['temporary_password'].errors?.['minlength'] || f['temporary_password'].errors?.['maxlength']) {
+                                        <div class="text-error">
+                                            Password should have a minimum of 8 and a maximum of 16 characters
+                                        </div>
+                                        } @else if(f['temporary_password'].errors?.['pattern']) {
+                                        <div class="text-error">
+                                            Password must include at least one uppercase letter, one lowercase letter, and one number
+                                        </div>
+                                        }
+
+                                    </mat-hint>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-label>Confirm Password <span class="required">*</span></mat-label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input class="w-100" pInputText [type]="inputType1" formControlName="password" placeholder="Enter Confirm Password" />
+
+                                    <span class="password_icons" style="cursor: pointer;">
+                                    @if(inputType1=='text'){
+                                        <img  (click)="getType1('password')" src="assets/images/showeye.png" alt="">
+                                    }
+                                    @if(inputType1=='password'){
+                                        <img  (click)="getType1('text')" src="assets/images/hideeye.png" alt="">
+                                    }
+                            
+                            </span>
+                                    <mat-hint class="error-msg">
+                                        @if( !f['password'].hasError('required')&& f['password'].dirty && userForm.hasError('mismatch')){
+                                        <div class="text-error">
+                                            Password do not match
+                                        </div>
+                                        }
+
+                                    </mat-hint>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="col-md-8 my-3">
+                            <healthnable-status [label]="'user.status'" [formControlName]="'status'" [formGroupValue]="userForm" [required]="true" [statusChange]="onStatusChange()" [status]="status"></healthnable-status>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'user.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn me-3" (click)="saveNewUser()" [disabled]="userForm.invalid">
+                        {{'user.saveandnew' | translate}}
+                    
+                    </button>
+                    <button mat-flat-button class="submit-btn" (click)="saveUser()" [disabled]="userForm.invalid">
+                        {{'user.save' | translate}}
+                    
+                    
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

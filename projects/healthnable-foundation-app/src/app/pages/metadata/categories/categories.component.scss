@@ -1,0 +1,80 @@
+// ::ng-deep .p-tieredmenu {
+//     left: 420px !important;
+//     top: 35px !important;
+// }
+// ::ng-deep .p-tieredmenu ul {
+//     list-style: none;
+//     text-decoration: none;
+// }
+// ::ng-deep .p-tieredmenu .p-menuitem.p-highlight>.p-menuitem-content {
+//     background: #fb9778 !important;
+//     border-radius: 10px !important;
+//     padding: 2px !important;
+//     color: white;
+// }
+// ::ng-deep .p-tieredmenu .p-menuitem.p-highlight>.p-menuitem-content .p-menuitem-link .p-menuitem-text {
+//     color: white !important;
+// }
+// ::ng-deep .p-menuitem-content {
+//     margin-left: -27px !important;
+// }
+.card-container {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.card {
+    position: absolute;
+    width: 200px;
+    z-index: 1;
+    top: 16px;
+    left: -40px;
+    border-radius: 8px;
+    border-top: 10px solid #fb9778;
+    border-left: 5px solid #fb9778;
+    border-right: 5px solid #fb9778;
+    border-bottom: 5px solid #fb9778;
+}
+
+.second-card {
+    position: absolute;
+    z-index: 1;
+    width: 220px;
+    left: 160px;
+    top: 70px;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    cursor: pointer
+}
+
+.card-body ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.card-body ul li.active {
+    background: #fb9778 !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    color: white;
+}
+
+// .card-body ul li:hover i {
+//     color: #f9f9f9;
+// }

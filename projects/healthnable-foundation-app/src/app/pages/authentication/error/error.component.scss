@@ -1,0 +1,23 @@
+.error-card {
+    h1 {
+        font-size: 210px;
+        font-weight: 800;
+        line-height: 210px;
+        margin: 0px;
+        text-shadow: 4px 5px 1px #b3bbbf;
+    }
+}
+
+@media (max-width: 767px) {
+    .error-card {
+        h1 {
+            font-size: 120px;
+            line-height: 120px;
+        }
+    }
+}
+
+.errorButton {
+    border-radius: 10px;
+    background-color: #fb9778 !important;
+}

@@ -1,0 +1,105 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="f-w-500 f-s-24">{{'roles.addRole' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="roleForm">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-8">
+                            <healthnable-input [label]="'roles.roleName'" [formControlName]="'role_name'" [formGroupValue]="roleForm" [required]="true" [type]="'text'" [name]="'role_name'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Role Name'">
+                            </healthnable-input>
+                        </div>
+
+                        <div class="col-md-8">
+
+                            <healthnable-text-area [label]="'roles.description'" [formControlName]="'description'" [formGroupValue]="roleForm" [required]="false" [rows]="2" [cols]="32" [placeholder]="'Description'">
+                            </healthnable-text-area>
+
+                        </div>
+                        <div class="col-md-8">
+
+
+                            <healthnable-select [label]="'roles.reportTo'" [formControlName]="'report_to'" [formGroupValue]="roleForm" [required]="false" [options]="reportTo" [optionLabel]="'role_names'" [name]="'report_to'" [placeholder]="'Select ReportTo'"></healthnable-select>
+                        </div>
+                        <div class="col-md-8 my-3">
+                            <healthnable-status [label]="'roles.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="roleForm" [status]="status" [required]="true"></healthnable-status>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 my-3">
+                                <label class="mat-subtitle-2 f-w-400">{{'roles.permissions' |
+                                            translate}} <span class="required">*</span> </label>
+                            </div>
+                            <div class="col-md-9 d-flex align-items-center">
+                                <div class="row my-3">
+                                    <div (keydown.enter)="$event.preventDefault()">
+                                        <div class="col-md-12">
+                                            <div class="search-container d-flex align-items-center">
+
+                                                <img src="assets/images/search.png" alt="search" height="20" class="search-img-position">
+                                                <input type="search" placeholder="Search and Select Permissions" [ngModelOptions]="{ standalone: true }" [(ngModel)]="searchText" (input)="onSearchChange(searchText)" class="form-control search-input" aria-label="Search">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 row" style="margin-left: 30px;">
+
+                                        @if (matchedOperations.length > 0) { @for(op of matchedOperations; track op){
+                                        <div class="col-md-6 d-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <mat-checkbox [color]=" 'primary' " name="options " [checked]="isChecked(currentFeatureName, op)" (change)="toggleOperation(currentFeatureName, op)">
+                                                        {{ op }}
+                                                    </mat-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        } } @else{
+                                        <div class="col-md-9">
+                                            <p class="mt-3 text-center">No Data Found</p>
+                                        </div>
+                                        }
+                                    </div>
+
+                                    @if(featureNames.length > 0){
+                                    <div class="card d-flex chipList mt-4">
+                                        <div class="row m-2 ">
+                                            @for(chip of featureNames;track chip){
+                                            <div class="col-md-3 my-2 ">
+                                                <mat-label>{{chip}} : </mat-label>
+                                            </div>
+
+                                            <div class="col-md-9 ">
+                                                @for(keyword of getOperations(chip);track keyword){
+                                                <p-chip [label]="keyword " [removable]="true " (onRemove)="onChipRemove(chip, keyword) "></p-chip>
+                                                }
+                                            </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'roles.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="roleForm.invalid ">
+                            {{'roles.saveandnew' | translate}}
+                        
+                        </button>
+                        <button mat-flat-button class="submit-btn " (click)="addRole()" [disabled]="roleForm.invalid ">
+                            {{'roles.save' | translate}}
+                      
+                    </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

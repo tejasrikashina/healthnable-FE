@@ -1,0 +1,73 @@
+@if(formGroupValue) {
+<form [formGroup]="formGroupValue">
+    <div class="row d-flex align-items-center">
+        @if(icon && label){
+        <div class="col-md-1">
+            <mat-label class="mat-subtitle-2 f-w-400" [innerHTML]="label | translate">
+
+            </mat-label>
+        </div>
+        } @else if(smallText && label){
+        <div class="col-md-2">
+            <mat-label class="mat-subtitle-2 f-w-400" [innerHTML]="label | translate">
+
+            </mat-label>
+        </div>
+        } @else if(label ){
+        <div class="col-md-4">
+            <mat-label class="mat-subtitle-2 f-w-400">
+                {{label | translate}} @if(required) {
+                <span class="required">*</span> }
+            </mat-label>
+        </div>
+        } @if(smallText && label){
+        <div class="col-md-12 mb-2">
+            <p-dropdown class="w-100  h-75" [formControlName]="formControlName" [options]="options" optionLabel="name" [readonly]="readonly" [placeholder]="placeholder" />
+
+        </div>
+        } @else if(noLabel && !label){
+        <div class="col-md-10 mb-2">
+            <p-dropdown class="w-100  h-75" [formControlName]="formControlName" [options]="options" [optionLabel]="optionLabel" [readonly]="readonly" [placeholder]="placeholder" />
+
+        </div>
+        } @else if(label && !multiSelect){
+        <div class="col-md-7 mb-2">
+            <p-dropdown class="w-100   h-75" [variant]="variant" [filter]="filter" filterBy="name" [formControlName]="formControlName" [options]="options" [optionLabel]="optionLabel" [readonly]="readonly" [placeholder]="placeholder" /> @if(formGroupValue.get(formControlName)?.touched && formGroupValue.get(formControlName)?.invalid && required && buttonDis) {
+            <mat-hint class=" error-msg">
+                <!-- <div class="text-error">{{ label | translate }} is required</div> -->
+            </mat-hint>
+            }
+        </div>
+        } @else if(label && multiSelect){
+        <div class="col-md-7 mb-2">
+            <p-multiSelect class="w-100 h-75 " [formControlName]="formControlName" [options]="options" [optionLabel]="optionLabel " [placeholder]="placeholder" display="chip">
+            </p-multiSelect>
+        </div>
+        } @else if(noLabel && multiSelect ){
+        <div class="col-md-10 mb-2">
+            <p-multiSelect class="w-100 h-75 " [formControlName]="formControlName" [options]="options" [optionLabel]="optionLabel " [placeholder]="placeholder" display="chip">
+            </p-multiSelect>
+        </div>
+        }
+
+    </div>
+</form>
+} @if(!formGroupValue) {
+<!-- Template-driven form -->
+<div class="row d-flex align-items-center">
+    <div class="col-md-4">
+        <mat-label class="mat-subtitle-2 f-w-600 m-b-8 d-block">{{ label | translate }}</mat-label>
+    </div>
+    <div class="col-md-7 ">
+        <!-- <mat-form-field appearance="outline" class="w-100">
+            <mat-select #item [(ngModel)]="selectedId" placeholder="{{ placeholder | translate }}">
+                @for(data of options; track data) {
+                <mat-option [value]="data.id">{{ data.name | translate }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field> -->
+        <p-dropdown class="w-100 h-75 " #item [(ngModel)]="selectedId" [options]="options" optionLabel="name" placeholder="{{ placeholder | translate }}" />
+
+    </div>
+</div>
+}

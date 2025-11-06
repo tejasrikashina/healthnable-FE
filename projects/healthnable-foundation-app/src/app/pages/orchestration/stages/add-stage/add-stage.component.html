@@ -1,0 +1,153 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{ 'addStage.headerforaddStage'  | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <div class="col-md-7">
+                            <healthnable-input [label]="'addStage.stageName'" [formControlName]="'stageName'" [formGroupValue]="form" [required]="true" [name]="'stageName'" [type]="'text'" [minimum]="2" [maximum]="250" [patternValue]="'text'" [placeholder]="'Stage Name'"></healthnable-input>
+                        </div>
+
+                        <div class="col-md-7">
+                            <healthnable-text-area [label]="'addStage.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="30" [placeholder]="'Description'">
+                            </healthnable-text-area>
+
+
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-md-2">
+                                <mat-label class="mat-subtitle-2 f-w-400">Stage Type
+                                </mat-label>
+                            </div>
+                            <span class="col-md-7" style="margin-left: 35px;">
+                                @for(category of categories; track category){
+
+                                <p-radioButton [inputId]="category.key" [value]="category.name" formControlName="selectedCategory" />
+                                <label [for]="category.key" class="mx-3">
+            {{ category.name }}
+        </label> }
+    </span>
+                        </div>
+                        <mat-card-title class="my-4">
+                            <span>Stage Transition Settings</span>
+                        </mat-card-title>
+                        <div class="col-md-7">
+                            <healthnable-select [label]="'addStage.previous'" [formControlName]="'previous'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'previous'" [placeholder]="'Form'"></healthnable-select>
+
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-4">
+                                <mat-label class="mat-subtitle-2 f-w-400">Next Possible Stages
+                                </mat-label>
+                            </div>
+
+                            <div class="mx-3 my-3">
+                                <mat-checkbox class="mx-2" formControlName="compilance">Compilance Verified</mat-checkbox>
+                                <mat-checkbox class="mx-2" formControlName="nonCompilance">Non-Compilance Found</mat-checkbox>
+                                <mat-checkbox class="mx-2" formControlName="report">Report Submitted</mat-checkbox>
+                                <mat-checkbox class="mx-2" formControlName="documentation">Claim Documentation</mat-checkbox>
+                            </div>
+                        </div>
+                        <div>
+                            <button mat-flat-button class="submit-btn"> {{'addStage.nextStage' | translate}}</button>
+                        </div>
+                        <mat-card-title class="my-4">
+                            <span>Approval Settings (If Applicable)</span>
+                        </mat-card-title>
+                        <div class="col-md-7">
+                            <healthnable-select [label]="'addStage.approvalReq'" [formControlName]="'approvalReq'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'approvalReq'" [placeholder]="'Approval Request'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7">
+
+                            <healthnable-input [label]="'addStage.approvalTime'" [formControlName]="'approvalTime'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'approvalTime'" [minimum]="10" [maximum]="500" [placeholder]="'Approval Time'">
+                            </healthnable-input>
+
+                        </div>
+                        <div class="col-md-7">
+                            <healthnable-select [label]="'addStage.escalation'" [formControlName]="'escalation'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'escalation'" [placeholder]="'Escalation'"></healthnable-select>
+
+                        </div>
+                        <mat-card-title class="my-4">
+                            <span>Entry Crtiteria / Conditions </span>
+                        </mat-card-title>
+                        <div class="col-md-7">
+                            <healthnable-select [label]="'addStage.condition'" [formControlName]="'condition'" [formGroupValue]="form" [required]="false" [options]="locationValue" [name]="'condition'" [placeholder]="'Condition'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7">
+
+                            <healthnable-input [label]="'addStage.logicBuilder'" [formControlName]="'logicBuilder'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'logicBuilder'" [minimum]="10" [maximum]="500" [placeholder]="'Logic Builder'">
+                            </healthnable-input>
+
+                        </div>
+                        <mat-card-title class="my-2">
+                            <span>Actions / Task in Stage</span>
+                        </mat-card-title>
+                        <div class="mx-3 my-3">
+                            <mat-checkbox class="mx-2" formControlName="verifyCoverage">Verify Coverage</mat-checkbox>
+                            <mat-checkbox class=" mx-2 " formControlName="policyDetails">Policy Details</mat-checkbox>
+                            <mat-checkbox class="mx-2 " formControlName="copayments">Co-payments</mat-checkbox>
+                            <mat-checkbox class="mx-2 " formControlName="deductibles">Deductibles</mat-checkbox>
+                        </div>
+
+                        <div>
+                            <button mat-flat-button class="submit-btn my-3 "> 
+                 
+                                {{'addStage.addTask' | translate}}</button>
+                        </div>
+
+                        <mat-card-title class="my-2 ">
+                            <span>Stage Completion Criteria</span>
+                        </mat-card-title>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addStage.completionRule' " [formControlName]=" 'completionRule' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'completionRule' " [placeholder]="
+                            'Completion Rule' "></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+
+                            <healthnable-input [label]=" 'addStage.logicBuilder' " [formControlName]=" 'logicBuilder' " [formGroupValue]="form " [required]="false " [type]=" 'text' " [name]=" 'logicBuilder' " [minimum]="10 " [maximum]="500
+                            " [placeholder]=" 'Logic Builder' ">
+                            </healthnable-input>
+
+                        </div>
+                        <mat-card-title class="my-4 ">
+                            <span>Notification / Alerts</span>
+                        </mat-card-title>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addStage.triggerEvent' " [formControlName]=" 'triggerEvent' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'triggerEvent' " [placeholder]=" 'Trigger Event' "></healthnable-select>
+
+                        </div>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addStage.notify' " [formControlName]=" 'notify' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'notify' " [placeholder]="'Notify'"></healthnable-select>
+
+                        </div>
+                        <mat-card-title class="my-4 ">
+                            <span>Time Limit</span>
+                        </mat-card-title>
+                        <div class="col-md-7 ">
+                            <healthnable-select [label]=" 'addStage.duration' " [formControlName]=" 'duration' " [formGroupValue]="form " [required]="false " [options]="locationValue " [name]=" 'duration' " [placeholder]=" 'Duration' "></healthnable-select>
+
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mb-3 ">
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addStage.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="form.invalid ">
+                            {{'addStage.saveandnew' | translate}}
+                        
+                        </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="form.invalid ">
+                            {{'addStage.save' | translate}}
+</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>

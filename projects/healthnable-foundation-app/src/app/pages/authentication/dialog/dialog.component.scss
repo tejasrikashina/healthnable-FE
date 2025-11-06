@@ -1,0 +1,40 @@
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    word-break: break-word;
+}
+
+.center-content a {
+    word-break: break-word;
+    white-space: normal;
+}
+
+.error-msg {
+    font-size: small;
+}
+
+.text-error {
+    color: #dc3545;
+}
+
+// ::ng-deep {
+//     .digit-otp {
+//         height: 50px !important;
+//         width: 40px !important;
+//         border-radius: 8px !important;
+//         font-weight: 300 !important;
+//         font-size: medium;
+//         color: black;
+//         &::placeholder {
+//             color: #065ca7;
+//             ;
+//         }
+//         &:focus {
+//             outline-color: #065ca7;
+//             border-color: #065ca7;
+//         }
+//     }
+// }

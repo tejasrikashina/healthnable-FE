@@ -1,0 +1,84 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{ 'entity.headerfordeletDailog' | translate }}</span>
+        </mat-card-title>
+        <div class="my-4">
+
+            <div class="container-fluid">
+                <div class="row m-lg-5">
+
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <img src="assets/images/warning.png" alt="warning" height="20">
+                        <p class=" f-s-16 mb-0 text-center mx-3">{{tags.error | translate}}</p>
+
+                    </div>
+                    <div class="row my-3">
+                        @for(header of headers; track header){
+
+                        <div class="col-md-3">
+                            <p>{{header}}</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>gg</p>
+
+                        </div>
+
+                        }
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <p class=" f-s-16 mb-0 text-center">{{tags.suberror | translate}}</p>
+
+                    </div>
+                    @if(!dependencies){
+                    <div class="row d-flex align-items-center justify-content-start">
+                        <div class="col-md-3">
+                            <mat-card-title class="mt-4">
+                                <span>Dependencies</span>
+                            </mat-card-title>
+                        </div>
+                        <div>
+                            <p class=" f-s-16 mb-0 my-3">The Entity is currently being used in the following</p>
+                        </div>
+                        <div class="row my-3">
+                            @for(header of subheaders; track header){
+
+                            <div class="col-md-3">
+                                <p>{{header}}</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>gg</p>
+
+                            </div>
+
+                            }
+                        </div>
+                        <div>
+                            <p class=" f-s-16 mb-0">You must remove the dependencies before deletion.</p>
+                        </div>
+                    </div>
+                    }
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <p class=" f-s-16 mb-0 text-center m-4">Please Confirm this action</p>
+                    </div>
+                    <div class="col-md-12 d-flex justify-content-start align-items-center">
+                        <mat-checkbox class="text-center m-4">
+                            <p class="f-s-16 mb-0">I understood the consequences of deleting this entity</p>
+                        </mat-checkbox>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'entity.cancel' | translate}}</button>
+                <button mat-flat-button class="submit-btn">
+                    {{'entity.delete' | translate}}
+               
+              
+            </button>
+            </div>
+        </div>
+
+    </mat-card-content>
+</mat-card>

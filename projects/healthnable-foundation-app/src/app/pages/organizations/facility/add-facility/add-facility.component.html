@@ -1,0 +1,167 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span style="margin-left: 35px;">{{'addFacility.add' | translate}}</span>
+        </mat-card-title>
+        <div class="my-4">
+            <div class="container-fluid">
+                <form [formGroup]="facilityForm">
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFacility.name'" [buttonDis]="true" [formControlName]="'facility_name'" [formGroupValue]="facilityForm" [required]="true" [name]="'facility_name'" (input)="onfacNameChange($event)" [placeholder]="'Enter Facility Name'" [type]="'text'"
+                                [minimum]="3" [maximum]="70"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-md-4">
+                                    <mat-label>{{'addFacility.phone' | translate}} <span class="required">*</span></mat-label>
+                                </div>
+                                <div class="col-md-7">
+                                    <div (keydown.enter)="$event.preventDefault()">
+                                        <ngx-intl-tel-input appOnlyNumbers [enableAutoCountrySelect]="true" [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Name, SearchCountryField.Iso2]" [enablePlaceholder]="true" [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO ? selectedCountryISO : CountryISO.India"
+                                            [phoneValidation]="true" [separateDialCode]="true" name="phone_number" formControlName="phone_number" class="w-100 " [customPlaceholder]="'Enter phone number'">
+                                        </ngx-intl-tel-input>
+                                    </div>
+                                    <mat-hint class="error-msg">
+                                        @if (f['phone_number'].touched && f['phone_number'].hasError('validatePhoneNumber') || f['phone_number'].errors?.['pattern']) {
+                                        <div class="text-error">
+                                            Please enter a valid phone number
+
+                                        </div>
+                                        }
+                                    </mat-hint>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                            <healthnable-select [label]="'addFacility.type'" [formControlName]="'facility_type'" [formGroupValue]="facilityForm" [required]="true" [options]="facility" [name]="'facility'" [placeholder]="'Select Facility'"></healthnable-select>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFacility.faxNumber'" appFaxNumber [formControlName]="'fax_number'" [formGroupValue]="facilityForm" [name]="'fax_number'" [required]="false" [placeholder]="'Enter Fax Number'" [maximum]="10"></healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+
+                            <healthnable-select [label]="'addFacility.associatedOrg'" [formControlName]="'associated_organizations'" [multiSelect]="true" [formGroupValue]="facilityForm" [required]="true" [options]="assOrg" [name]="'associated_organizations'" [placeholder]="'Select Associated Organization'"></healthnable-select>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFacility.email'" [formControlName]="'contact_email'" [formGroupValue]="facilityForm" [required]="false" [type]="'email'" [name]="'contact_email'" [maximum]="100" [placeholder]="'Enter Email Address'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-input appOnlyNumbers [label]="'addFacility.npiNumber'" [formControlName]="'npi_number'" [formGroupValue]="facilityForm" [name]="'npi_number'" [required]="false" [placeholder]="'Enter NPI Number'" [maximum]="10"></healthnable-input>
+
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <healthnable-input [label]="'addFacility.primaryContact'" (input)="onPriContChange($event)" [formControlName]="'primary_contact'" [formGroupValue]="facilityForm" [required]="true" [type]="'text'" [name]="'primary_contact'" [minimum]="3" [maximum]="70"
+                                [patternValue]="'name'" [placeholder]="'Enter Primary Contact'">
+                            </healthnable-input>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <healthnable-input appTaxId [label]="'addFacility.taxId'" [formControlName]="'tax_id'" [formGroupValue]="facilityForm" [name]="'tax_id'" [required]="false" [placeholder]="'Enter TaxId'" [maximum]="10"></healthnable-input>
+
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row d-flex align-items-center">
+
+                                <div class="col-md-4">
+                                    <mat-label class="mat-subtitle-2 f-w-400">{{ 'addFacility.opHours' | translate }} <span class="required">*</span>
+                                    </mat-label>
+                                </div>
+                                <div class="col-md-3 mb-2 me-3">
+                                    <p-calendar inputId="calendar-12h" dateFormat="D" class="w-100 h-75" formControlName="operational_hours_from" [showTime]="true" [hourFormat]="'12'" placeholder="Select Time" />
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <p-calendar inputId="calendar-12h" dateFormat="D" class="w-100 h-75" formControlName="operational_hours_to" [showTime]="true" [hourFormat]="'12'" placeholder="Select Time" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-lg-4">
+                        <div class="col-md-6">
+
+                            <healthnable-text-area [formGroupValue]="facilityForm" [label]="'addFacility.add1'" [formControlName]="'address_line1'" [required]="true" [rows]="2" [cols]="27" [placeholder]="'Enter Address1'" [minimum]="5" [maximum]="250">
+                            </healthnable-text-area>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-input appPincode [label]="'addFacility.zip'" [formControlName]="'zipcode'" [formGroupValue]="facilityForm" [required]="true" [minimum]="5" [type]="'text'" [maximum]="10" [name]="'zipcode'" [placeholder]="'Enter Zipcode'">
+                            </healthnable-input>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="facilityForm" [label]="'addFacility.add2'" [formControlName]="'address_line2'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Address2'">
+                            </healthnable-text-area>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFacility.time'" [formControlName]="'timezone'" [formGroupValue]="facilityForm" [required]="true" [options]="timezoneValue" [optionLabel]="'name'" [name]="'timezone'" [placeholder]="'Select Time Zone'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFacility.country'" [filter]="true" [formControlName]="'country'" [formGroupValue]="facilityForm" [required]="true" [options]="countryValue" [optionLabel]="'name'" [name]="'country'" [placeholder]="'Select Country'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+
+
+                            <healthnable-select [label]="'addFacility.language'" [filter]="true" [formControlName]="'default_language'" [formGroupValue]="facilityForm" [required]="true" [options]="languageValue" [optionLabel]="'name'" [name]="'default_language'" [placeholder]="'Select Language'"></healthnable-select>
+
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFacility.state'" [filter]="true" [formControlName]="'state'" [formGroupValue]="facilityForm" [required]="true" [options]="stateValue" [optionLabel]="'name'" [name]="'state'" [placeholder]="'Select State'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-status [label]="'addFacility.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="facilityForm" [status]="status"></healthnable-status>
+                        </div>
+
+                        <div class="col-md-6">
+                            <healthnable-select [label]="'addFacility.city'" [filter]="true" [formControlName]="'city'" [formGroupValue]="facilityForm" [required]="true" [options]="cityValue" [optionLabel]="'name'" [name]="'city'" [placeholder]="'Select City'"></healthnable-select>
+                        </div>
+                        <div class="col-md-6">
+                            <healthnable-select-file [label]="'addFacility.logo'" [formControlName]="'logo'" [formGroupValue]="facilityForm" [required]="false" [acceptValue]="'image/png, image/jpg, image/jpeg'" [fileType]="'image'"></healthnable-select-file>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <healthnable-select-file [label]="'addFacility.favLogo'" [formControlName]="'favicon'" [formGroupValue]="facilityForm" [required]="false" [acceptValue]="'image/png, image/jpg, image/jpeg'" [fileType]="'image'"></healthnable-select-file>
+                        </div>
+                        <div class="col-md-6"></div>
+
+                        <div class="col-md-6">
+                            <healthnable-text-area [formGroupValue]="facilityForm" [label]="'addFacility.description'" [formControlName]="'description'" [required]="false" [rows]="2" [cols]="27" [placeholder]="'Enter Description'" [maximum]="1000">
+                            </healthnable-text-area>
+                        </div>
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-center my-5 ">
+
+                        <button mat-flat-button class="cancel-btn text-black " (click)="onCancel() ">  {{'addFacility.cancel' | translate}}</button>
+                        <button mat-flat-button class="submit-btn me-3" [disabled]="facilityForm.invalid " (click)="addNewFacility()">
+                            {{'addFacility.saveandnew' | translate}} 
+                    </button>
+                        <button mat-flat-button class="submit-btn " [disabled]="facilityForm.invalid " (click)="addFacility()">
+                        {{'addFacility.save' | translate}}
+                   
+                  
+                </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

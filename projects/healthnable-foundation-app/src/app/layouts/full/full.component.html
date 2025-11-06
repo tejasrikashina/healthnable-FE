@@ -1,0 +1,69 @@
+<mat-sidenav-container class="mainWrapper" autosize autoFocus [ngClass]="{
+    'sidebarNav-mini': options.sidenavCollapsed && options.navPos !== 'top' &&  !resView,
+    'sidebarNav-horizontal': options.horizontal,
+  }">
+
+
+    @if(!options.horizontal) {
+    <mat-sidenav [mode]="isOver ? 'over' : 'side'" [opened]="options.navPos === 'side' && options.sidenavOpened && !isOver && !resView" (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav" position="start">
+        <div class="flex-layout">
+            <healthnable-sidebar (notify)="sidenav.toggle()" [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()" (options)="options" (toggleMobileNav)="sidenav.toggle()"></healthnable-sidebar>
+            @if(!options.sidenavCollapsed) {
+            <ng-scrollbar class="position-relative">
+                <mat-nav-list class="sidebar-list">
+                    @for(item of navItems; track item.displayName) {
+                    <healthnable-nav-item [item]="item" [collapsed]="sideNavCollapsed()" (notify)="sidenav.toggle()" [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()" (options)="options" (toggleMobileNav)="sidenav.toggle()">
+                    </healthnable-nav-item>
+                    }
+
+                </mat-nav-list>
+            </ng-scrollbar>
+            }
+        </div>
+    </mat-sidenav>
+    }
+
+
+
+    <mat-sidenav-content class="contentWrapper " #content>
+
+
+
+        <main class="pageWrapper " [ngClass]="{ maxWidth: options.boxed } ">
+
+            <router-outlet></router-outlet>
+
+        </main>
+    </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+<!-- <mat-sidenav-container class="mainWrapper" autosize autoFocus [ngClass]="{
+    'sidebarNav-mini': options.sidenavCollapsed && options.navPos !== 'top' &&  !resView,
+    'sidebarNav-horizontal': options.horizontal,
+  }">
+
+    @if(!options.horizontal) {
+    <mat-sidenav #leftsidenav [mode]="isOver ? 'over' : 'side'" [opened]="options.navPos === 'side' && options.sidenavOpened && !isOver && !resView" (openedChange)="onSidenavOpenedChange($event)" (closedStart)="onSidenavClosedStart()" class="sidebarNav" position="start">
+        <div class="flex-layout">
+            <healthnable-sidebar (notify)="sidenav.toggle()" [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()" (options)="options" (toggleMobileNav)="sidenav.toggle()"></healthnable-sidebar>
+            @if(!options.sidenavCollapsed) {
+            <ng-scrollbar class="position-relative">
+                <p-accordion class="sidebar-list">
+                    @for(item of navItems; track item) {
+                    <healthnable-nav-item [item]="item" (notify)="sidenav.toggle()" [showToggle]="!isOver" (toggleCollapsed)="toggleCollapsed()" (options)="options" (toggleMobileNav)="sidenav.toggle()">
+                    </healthnable-nav-item>
+                    }
+                </p-accordion>
+            </ng-scrollbar>
+            }
+        </div>
+    </mat-sidenav>
+    }
+
+    <mat-sidenav-content class="contentWrapper " #content>
+        <main class="pageWrapper " [ngClass]="{ maxWidth: options.boxed } ">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container> -->

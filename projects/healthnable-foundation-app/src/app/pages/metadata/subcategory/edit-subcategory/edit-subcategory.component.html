@@ -1,0 +1,58 @@
+<mat-card class="cardWithShadow">
+    <healthnable-header></healthnable-header>
+    <mat-card-content>
+        <mat-card-title>
+            <span class="m-2"> {{  'subcategory.headerforEditDailog' | translate }}</span>
+
+        </mat-card-title>
+        <div class="my-4">
+            <form [formGroup]="form">
+                <div class="container-fluid">
+                    <div class="row m-lg-5">
+                        <!-- <div class="col-md-8">
+
+                            <healthnable-input [label]="'subcategory.subcategoryCode'" [formControlName]="'subCategoryCode'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'subCategoryCode'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Subcategory Code'"
+                                [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div> -->
+                        <div class="col-md-8">
+
+                            <healthnable-input [label]="'subcategory.subcategory'" [formControlName]="'subCategoryName'" [formGroupValue]="form" [required]="false" [type]="'text'" [name]="'subCategoryName'" [minimum]="2" [maximum]="250" [patternValue]="'name'" [placeholder]="'Subcategory Name'"
+                                [readonly]="'readonly'" [style]="'background-color:rgb(245 245 245)'">
+                            </healthnable-input>
+                        </div>
+
+
+
+                        <div class="col-md-8">
+
+                            <healthnable-text-area [label]="'subcategory.description'" [formControlName]="'description'" [formGroupValue]="form" [required]="false" [rows]="2" [cols]="37" [placeholder]="'Description'">
+                            </healthnable-text-area>
+
+
+                        </div>
+                        <div class="col-md-8">
+                            <healthnable-select [label]="'subcategory.category'" [formControlName]="'category'" [formGroupValue]="form" [required]="true" [options]="locationValue" [name]="'category'" [placeholder]="'Assets'"></healthnable-select>
+                        </div>
+
+                        <div class="col-md-8 my-2">
+                            <healthnable-status [label]="'subcategory.status'" [formControlName]="'status'" [statusChange]="onStatusChange()" [formGroupValue]="form" [status]="status" [required]="false"></healthnable-status>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mb-3">
+                    <button mat-flat-button class="cancel-btn text-black" (click)="onCancel()">  {{'subcategory.cancel' | translate}}</button>
+                    <button mat-flat-button class="submit-btn ">
+                        {{'subcategory.update' | translate}}
+                    
+                    </button>
+
+
+
+
+
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>
